@@ -51,6 +51,18 @@ class ChatFrag : Fragment() {
 		tvPrompt = binding.textviewQuestion
 		tvAnswer = binding.textviewAnswer
 
+		binding.buttonPrompt.setOnClickListener {
+			if (!etPrompt.text.isNullOrBlank()) {
+				val q = etPrompt.text.toString()
+				etPrompt.text.clear()
+				tvPrompt.text = q
+				tvAnswer.text = getString(R.string.response_thinking)
+
+
+				viewModel.sendPrompt(q)
+			} else showToast("First, enter a prompt.")
+		}
+
 		lifecycleScope.launch {
 			viewModel.uiState.collect { uiState ->
 				if (uiState.isNotEmpty()) {
@@ -63,13 +75,6 @@ class ChatFrag : Fragment() {
 			}
 		}
 
-		binding.buttonPrompt.setOnClickListener {
-			if (!etPrompt.text.isNullOrBlank()) {
-				val q = etPrompt.text.toString()
-				tvPrompt.text = q
-				viewModel.sendPrompt(q)
-			} else showToast("First, enter a prompt")
-		}
 	}
 
 	override fun onDestroyView() {

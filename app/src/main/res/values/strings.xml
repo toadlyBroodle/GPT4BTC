@@ -13,5 +13,6 @@
     <string name="tv_a">AI:</string>
     <string name="button_prompt">Prompt</string>
     <string name="elipsis">…</string>
+    <string name="response_thinking">Thinking…</string>
 
 </resources>
