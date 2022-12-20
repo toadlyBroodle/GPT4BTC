@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">ChatGPTTS</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="prompt">prompt</string>
+    <string name="answer">answer</string>
+    <string name="ask_question">Enter your prompt…</string>
+    <string name="tv_p">Human:</string>
+    <string name="tv_a">AI:</string>
+    <string name="button_prompt">Prompt</string>
+    <string name="elipsis">…</string>
+
+</resources>

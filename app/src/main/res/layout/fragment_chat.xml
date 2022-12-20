@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ChatFrag">
+
+    <LinearLayout
+        android:id="@+id/layout_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_p"
+            android:textStyle="bold"
+            android:padding="5sp"/>
+        <TextView
+            android:id="@+id/textview_question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/layout_question"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_a"
+            android:textStyle="bold"
+            android:padding="5sp"/>
+        <TextView
+            android:id="@+id/textview_answer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5sp" />
+    </LinearLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        android:stretchColumns="1">
+
+        <TableRow tools:ignore="UselessParent">
+            <EditText
+                android:id="@+id/edittext_ask_question"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:inputType="text"
+                android:hint="@string/ask_question"
+                android:autofillHints="@string/ask_question" />
+
+            <Button
+                android:id="@+id/button_prompt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:text="@string/button_prompt"/>
+
+            <TextView
+                android:id="@+id/textview_loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5sp"
+                android:text="@string/elipsis"/>
+        </TableRow>
+
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
