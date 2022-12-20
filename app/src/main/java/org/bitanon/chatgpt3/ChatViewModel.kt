@@ -1,4 +1,4 @@
-package take.home.chatgptts
+package org.bitanon.chatgpt3
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

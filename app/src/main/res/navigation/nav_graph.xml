@@ -7,8 +7,8 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="take.home.chatgptts.ChatFrag"
-        android:label="@string/first_fragment_label"
+        android:name="org.bitanon.chatgpt3.ChatFrag"
+        android:label="@string/chat_fragment_label"
         tools:layout="@layout/fragment_chat">
 
         <action
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="take.home.chatgptts.SecondFragment"
+        android:name="org.bitanon.chatgpt3.SecondFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_second">
 

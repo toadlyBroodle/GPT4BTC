@@ -1,4 +1,4 @@
-package take.home.chatgptts
+package org.bitanon.chatgpt3
 
 import android.os.Bundle
 import android.view.Menu
@@ -13,7 +13,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import kotlinx.coroutines.launch
-import take.home.chatgptts.databinding.ActivityMainBinding
+import org.bitanon.chatgpt3.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {

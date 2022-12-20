@@ -1,4 +1,4 @@
-package take.home.chatgptts
+package org.bitanon.chatgpt3
 
 import com.theokanning.openai.OpenAiService
 import com.theokanning.openai.completion.CompletionRequest
