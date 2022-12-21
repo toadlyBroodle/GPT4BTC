@@ -17,6 +17,7 @@ import org.bitanon.chatgpt3.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
+	private val TAG = "MainActivity"
 
 	private lateinit var appBarConfiguration: AppBarConfiguration
 	private lateinit var binding: ActivityMainBinding
@@ -27,9 +28,10 @@ class MainActivity : AppCompatActivity() {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-
 		binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
+
+		AdMob.init(this)
 
 		setSupportActionBar(binding.toolbar)
 
@@ -48,7 +50,6 @@ class MainActivity : AppCompatActivity() {
 		lifecycleScope.launch {
 			repeatOnLifecycle(Lifecycle.State.STARTED) {
 				viewModel.uiState.collect {
-					//chatGPT3Frag.tvAnser.text = it.answer
 				}
 			}
 		}

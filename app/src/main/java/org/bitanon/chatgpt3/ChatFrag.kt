@@ -20,6 +20,7 @@ import org.bitanon.chatgpt3.databinding.FragmentChatBinding
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 class ChatFrag : Fragment() {
+	private val TAG = "ChatFrag"
 
 	private var _binding: FragmentChatBinding? = null
 
@@ -60,8 +61,10 @@ class ChatFrag : Fragment() {
 				tvPrompt.text = q
 				tvAnswer.text = getString(R.string.response_thinking)
 
-
 				viewModel.sendPrompt(q)
+
+				AdMob.show(activity)
+
 			} else showToast("First, enter a prompt.")
 		}
 

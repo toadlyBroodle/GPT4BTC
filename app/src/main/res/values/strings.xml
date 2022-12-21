@@ -15,4 +15,7 @@
     <string name="elipsis">…</string>
     <string name="response_thinking">Thinking…</string>
 
+    <string name="admob_sample_id">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="admob_test_id">ca-app-pub-3940256099942544~3347511713</string>
+
 </resources>
