@@ -61,32 +61,6 @@ class MainActivity : AppCompatActivity() {
 			}
 		}
 
-/*		val linkToU = SpannableString(getText(R.string.openai_link_terms_of_use))
-		Linkify.addLinks(linkToU, Linkify.WEB_URLS)
-		val s = getString(R.string.privacy_agreement_message) + linkToU
-		var tvMessage = TextView(this)
-		tvMessage.text = s
-		tvMessage.movementMethod = LinkMovementMethod.getInstance()
-
-		// require user acceptance of privacy notice
-		val ad = AlertDialog.Builder(this)
-			.setTitle(getString(R.string.terms_agreement))
-			.setView(tvMessage)
-			.setPositiveButton(
-				getString(R.string.accept)
-			) { dialog, which ->
-				// user accepts
-			}
-			.setNegativeButton(getString(R.string.exit)) { dialog, which ->
-				// user rejects, exit app
-			}
-			.setIcon(android.R.drawable.ic_dialog_alert)
-			.show()
-
-		// Make the textview clickable. Must be called after show()
-		ad.findViewById<TextView?>(android.R.id.message)?.movementMethod = LinkMovementMethod.getInstance()
-		*/
-
 		// get openai links
 		val message = SpannableString(getString(R.string.privacy_agreement_message)
 				+ "\n" + getString(R.string.openai_link_terms_of_use)
