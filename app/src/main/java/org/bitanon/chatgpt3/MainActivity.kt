@@ -1,9 +1,16 @@
 package org.bitanon.chatgpt3
 
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.method.LinkMovementMethod
+import android.text.util.Linkify
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -53,6 +60,58 @@ class MainActivity : AppCompatActivity() {
 				}
 			}
 		}
+
+/*		val linkToU = SpannableString(getText(R.string.openai_link_terms_of_use))
+		Linkify.addLinks(linkToU, Linkify.WEB_URLS)
+		val s = getString(R.string.privacy_agreement_message) + linkToU
+		var tvMessage = TextView(this)
+		tvMessage.text = s
+		tvMessage.movementMethod = LinkMovementMethod.getInstance()
+
+		// require user acceptance of privacy notice
+		val ad = AlertDialog.Builder(this)
+			.setTitle(getString(R.string.terms_agreement))
+			.setView(tvMessage)
+			.setPositiveButton(
+				getString(R.string.accept)
+			) { dialog, which ->
+				// user accepts
+			}
+			.setNegativeButton(getString(R.string.exit)) { dialog, which ->
+				// user rejects, exit app
+			}
+			.setIcon(android.R.drawable.ic_dialog_alert)
+			.show()
+
+		// Make the textview clickable. Must be called after show()
+		ad.findViewById<TextView?>(android.R.id.message)?.movementMethod = LinkMovementMethod.getInstance()
+		*/
+
+		// get openai links
+		val message = SpannableString(getString(R.string.privacy_agreement_message)
+				+ "\n" + getString(R.string.openai_link_terms_of_use)
+				+ "\n" + getString(R.string.openai_link_privacy_policy))
+		Linkify.addLinks(message, Linkify.WEB_URLS)
+
+		val d: AlertDialog = AlertDialog.Builder(this)
+			.setIcon(android.R.drawable.ic_dialog_alert)
+			.setTitle(getString(R.string.terms_agreement))
+			.setPositiveButton(
+				getString(R.string.accept)
+			) { dialog, which ->
+				Log.d(TAG, "User accepted terms agreement")
+			}
+			.setNegativeButton(getString(R.string.exit)) { dialog, which ->
+				// user rejects, exit app
+				finishAndRemoveTask()
+			}
+			.setMessage(message)
+			.create()
+
+		d.show()
+		// Make the textview clickable. Must be called after show()
+		(d.findViewById<View>(android.R.id.message) as TextView?)!!.movementMethod =
+			LinkMovementMethod.getInstance()
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
