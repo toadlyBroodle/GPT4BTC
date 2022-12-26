@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
 			.create()
 
 		d.show()
-		// Make the textview clickable. Must be called after show()
+		// Make the textview's links clickable. Must be called after show()
 		(d.findViewById<View>(android.R.id.message) as TextView?)!!.movementMethod =
 			LinkMovementMethod.getInstance()
 	}
