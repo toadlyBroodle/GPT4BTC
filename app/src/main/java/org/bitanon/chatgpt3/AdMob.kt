@@ -14,13 +14,19 @@ class AdMob {
 		var mInterstitialAd: InterstitialAd? = null
 
 		fun init(ctx: Context) {
+			Log.d(TAG, "initializing AdMob")
+
+			var adId = ctx.resources.getString(R.string.admob_chat_interstitial_ad_unit_id)
+			// when developing, use test ad id
+			if (BuildConfig.DEBUG)
+				adId = ctx.resources.getString(R.string.admob_test_ad_unit_id)
 
 			// init AdMob
 			MobileAds.initialize(ctx) {}
 
-			var adRequest = AdRequest.Builder().build()
+			val adRequest = AdRequest.Builder().build()
 
-			InterstitialAd.load(ctx, ctx.resources.getString(R.string.admob_test_id),
+			InterstitialAd.load(ctx, adId,
 				adRequest, object : InterstitialAdLoadCallback() {
 					override fun onAdFailedToLoad(adError: LoadAdError) {
 						Log.d(TAG, adError.toString())

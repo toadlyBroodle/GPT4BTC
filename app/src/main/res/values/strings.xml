@@ -23,8 +23,9 @@
     <string name="response_thinking">Thinking…</string>
 
     <!-- DO NOT translate -->
-    <string name="admob_sample_id">ca-app-pub-3940256099942544/1033173712</string>
-    <string name="admob_test_id">ca-app-pub-3940256099942544~3347511713</string>
+    <string name="admob_app_id">ca-app-pub-9043912704472803~9575294075</string>
+    <string name="admob_test_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="admob_chat_interstitial_ad_unit_id">ca-app-pub-9043912704472803/6286785755</string>
     <string name="openai_link_terms_of_use">https://openai.com/terms/</string>
     <string name="openai_link_privacy_policy">https://openai.com/privacy/</string>
 

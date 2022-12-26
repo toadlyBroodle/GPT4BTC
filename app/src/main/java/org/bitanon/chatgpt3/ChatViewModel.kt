@@ -17,6 +17,7 @@ class ChatViewModel(): ViewModel() {
 	val uiState: StateFlow<List<String>> = _uiState
 
 	fun sendPrompt(p: String) {
+
 		// Create a new coroutine on the UI thread
 		val job = viewModelScope.launch {
 			// Make the network call and suspend execution until it finishes

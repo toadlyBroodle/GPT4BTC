@@ -21,6 +21,7 @@ import org.bitanon.chatgpt3.databinding.FragmentChatBinding
  */
 class ChatFrag : Fragment() {
 	private val TAG = "ChatFrag"
+	private var promptCount = 0
 
 	private var _binding: FragmentChatBinding? = null
 
@@ -63,7 +64,14 @@ class ChatFrag : Fragment() {
 
 				viewModel.sendPrompt(q)
 
-				AdMob.show(activity)
+				// show interstitial ad every three prompts
+				if (promptCount % 3 == 0)
+					AdMob.show(activity)
+				else  { // load new interstitial after last one shown
+					if (promptCount % 3 == 1)
+						AdMob.init(requireContext())
+				}
+				promptCount++
 
 			} else showToast("First, enter a prompt.")
 		}
@@ -85,7 +93,8 @@ class ChatFrag : Fragment() {
 					val output = uiState[0]
 					tvAnswer.text = output
 
-					if (output.endsWith("…"))
+					// show truncated toast only when no interstitial shown
+					if (output.endsWith("…") && promptCount % 3 != 0)
 						showToast("Response truncated, please upgrade to enable longer responses.")
 				}
 			}
