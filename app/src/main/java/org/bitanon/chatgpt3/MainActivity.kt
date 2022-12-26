@@ -38,7 +38,9 @@ class MainActivity : AppCompatActivity() {
 		binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 
+		// initialize ads and billing
 		AdMob.init(this)
+		Billing.init(this) //, lifecycleScope)
 
 		setSupportActionBar(binding.toolbar)
 
