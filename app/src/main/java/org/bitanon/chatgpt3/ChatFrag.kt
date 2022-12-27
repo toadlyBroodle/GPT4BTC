@@ -15,10 +15,6 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import org.bitanon.chatgpt3.databinding.FragmentChatBinding
 
-
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
 class ChatFrag : Fragment() {
 	private val TAG = "ChatFrag"
 	private var promptCount = 0

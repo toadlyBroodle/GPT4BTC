@@ -1,5 +1,6 @@
 package org.bitanon.chatgpt3
 
+import android.content.Context
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.method.LinkMovementMethod
@@ -8,6 +9,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.CheckBox
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
@@ -22,6 +24,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import kotlinx.coroutines.launch
 import org.bitanon.chatgpt3.databinding.ActivityMainBinding
 
+val SHARED_PREFS = "CHATGPT3_SHARED_PREFS"
+val PREF_HIDE_TERMS = "pref_hide_terms_on_start"
 
 class MainActivity : AppCompatActivity() {
 	private val TAG = "MainActivity"
@@ -48,11 +52,6 @@ class MainActivity : AppCompatActivity() {
 		appBarConfiguration = AppBarConfiguration(navController.graph)
 		setupActionBarWithNavController(navController, appBarConfiguration)
 
-/*		binding.fab.setOnClickListener { view ->
-			Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-				.setAction("Action", null).show()
-		}*/
-
 		// Create a ViewModel the first time the system calls an activity's onCreate() method.
 		// Re-created activities receive the same ChatViewModel instance created by the first activity.
 		// Use the 'by viewModels()' Kotlin property delegate from the activity-ktx artifact
@@ -63,31 +62,56 @@ class MainActivity : AppCompatActivity() {
 			}
 		}
 
-		// get openai links
-		val message = SpannableString(getString(R.string.privacy_agreement_message)
-				+ "\n" + getString(R.string.openai_link_terms_of_use)
-				+ "\n" + getString(R.string.openai_link_privacy_policy))
-		Linkify.addLinks(message, Linkify.WEB_URLS)
+		// load shared preferences
+		val sharedPrefs = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
+		var hideTerms = sharedPrefs.getBoolean(PREF_HIDE_TERMS, false)
+		Log.d(TAG, "$PREF_HIDE_TERMS=$hideTerms")
 
-		val d: AlertDialog = AlertDialog.Builder(this)
-			.setIcon(android.R.drawable.ic_dialog_alert)
-			.setTitle(getString(R.string.terms_agreement))
-			.setPositiveButton(
-				getString(R.string.accept)
-			) { dialog, which ->
-				Log.d(TAG, "User accepted terms agreement")
-			}
-			.setNegativeButton(getString(R.string.exit)) { dialog, which ->
-				// user rejects, exit app
-				finishAndRemoveTask()
-			}
-			.setMessage(message)
-			.create()
+		// prompt user to accept terms agreement, unless they've previously chosen to hide warning
+		if (!hideTerms) {
+			// get openai links
+			val message = SpannableString(
+				getString(R.string.privacy_agreement_message)
+						+ "\n" + getString(R.string.openai_link_terms_of_use)
+						+ "\n" + getString(R.string.openai_link_privacy_policy)
+			)
+			Linkify.addLinks(message, Linkify.WEB_URLS)
 
-		d.show()
-		// Make the textview's links clickable. Must be called after show()
-		(d.findViewById<View>(android.R.id.message) as TextView?)!!.movementMethod =
-			LinkMovementMethod.getInstance()
+			// inflate hide terms checkbox
+			val checkBoxView = View.inflate(this, R.layout.alertdialog_hide_checkbox, null)
+			val checkBox = checkBoxView.findViewById<View>(R.id.terms_agree_hide_checkbox) as CheckBox
+			// get hide terms user choice
+			checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
+				hideTerms = isChecked
+			}
+
+			val d: AlertDialog = AlertDialog.Builder(this)
+				.setIcon(android.R.drawable.ic_dialog_alert)
+				.setTitle(getString(R.string.terms_agreement))
+				.setPositiveButton(
+					getString(R.string.accept)
+				) { dialog, which ->
+					Log.d(TAG, "User accepted terms agreement")
+
+					// save hide terms choice to shared preferences
+					val editor = sharedPrefs.edit()
+					editor.putBoolean(PREF_HIDE_TERMS, hideTerms)
+					editor.apply()
+					Log.d(TAG, "saved preference: $PREF_HIDE_TERMS=$hideTerms")
+				}
+				.setNegativeButton(getString(R.string.exit)) { dialog, which ->
+					// user rejects, exit app
+					finishAndRemoveTask()
+				}
+				.setMessage(message)
+				.setView(checkBoxView)
+				.create()
+
+			d.show()
+			// Make the textview's links clickable. Must be called after show()
+			(d.findViewById<View>(android.R.id.message) as TextView?)!!.movementMethod =
+				LinkMovementMethod.getInstance()
+		}
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
