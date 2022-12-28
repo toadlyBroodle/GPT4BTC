@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 
 class SettingsActivity : AppCompatActivity() {
 	private val TAG = "SettingsActivity"
@@ -45,7 +46,7 @@ class SettingsActivity : AppCompatActivity() {
 		Log.d(TAG, "preferences loaded: ${sharedPrefs.all}")
 
 		findViewById<Button>(R.id.button_subscribe).setOnClickListener {
-			MainActivity.billing.subscribe(this)
+			MainActivity.billing.subscribe(this, lifecycleScope)
 		}
 	}
 

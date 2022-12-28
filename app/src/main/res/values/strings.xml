@@ -35,8 +35,7 @@
     <string name="terms_of_use_title"><a href="https://openai.com/terms/">Terms of Use</a></string>
     <string name="privacy_policy_title"><a href="https://openai.com/privacy/">Privacy Policy</a></string>
     <string name="show_terms_agreement_prompt">Show terms agreement prompt at startup</string>
-    <string name="toast_billing_error">Billing error. Please enable Google Play billing.</string>
-
+    <string name="toast_billing_error">Billing error. Please enable Google Play billing and retry.</string>
 
     <!-- DO NOT translate -->
     <string name="admob_app_id">ca-app-pub-9043912704472803~9575294075</string>

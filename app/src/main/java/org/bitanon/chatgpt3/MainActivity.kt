@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
 		// initialize ads and billing
 		AdMob.init(this)
-		billing = Billing.init(this) //, lifecycleScope)
+		billing = Billing.init(this, lifecycleScope)
 
 		setSupportActionBar(binding.toolbar)
 
