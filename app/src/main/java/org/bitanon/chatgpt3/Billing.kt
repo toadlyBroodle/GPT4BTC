@@ -165,5 +165,14 @@ class Billing {
 			}
 		}
 
+		suspend fun fetchSubscription() {
+			val params = QueryPurchasesParams.newBuilder()
+				.setProductType(BillingClient.ProductType.SUBS)
+
+			// uses queryPurchasesAsync Kotlin extension function
+			val purchasesResult = billingClient?.queryPurchasesAsync(params.build())
+			Log.d(TAG, "fetch subscription purchasesResult: $purchasesResult")
+		}
+
 	}
 }

@@ -23,7 +23,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.bitanon.chatgpt3.databinding.ActivityMainBinding
 
 val SHARED_PREFS = "CHATGPT3_SHARED_PREFS"
@@ -115,6 +117,17 @@ class MainActivity : AppCompatActivity() {
 			// Make the textview's links clickable. Must be called after show()
 			(d.findViewById<View>(android.R.id.message) as TextView?)!!.movementMethod =
 				LinkMovementMethod.getInstance()
+		}
+	}
+
+	override fun onResume() {
+		super.onResume()
+
+		// check for updated subscriptions
+		lifecycleScope.launch {
+			withContext(Dispatchers.IO) {
+				Billing.fetchSubscription()
+			}
 		}
 	}
 

@@ -31,7 +31,7 @@
     <string name="remove_limits_ads">Remove all prompt and response limits, and remove all ads now!</string>
     <string name="subscribe">Subscribe</string>
     <string name="terms_header">OpenAI\'s Terms Agreement</string>
-    <string name="you_agree_to_terms">By using this app, you agree to the following terms:</string>
+    <string name="you_agree_to_terms">By using this app, you have agreed to the following terms:</string>
     <string name="terms_of_use_title"><a href="https://openai.com/terms/">Terms of Use</a></string>
     <string name="privacy_policy_title"><a href="https://openai.com/privacy/">Privacy Policy</a></string>
     <string name="show_terms_agreement_prompt">Show terms agreement prompt at startup</string>
