@@ -1,11 +1,11 @@
 package org.bitanon.chatgpt3
 
+import android.app.Activity
 import android.content.Context
 import android.util.Log
 import com.android.billingclient.api.*
-import com.android.billingclient.api.QueryProductDetailsParams.Product
 
-val SUBSCRIPTION_PRODUCT_ID = "product_id_example"
+val SUBSCRIPTION_PRODUCT_ID = "chatgpt3_subscription"
 
 class Billing {
 
@@ -13,9 +13,9 @@ class Billing {
 		private val TAG = "Billing"
 
 		var billingClient: BillingClient? = null
-		var subscriptionDetailsList: List<ProductDetails> = listOf()
+		var subscriptionDetails: ProductDetails? = null
 
-		fun init(ctx: Context){ //, lifecycleScope: LifecycleCoroutineScope) {
+		fun init(ctx: Context): Companion { //, lifecycleScope: LifecycleCoroutineScope) {
 
 			val purchasesUpdatedListener =
 				PurchasesUpdatedListener { billingResult, purchases ->
@@ -58,7 +58,7 @@ class Billing {
 				QueryProductDetailsParams.newBuilder()
 					.setProductList(
 						listOf(
-							Product.newBuilder()
+							QueryProductDetailsParams.Product.newBuilder()
 								.setProductId(SUBSCRIPTION_PRODUCT_ID)
 								.setProductType(BillingClient.ProductType.SUBS)
 								.build()))
@@ -68,7 +68,10 @@ class Billing {
 					billingResult,
 					productDetailsList ->
 				Log.d(TAG, "billingResult: " + billingResult.responseCode)
-				subscriptionDetailsList = productDetailsList
+
+				// get subscription details, if product list not empty
+				if (productDetailsList.isNotEmpty())
+					subscriptionDetails = productDetailsList[0]
 			}
 
 			// do same as above with kotlin extensions?
@@ -107,6 +110,33 @@ class Billing {
 
 				Log.d(TAG, "billingResult: " + billingResult.responseCode)
 			}*/
+			return this
+		}
+
+		fun subscribe(activ: Activity) {
+
+			if (subscriptionDetails == null) {
+				MainActivity.showToast(activ.baseContext, activ.baseContext.getString(R.string.toast_billing_error))
+					return
+			}
+
+			val productDetailsParamsList = listOf(
+				BillingFlowParams.ProductDetailsParams.newBuilder()
+						// retrieve a value for "productDetails" by calling queryProductDetailsAsync()
+						.setProductDetails(subscriptionDetails!!)
+						// to get an offer token, call ProductDetails.subscriptionOfferDetails()
+						// for a list of offers that are available to the user
+						.setOfferToken(subscriptionDetails!!.subscriptionOfferDetails.toString())
+						.build()
+			)
+
+			val billingFlowParams = BillingFlowParams.newBuilder()
+				.setProductDetailsParamsList(productDetailsParamsList)
+				.build()
+
+			// Launch the billing flow
+			val billingResult = billingClient?.launchBillingFlow(activ, billingFlowParams)
+
 		}
 	}
 }

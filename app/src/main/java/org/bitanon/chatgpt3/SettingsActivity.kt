@@ -4,7 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.util.Log
-import android.view.View
+import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -31,9 +31,9 @@ class SettingsActivity : AppCompatActivity() {
 		super.onStart()
 
 		// Make links clickable
-		(findViewById<View>(R.id.terms_of_use_link) as TextView?)!!.movementMethod =
+		findViewById<TextView>(R.id.terms_of_use_link).movementMethod =
 			LinkMovementMethod.getInstance()
-		(findViewById<View>(R.id.privacy_policy_link) as TextView?)!!.movementMethod =
+		findViewById<TextView>(R.id.privacy_policy_link).movementMethod =
 			LinkMovementMethod.getInstance()
 
 		// load shared preferences
@@ -43,6 +43,10 @@ class SettingsActivity : AppCompatActivity() {
 		showTermsCheckbox = findViewById(R.id.show_terms_checkbox)
 		showTermsCheckbox.isChecked = prefShowTerms
 		Log.d(TAG, "preferences loaded: ${sharedPrefs.all}")
+
+		findViewById<Button>(R.id.button_subscribe).setOnClickListener {
+			MainActivity.billing.subscribe(this)
+		}
 	}
 
 	override fun onPause() {

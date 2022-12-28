@@ -12,6 +12,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.CheckBox
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -33,10 +34,10 @@ class MainActivity : AppCompatActivity() {
 
 	private lateinit var appBarConfiguration: AppBarConfiguration
 	private lateinit var binding: ActivityMainBinding
-
 	// Using the viewModels() Kotlin property delegate from the activity-ktx
 	// artifact to retrieve the ViewModel in the activity scope
 	private val viewModel: ChatViewModel by viewModels()
+
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -45,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
 		// initialize ads and billing
 		AdMob.init(this)
-		Billing.init(this) //, lifecycleScope)
+		billing = Billing.init(this) //, lifecycleScope)
 
 		setSupportActionBar(binding.toolbar)
 
@@ -141,5 +142,12 @@ class MainActivity : AppCompatActivity() {
 		val navController = findNavController(R.id.nav_host_fragment_content_main)
 		return navController.navigateUp(appBarConfiguration)
 				|| super.onSupportNavigateUp()
+	}
+
+	companion object {
+		lateinit var billing: Billing.Companion
+
+		fun showToast(ctx: Context, message: String) =
+			Toast.makeText(ctx, message, Toast.LENGTH_SHORT).show()
 	}
 }

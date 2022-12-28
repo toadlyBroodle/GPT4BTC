@@ -21,14 +21,22 @@
     <string name="button_prompt">Prompt</string>
     <string name="elipsis">…</string>
     <string name="response_thinking">Thinking…</string>
+    <string name="toast_enter_prompt">First, enter a prompt.</string>
+    <string name="toast_prompt_truncated">Maximum prompt length reached: settings->subscribe to enable longer prompts.</string>
+    <string name="toast_response_truncated">Response truncated: settings->subscribe to enable longer responses.</string>
 
     <!-- Settings Preferences -->
-    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="upgrade">Upgrade</string>
+    <string name="remove_limits_ads">Remove all prompt and response limits, and remove all ads now!</string>
+    <string name="subscribe">Subscribe</string>
     <string name="terms_header">OpenAI\'s Terms Agreement</string>
     <string name="you_agree_to_terms">By using this app, you agree to the following terms:</string>
     <string name="terms_of_use_title"><a href="https://openai.com/terms/">Terms of Use</a></string>
     <string name="privacy_policy_title"><a href="https://openai.com/privacy/">Privacy Policy</a></string>
     <string name="show_terms_agreement_prompt">Show terms agreement prompt at startup</string>
+    <string name="toast_billing_error">Billing error. Please enable Google Play billing.</string>
+
 
     <!-- DO NOT translate -->
     <string name="admob_app_id">ca-app-pub-9043912704472803~9575294075</string>

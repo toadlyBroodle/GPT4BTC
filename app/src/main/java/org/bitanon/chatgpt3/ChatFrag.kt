@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -69,7 +68,7 @@ class ChatFrag : Fragment() {
 				}
 				promptCount++
 
-			} else showToast("First, enter a prompt.")
+			} else MainActivity.showToast(requireContext(), getString(R.string.toast_enter_prompt))
 		}
 
 		etPrompt.addTextChangedListener(object : TextWatcher {
@@ -79,7 +78,7 @@ class ChatFrag : Fragment() {
 			override fun onTextChanged(s: CharSequence, start: Int,
 									   before: Int, count: Int) {
 				if (s.length >= resources.getInteger(R.integer.chat_edit_text_max_length))
-					showToast("Maximum prompt length reached, please upgrade to enable longer prompts.")
+					MainActivity.showToast(requireContext(), getString(R.string.toast_prompt_truncated))
 			}
 		})
 
@@ -91,7 +90,7 @@ class ChatFrag : Fragment() {
 
 					// show truncated toast only when no interstitial shown
 					if (output.endsWith("…") && promptCount % 3 != 0)
-						showToast("Response truncated, please upgrade to enable longer responses.")
+						MainActivity.showToast(requireContext(), getString(R.string.toast_response_truncated))
 				}
 			}
 		}
@@ -102,7 +101,4 @@ class ChatFrag : Fragment() {
 		super.onDestroyView()
 		_binding = null
 	}
-
-	fun showToast(message: String) =
-			Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }
