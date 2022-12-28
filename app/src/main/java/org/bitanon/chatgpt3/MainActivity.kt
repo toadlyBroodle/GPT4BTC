@@ -1,6 +1,7 @@
 package org.bitanon.chatgpt3
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.method.LinkMovementMethod
@@ -25,7 +26,7 @@ import kotlinx.coroutines.launch
 import org.bitanon.chatgpt3.databinding.ActivityMainBinding
 
 val SHARED_PREFS = "CHATGPT3_SHARED_PREFS"
-val PREF_HIDE_TERMS = "pref_hide_terms_on_start"
+val PREF_SHOW_TERMS = "pref_show_terms_on_start"
 
 class MainActivity : AppCompatActivity() {
 	private val TAG = "MainActivity"
@@ -64,11 +65,11 @@ class MainActivity : AppCompatActivity() {
 
 		// load shared preferences
 		val sharedPrefs = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
-		var hideTerms = sharedPrefs.getBoolean(PREF_HIDE_TERMS, false)
-		Log.d(TAG, "$PREF_HIDE_TERMS=$hideTerms")
+		var showTerms = sharedPrefs.getBoolean(PREF_SHOW_TERMS, true)
+		Log.d(TAG, "preferences loaded: ${sharedPrefs.all}")
 
-		// prompt user to accept terms agreement, unless they've previously chosen to hide warning
-		if (!hideTerms) {
+		// prompt user to accept terms agreement if not previously hidden
+		if (showTerms) {
 			// get openai links
 			val message = SpannableString(
 				getString(R.string.privacy_agreement_message)
@@ -77,12 +78,14 @@ class MainActivity : AppCompatActivity() {
 			)
 			Linkify.addLinks(message, Linkify.WEB_URLS)
 
-			// inflate hide terms checkbox
+			// inflate show terms checkbox and set ischecked same as preference
 			val checkBoxView = View.inflate(this, R.layout.alertdialog_hide_checkbox, null)
-			val checkBox = checkBoxView.findViewById<View>(R.id.terms_agree_hide_checkbox) as CheckBox
-			// get hide terms user choice
-			checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
-				hideTerms = isChecked
+			val showTermsCheckbox = checkBoxView.findViewById<View>(R.id.terms_agree_hide_checkbox) as CheckBox
+			showTermsCheckbox.isChecked = showTerms
+
+			// get show terms user choice
+			showTermsCheckbox.setOnCheckedChangeListener { buttonView, isChecked ->
+				showTerms = isChecked
 			}
 
 			val d: AlertDialog = AlertDialog.Builder(this)
@@ -95,9 +98,9 @@ class MainActivity : AppCompatActivity() {
 
 					// save hide terms choice to shared preferences
 					val editor = sharedPrefs.edit()
-					editor.putBoolean(PREF_HIDE_TERMS, hideTerms)
+					editor.putBoolean(PREF_SHOW_TERMS, showTerms)
 					editor.apply()
-					Log.d(TAG, "saved preference: $PREF_HIDE_TERMS=$hideTerms")
+					Log.d(TAG, "preferences saved: ${sharedPrefs.all}")
 				}
 				.setNegativeButton(getString(R.string.exit)) { dialog, which ->
 					// user rejects, exit app
@@ -125,7 +128,11 @@ class MainActivity : AppCompatActivity() {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		return when (item.itemId) {
-			R.id.action_settings -> true
+			R.id.action_settings -> {
+				val startActivity = Intent(this, SettingsActivity::class.java)
+				startActivity(startActivity)
+				true
+			}
 			else -> super.onOptionsItemSelected(item)
 		}
 	}

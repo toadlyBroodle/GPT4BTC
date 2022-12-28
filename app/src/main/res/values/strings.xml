@@ -9,7 +9,6 @@
         \n\tHowever, all the content you enter in prompts are necessarily sent to OpenAI for processing by their ChatGPT3 model.
         \n\tTo use this app you are required to accept OpenAI\'s terms of use and privacy policy.
         \n\tFor more information see: </string>
-    <string name="hide_terms_agree">Don\'t show this again.</string>
     <string name="exit">Exit</string>
     <string name="accept">Accept</string>
     <string name="next">Next</string>
@@ -22,6 +21,14 @@
     <string name="button_prompt">Prompt</string>
     <string name="elipsis">…</string>
     <string name="response_thinking">Thinking…</string>
+
+    <!-- Settings Preferences -->
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="terms_header">OpenAI\'s Terms Agreement</string>
+    <string name="you_agree_to_terms">By using this app, you agree to the following terms:</string>
+    <string name="terms_of_use_title"><a href="https://openai.com/terms/">Terms of Use</a></string>
+    <string name="privacy_policy_title"><a href="https://openai.com/privacy/">Privacy Policy</a></string>
+    <string name="show_terms_agreement_prompt">Show terms agreement prompt at startup</string>
 
     <!-- DO NOT translate -->
     <string name="admob_app_id">ca-app-pub-9043912704472803~9575294075</string>

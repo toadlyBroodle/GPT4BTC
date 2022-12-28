@@ -8,6 +8,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:text="@string/hide_terms_agree"/>
+        android:text="@string/show_terms_agreement_prompt"/>
 
 </FrameLayout>
