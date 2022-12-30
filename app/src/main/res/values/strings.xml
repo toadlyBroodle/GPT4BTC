@@ -43,5 +43,6 @@
     <string name="admob_chat_interstitial_ad_unit_id">ca-app-pub-9043912704472803/6286785755</string>
     <string name="openai_link_terms_of_use">https://openai.com/terms/</string>
     <string name="openai_link_privacy_policy">https://openai.com/privacy/</string>
+    <string name="toast_device_no_subscriptions">Sorry, your device does not support subscriptions.</string>
 
 </resources>

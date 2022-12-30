@@ -26,6 +26,9 @@ class SettingsActivity : AppCompatActivity() {
 				.commit()
 		}*/
 		supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+		// initialize billing
+		Billing.init(this, lifecycleScope)
 	}
 
 	override fun onStart() {
@@ -46,7 +49,7 @@ class SettingsActivity : AppCompatActivity() {
 		Log.d(TAG, "preferences loaded: ${sharedPrefs.all}")
 
 		findViewById<Button>(R.id.button_subscribe).setOnClickListener {
-			MainActivity.billing.subscribe(this, lifecycleScope)
+			Billing.subscribe(this, lifecycleScope)
 		}
 	}
 

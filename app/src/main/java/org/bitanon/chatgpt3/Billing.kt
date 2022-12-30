@@ -5,25 +5,27 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LifecycleCoroutineScope
 import com.android.billingclient.api.*
+import com.android.billingclient.api.BillingClient.BillingResponseCode
+import com.android.billingclient.api.BillingClient.FeatureType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-val SUBSCRIPTION_PRODUCT_ID = "chatgpt3_subscription"
+const val SUBSCRIPTION_PRODUCT_ID = "chatgpt3_subscription"
 
 class Billing {
 
 	companion object {
-		private val TAG = "Billing"
+		private const val TAG = "Billing"
 
 		var billingClient: BillingClient? = null
 		var subscriptionDetails: ProductDetails? = null
 
-		fun init(ctx: Context, lifecycleScope: LifecycleCoroutineScope): Companion {
+		fun init(ctx: Context, lifecycleScope: LifecycleCoroutineScope) {
 
 			val purchasesUpdatedListener =
 				PurchasesUpdatedListener { billingResult, purchases ->
-					if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && purchases != null) {
+					if (billingResult.responseCode == BillingResponseCode.OK && purchases != null) {
 						for (purchase in purchases) {
 							lifecycleScope.launch {
 								withContext(Dispatchers.IO) {
@@ -31,12 +33,12 @@ class Billing {
 								}
 							}
 						}
-					} else if (billingResult.responseCode == BillingClient.BillingResponseCode.USER_CANCELED) {
+					} else if (billingResult.responseCode == BillingResponseCode.USER_CANCELED) {
 						// Handle an error caused by a user cancelling the purchase flow.
 						Log.d(TAG, "User cancelled purchase flow")
 					} else {
 						// Handle any other error codes.
-						Log.d(TAG, "Error BillingResponseCode: " + billingResult.responseCode)
+						Log.d(TAG, "Error BillingResponseCode: $billingResult")
 					}
 
 				}
@@ -50,9 +52,17 @@ class Billing {
 			// connect to Google Play
 			billingClient!!.startConnection(object : BillingClientStateListener {
 				override fun onBillingSetupFinished(billingResult: BillingResult) {
-					if (billingResult.responseCode ==  BillingClient.BillingResponseCode.OK) {
+					if (billingResult.responseCode ==  BillingResponseCode.OK) {
 						Log.d(TAG, "The BillingClient is ready")
-					} else Log.d(TAG, "billingResult: " + billingResult)
+
+						// process purchases
+						lifecycleScope.launch {
+							withContext(Dispatchers.IO) {
+								processPurchases()
+							}
+						}
+
+					} else Log.d(TAG, "billingResult: $billingResult")
 				}
 				override fun onBillingServiceDisconnected() {
 					Log.d(TAG, "The billing service disconnected")
@@ -60,68 +70,38 @@ class Billing {
 					// Google Play by calling the startConnection() method.
 				}
 			})
+		}
 
-			// get subscription available to buy
-			val queryProductDetailsParams =
-				QueryProductDetailsParams.newBuilder()
-					.setProductList(
-						listOf(
-							QueryProductDetailsParams.Product.newBuilder()
-								.setProductId(SUBSCRIPTION_PRODUCT_ID)
-								.setProductType(BillingClient.ProductType.SUBS)
-								.build()))
-					.build()
+		// get subscription details using kotlin extensions
+		private suspend fun processPurchases() {
+			val product = QueryProductDetailsParams.Product.newBuilder().setProductId(SUBSCRIPTION_PRODUCT_ID)
+				.setProductType(BillingClient.ProductType.SUBS)
+			val productList = ArrayList<QueryProductDetailsParams.Product>()
+			productList.add(product.build())
 
-			billingClient!!.queryProductDetailsAsync(queryProductDetailsParams) {
-					billingResult,
-					productDetailsList ->
-				Log.d(TAG, "billingResult: $billingResult")
+			val params = QueryProductDetailsParams.newBuilder()
+			params.setProductList(productList)
 
-				// get subscription details, if product list not empty
-				if (productDetailsList.isNotEmpty())
-					subscriptionDetails = productDetailsList[0]
+			// leverage queryProductDetails Kotlin extension function
+			val productDetailsResult = withContext(Dispatchers.IO) {
+				billingClient!!.queryProductDetails(params.build())
 			}
-
-			// do same as above with kotlin extensions?
-			/*lifecycleScope.launch {
-				val product = Product.newBuilder().setProductId(SUBSCRIPTION_PRODUCT_ID)
-					.setProductType(BillingClient.ProductType.SUBS)
-				val productList = ArrayList<Product>()
-				productList.add(product.build())
-
-				val params = QueryProductDetailsParams.newBuilder()
-				params.setProductList(productList)
-
-				// leverage queryProductDetails Kotlin extension function
-				productDetailsResult = withContext(Dispatchers.IO) {
-					billingClient!!.queryProductDetails(params.build())
-				}
-
-				val firstProductDetails = productDetailsResult.productDetailsList[0]
-
-				val productDetailsParamsList = listOf(
-					BillingFlowParams.ProductDetailsParams.newBuilder()
-						// retrieve a value for "productDetails" by calling queryProductDetailsAsync()
-						.setProductDetails(firstProductDetails)
-						// to get an offer token, call ProductDetails.subscriptionOfferDetails()
-						// for a list of offers that are available to the user
-						.setOfferToken(firstProductDetails.subscriptionOfferDetails.toString())
-						.build()
-				)
-
-				val billingFlowParams = BillingFlowParams.newBuilder()
-					.setProductDetailsParamsList(productDetailsParamsList)
-					.build()
-
-				// Launch the billing flow
-				val billingResult = billingClient!!.launchBillingFlow(ctx as Activity, billingFlowParams)
-
-				Log.d(TAG, "billingResult: " + billingResult.responseCode)
-			}*/
-			return this
+			// get subscription details
+			if (productDetailsResult.productDetailsList?.isNotEmpty() == true) {
+				subscriptionDetails = productDetailsResult.productDetailsList!![0]
+				Log.d(TAG, "subscriptionDetails: ${subscriptionDetails.toString()}")
+			} else Log.d(TAG, "subscriptionDetails: ${productDetailsResult.billingResult}")
 		}
 
 		fun subscribe(activ: Activity, lifecycleScope: LifecycleCoroutineScope) {
+
+			// check if device supports subscriptions, toast if it doesn't
+			if (billingClient?.isFeatureSupported(FeatureType.SUBSCRIPTIONS)?.responseCode
+				== BillingResponseCode.FEATURE_NOT_SUPPORTED) {
+				MainActivity.showToast(activ,
+					activ.getString(R.string.toast_device_no_subscriptions))
+				return
+			}
 
 			if (subscriptionDetails == null) {
 				// notify user of billing failure
@@ -148,9 +128,10 @@ class Billing {
 			// Launch the billing flow
 			val billingResult = billingClient?.launchBillingFlow(activ, billingFlowParams)
 			Log.d(TAG, "billingResult: $billingResult")
+			Log.d(TAG, "billingClient.connectionState=${billingClient?.connectionState} -> 2=CONNECTED")
 		}
 
-		//val acknowledgePurchaseResponseListener: AcknowledgePurchaseResponseListener = TODO?
+		//val acknowledgePurchaseResponseListener: AcknowledgePurchaseResponseListener = ...
 		private suspend fun handlePurchase(purchase: Purchase) {
 			if (purchase.purchaseState == Purchase.PurchaseState.PURCHASED) {
 				// acknowledge purchase to google play, else will be refunded after 3 days
@@ -162,6 +143,8 @@ class Billing {
 					}
 					Log.d(TAG, "ackPurchaseResult: $ackPurchaseResult")
 				}
+				// TODO don't show ads
+				// TODO remove prompt/response limits
 			}
 		}
 

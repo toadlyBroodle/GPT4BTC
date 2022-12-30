@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
 
 		// initialize ads and billing
 		AdMob.init(this)
-		billing = Billing.init(this, lifecycleScope)
+		Billing.init(this, lifecycleScope)
 
 		setSupportActionBar(binding.toolbar)
 
@@ -158,8 +158,6 @@ class MainActivity : AppCompatActivity() {
 	}
 
 	companion object {
-		lateinit var billing: Billing.Companion
-
 		fun showToast(ctx: Context, message: String) =
 			Toast.makeText(ctx, message, Toast.LENGTH_SHORT).show()
 	}
