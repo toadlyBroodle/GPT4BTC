@@ -85,12 +85,14 @@ class ChatFrag : Fragment() {
 		lifecycleScope.launch {
 			viewModel.uiState.collect { uiState ->
 				if (uiState.isNotEmpty()) {
-					val output = uiState[0]
-					tvAnswer.text = output
+					var output = uiState[0]
 
-					// show truncated toast only when no interstitial shown
-					if (output.endsWith("…") && promptCount % 3 != 0)
-						MainActivity.showToast(requireContext(), getString(R.string.toast_response_truncated))
+					// add truncated notification when response longer than max allowed
+					if (output.endsWith("…\n\n")) {
+						output += getString(R.string.append_response_truncated)
+					}
+
+					tvAnswer.text = output
 				}
 			}
 		}

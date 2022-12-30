@@ -1,5 +1,6 @@
 package org.bitanon.chatgpt3
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -8,6 +9,7 @@ import kotlinx.coroutines.launch
 import java.io.IOException
 
 class ChatViewModel(): ViewModel() {
+	private val TAG = "ChatViewModel"
 
 	private val requestRepository = RequestRepository()
 
@@ -25,7 +27,7 @@ class ChatViewModel(): ViewModel() {
 			try {
 				result = requestRepository.queryOpenAI(p)
 			} catch (e: IOException) {
-				println("IOException: %s\n%s".format(e.cause, e.message))
+				Log.d(TAG, "IOException: %s\n%s".format(e.cause, e.message))
 			}
 
 			if (result != null) {

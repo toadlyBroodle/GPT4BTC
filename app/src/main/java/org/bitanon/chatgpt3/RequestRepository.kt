@@ -32,14 +32,14 @@ class RequestRepository {
 			val listChoices = mutableListOf<String>()
 			for (choice in result.choices) {
 				var text = choice.text.removePrefix("\n\n")
-				if (completionTokens >= MAX_TOKENS)
-					text = "$text…"
+				if (completionTokens >= MAX_TOKENS) {
+					// add elipsis and newlines to denote to ChatFrag a truncated response
+					text = "$text…\n\n"
+				}
 				listChoices.add(text)
 			}
 
-			if (listChoices.isNotEmpty())
-				listChoices
-			else ""
+			listChoices.ifEmpty { "" }
 		} as List<String>
 	}
 
