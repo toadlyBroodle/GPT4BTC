@@ -146,6 +146,7 @@ class Billing {
 				// TODO don't show ads
 				// TODO remove prompt/response limits
 			}
+			// TODO handle all other purchase states
 		}
 
 		suspend fun fetchSubscription() {

@@ -29,7 +29,7 @@
     <!-- Settings Preferences -->
     <string name="title_activity_settings">Settings</string>
     <string name="upgrade">Upgrade</string>
-    <string name="remove_limits_ads">Remove all prompt and response limits, and remove all ads now!</string>
+    <string name="remove_limits_ads">Remove all prompt and response limits, and remove all ads: coming soon!</string>
     <string name="subscribe">Subscribe</string>
     <string name="terms_header">OpenAI\'s Terms Agreement</string>
     <string name="you_agree_to_terms">By using this app, you have agreed to the following terms:</string>
