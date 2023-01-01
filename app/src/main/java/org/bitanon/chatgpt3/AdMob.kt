@@ -16,10 +16,10 @@ class AdMob {
 		fun init(ctx: Context) {
 			Log.d(TAG, "initializing AdMob")
 
-			var adId = ctx.resources.getString(R.string.admob_chat_interstitial_ad_unit_id)
-			// when developing, use test ad id
-			if (BuildConfig.DEBUG)
-				adId = ctx.resources.getString(R.string.admob_test_ad_unit_id)
+			//var adId = ctx.resources.getString(R.string.admob_chat_interstitial_ad_unit_id)
+			// when developing/testing, use test ad id
+			//if (BuildConfig.DEBUG)
+			val adId = ctx.resources.getString(R.string.admob_test_ad_unit_id)
 
 			// init AdMob
 			MobileAds.initialize(ctx) {}
