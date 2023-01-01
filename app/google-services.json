@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "820938684771",
+    "project_id": "bitanon-chatgpt3",
+    "storage_bucket": "bitanon-chatgpt3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:820938684771:android:d480585b2aedafe2a2fb56",
+        "android_client_info": {
+          "package_name": "org.bitanon.chatgpt3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "820938684771-g91vh862hfm1k3tf61c623pcvlv03fkp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLk9FU9mwgR40iU-Klb8YILGTO16xiiyo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "820938684771-g91vh862hfm1k3tf61c623pcvlv03fkp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
