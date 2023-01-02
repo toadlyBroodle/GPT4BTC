@@ -31,6 +31,9 @@
     <string name="upgrade">Upgrade</string>
     <string name="remove_limits_ads">Remove all prompt and response limits, and remove all ads: coming soon!</string>
     <string name="subscribe">Subscribe</string>
+    <string name="apply_early_access">To gain early access to subscription and test new features and releases, apply as a tester:</string>
+    <string name="join_testers">Join Test Group</string>
+    <string name="require_gmail">***Gmail address required to join test Android ChatGPT3 group.***</string>
     <string name="terms_header">OpenAI\'s Terms Agreement</string>
     <string name="you_agree_to_terms">By using this app, you have agreed to the following terms:</string>
     <string name="terms_of_use_title"><a href="https://openai.com/terms/">Terms of Use</a></string>
