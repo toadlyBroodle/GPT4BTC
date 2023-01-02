@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 import org.bitanon.chatgpt3.databinding.FragmentChatBinding
 
 class ChatFrag : Fragment() {
-	private val TAG = "ChatFrag"
+	//private val TAG = "ChatFrag"
 	private var promptCount = 0
 
 	private var _binding: FragmentChatBinding? = null
@@ -81,9 +81,10 @@ class ChatFrag : Fragment() {
 										   count: Int, after: Int) {}
 			override fun onTextChanged(s: CharSequence, start: Int,
 									   before: Int, count: Int) {
-				if (s.length >= resources.getInteger(R.integer.chat_edit_text_max_length))
+				if (s.length >= resources.getInteger(R.integer.chat_edit_text_max_length)) {
 					Firebase.logNotificationShow(NOTIFICATION_PROMPT_TRUNCATED)
 					MainActivity.showToast(requireContext(), getString(R.string.toast_prompt_truncated))
+				}
 			}
 		})
 
@@ -94,10 +95,11 @@ class ChatFrag : Fragment() {
 
 					// add truncated notification when response longer than max allowed
 					if (output.endsWith("…\n\n")) {
-						Firebase.logNotificationShow(NOTIFICATION_ANSWER_TRUNCATED)
+						Firebase.logNotificationShow(NOTIFICATION_RESPONSE_TRUNCATED)
 						output += getString(R.string.append_response_truncated)
 					}
 
+					Firebase.logAnswerShow(EVENT_OPENAI_RESPONSE_SHOW)
 					tvAnswer.text = output
 				}
 			}
