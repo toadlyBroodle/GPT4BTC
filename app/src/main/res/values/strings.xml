@@ -5,10 +5,10 @@
     <string name="chat_fragment_label">ChatGPT3</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="terms_agreement">Terms and Privacy Agreement</string>
-    <string name="privacy_agreement_message">\tThis app does not store any of your personal information, nor does it share any personally identifiable information with any third parties.
-        \n\tHowever, all the content you enter in prompts are necessarily sent to OpenAI for processing by their ChatGPT3 model.
-        \n\tTo use this app you are required to accept OpenAI\'s terms of use and privacy policy.
-        \n\tFor more information see: </string>
+    <string name="privacy_agreement_message">\tAll the content you enter in prompts
+        are necessarily sent to OpenAI for processing by their ChatGPT3 model.
+        \n\tTo use this app you are required to accept OpenAI\'s terms of use and
+        privacy policy:</string>
     <string name="exit">Exit</string>
     <string name="accept">Accept</string>
     <string name="next">Next</string>
