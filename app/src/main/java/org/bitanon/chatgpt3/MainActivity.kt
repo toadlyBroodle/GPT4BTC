@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 		binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 
-		// initialize ads and billing
+		// initialize ads, billing, and analytics
 		AdMob.init(this)
 		Billing.init(this, lifecycleScope)
 
@@ -73,6 +73,8 @@ class MainActivity : AppCompatActivity() {
 
 		// prompt user to accept terms agreement if not previously hidden
 		if (showTerms) {
+			Firebase.logScreenView(SCREEN_TERMS_AGREEMENT)
+
 			// get openai links
 			val message = SpannableString(
 				getString(R.string.privacy_agreement_message)
@@ -97,7 +99,8 @@ class MainActivity : AppCompatActivity() {
 				.setPositiveButton(
 					getString(R.string.accept)
 				) { dialog, which ->
-					Log.d(TAG, "User accepted terms agreement")
+					// user accepts terms: log event
+					Firebase.logContentSelect(BUTTON_ACCEPT_TERMS)
 
 					// save hide terms choice to shared preferences
 					val editor = sharedPrefs.edit()
@@ -106,7 +109,8 @@ class MainActivity : AppCompatActivity() {
 					Log.d(TAG, "preferences saved: ${sharedPrefs.all}")
 				}
 				.setNegativeButton(getString(R.string.exit)) { dialog, which ->
-					// user rejects, exit app
+					// user rejects terms: log event and exit app
+					Firebase.logContentSelect(BUTTON_REJECT_TERMS)
 					finishAndRemoveTask()
 				}
 				.setMessage(message)
@@ -158,6 +162,7 @@ class MainActivity : AppCompatActivity() {
 	}
 
 	companion object {
+
 		fun showToast(ctx: Context, message: String) =
 			Toast.makeText(ctx, message, Toast.LENGTH_SHORT).show()
 	}

@@ -34,6 +34,8 @@ class SettingsActivity : AppCompatActivity() {
 	override fun onStart() {
 		super.onStart()
 
+		Firebase.logScreenView(SCREEN_SETTINGS)
+
 		// Make links clickable
 		findViewById<TextView>(R.id.terms_of_use_link).movementMethod =
 			LinkMovementMethod.getInstance()
@@ -49,6 +51,9 @@ class SettingsActivity : AppCompatActivity() {
 		Log.d(TAG, "preferences loaded: ${sharedPrefs.all}")
 
 		findViewById<Button>(R.id.button_subscribe).setOnClickListener {
+
+			Firebase.logContentSelect(BUTTON_SUBSCRIBE)
+
 			Billing.subscribe(this, lifecycleScope)
 		}
 	}
