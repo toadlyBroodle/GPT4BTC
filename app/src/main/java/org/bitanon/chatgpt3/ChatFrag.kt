@@ -54,7 +54,7 @@ class ChatFrag : Fragment() {
 
 		binding.buttonPrompt.setOnClickListener {
 			// check for internet connection
-			if (!viewModel.requestRepository.isOnline(requireContext())) {
+			if (!RequestRepository.isOnline(requireContext())) {
 				// toast user to connect
 				MainActivity.showToast(requireContext(),
 					getString(R.string.toast_no_internet))

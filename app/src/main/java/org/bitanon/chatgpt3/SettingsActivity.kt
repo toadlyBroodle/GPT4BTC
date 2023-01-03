@@ -10,6 +10,7 @@ import android.widget.CheckBox
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 private const val TAG = "SettingsActivity"
 class SettingsActivity : AppCompatActivity() {
@@ -29,7 +30,7 @@ class SettingsActivity : AppCompatActivity() {
 		supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 		// initialize billing
-		Billing.init(this, lifecycleScope)
+		//Billing.init(this, lifecycleScope)
 	}
 
 	override fun onStart() {
@@ -54,15 +55,17 @@ class SettingsActivity : AppCompatActivity() {
 		findViewById<Button>(R.id.button_subscribe).setOnClickListener {
 			Firebase.logContentSelect(BUTTON_SUBSCRIBE)
 
-			Billing.subscribe(this, lifecycleScope)
-		}
+			// check for internet connection
+			if (!RequestRepository.isOnline(baseContext)) {
+				// toast user to connect
+				MainActivity.showToast(baseContext,
+					getString(R.string.toast_no_internet))
+				return@setOnClickListener
+			}
 
-		findViewById<Button>(R.id.button_join_testers).setOnClickListener {
-			Firebase.logContentSelect(BUTTON_JOIN_TEST_GROUP)
-
-			composeEmail(arrayOf("anon@bitanon.org"),
-				getString(R.string.join_testers),
-				getString(R.string.require_gmail))
+			lifecycleScope.launch {
+				Billing.subscribe(this@SettingsActivity, lifecycleScope)
+			}
 		}
 	}
 

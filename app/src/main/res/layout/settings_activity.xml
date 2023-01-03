@@ -27,18 +27,6 @@
         android:layout_height="wrap_content"
         android:text="@string/testing_warning" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/apply_early_access"
-        style="@style/ChatText"/>
-
-    <Button
-        android:id="@+id/button_join_testers"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/join_testers"/>
-
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

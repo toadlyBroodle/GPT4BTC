@@ -20,6 +20,7 @@ class Billing {
 
 		private var billingClient: BillingClient? = null
 		private var subscriptionDetails: ProductDetails? = null
+		var isBillingServiceConnected = false
 
 		fun init(ctx: Context, lifecycleScope: LifecycleCoroutineScope) {
 
@@ -50,10 +51,11 @@ class Billing {
 				.build()
 
 			// connect to Google Play
-			billingClient!!.startConnection(object : BillingClientStateListener {
+			billingClient?.startConnection(object : BillingClientStateListener {
 				override fun onBillingSetupFinished(billingResult: BillingResult) {
 					if (billingResult.responseCode ==  BillingResponseCode.OK) {
 						Log.d(TAG, "The BillingClient is ready")
+						isBillingServiceConnected = true
 
 						// process purchases
 						lifecycleScope.launch {
@@ -66,6 +68,7 @@ class Billing {
 				}
 				override fun onBillingServiceDisconnected() {
 					Log.d(TAG, "The billing service disconnected")
+					isBillingServiceConnected = false
 					// Try to restart the connection on the next request to
 					// Google Play by calling the startConnection() method.
 				}
@@ -105,10 +108,16 @@ class Billing {
 
 			if (subscriptionDetails == null) {
 				// notify user of billing failure
-				MainActivity.showToast(activ.baseContext, activ.baseContext.getString(R.string.toast_billing_error))
+				MainActivity.showToast(activ.baseContext, activ.baseContext.getString(R.string.toast_problem_loading_subscription_details))
 				// retry connecting to billing client
-				init(activ, lifecycleScope)
+				//init(activ, lifecycleScope)
 				return
+			}
+
+			// reconnect to billing service
+			if (!isBillingServiceConnected) {
+				Log.d(TAG, "billing service not connected")
+				init(activ, lifecycleScope)
 			}
 
 			val productDetailsParamsList = listOf(

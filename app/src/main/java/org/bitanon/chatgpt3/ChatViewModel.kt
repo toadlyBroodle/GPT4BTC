@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 import java.io.IOException
 
 private const val TAG = "ChatViewModel"
-class ChatViewModel(): ViewModel() {
+class ChatViewModel : ViewModel() {
 
 	val requestRepository = RequestRepository()
 
@@ -25,7 +25,7 @@ class ChatViewModel(): ViewModel() {
 			// Make the network call and suspend execution until it finishes
 			var result: List<String>? = null
 			try {
-				result = requestRepository.queryOpenAI(p)
+				result = RequestRepository.queryOpenAI(p)
 			} catch (e: IOException) {
 				Log.d(TAG, "IOException: %s\n%s".format(e.cause, e.message))
 			}
