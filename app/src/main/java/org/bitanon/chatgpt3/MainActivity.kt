@@ -28,11 +28,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.bitanon.chatgpt3.databinding.ActivityMainBinding
 
-val SHARED_PREFS = "CHATGPT3_SHARED_PREFS"
-val PREF_SHOW_TERMS = "pref_show_terms_on_start"
+const val SHARED_PREFS = "CHATGPT3_SHARED_PREFS"
+const val PREF_SHOW_TERMS = "pref_show_terms_on_start"
 
+private const val TAG = "MainActivity"
 class MainActivity : AppCompatActivity() {
-	private val TAG = "MainActivity"
 
 	private lateinit var appBarConfiguration: AppBarConfiguration
 	private lateinit var binding: ActivityMainBinding
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 		binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 
-		// initialize ads and billing
+		// initialize ads, billing, and analytics
 		AdMob.init(this)
 		Billing.init(this, lifecycleScope)
 
@@ -73,6 +73,8 @@ class MainActivity : AppCompatActivity() {
 
 		// prompt user to accept terms agreement if not previously hidden
 		if (showTerms) {
+			Firebase.logScreenView(SCREEN_TERMS_AGREEMENT)
+
 			// get openai links
 			val message = SpannableString(
 				getString(R.string.privacy_agreement_message)
@@ -87,7 +89,7 @@ class MainActivity : AppCompatActivity() {
 			showTermsCheckbox.isChecked = showTerms
 
 			// get show terms user choice
-			showTermsCheckbox.setOnCheckedChangeListener { buttonView, isChecked ->
+			showTermsCheckbox.setOnCheckedChangeListener { _, isChecked ->
 				showTerms = isChecked
 			}
 
@@ -96,8 +98,9 @@ class MainActivity : AppCompatActivity() {
 				.setTitle(getString(R.string.terms_agreement))
 				.setPositiveButton(
 					getString(R.string.accept)
-				) { dialog, which ->
-					Log.d(TAG, "User accepted terms agreement")
+				) { _, _ ->
+					// user accepts terms: log event
+					Firebase.logContentSelect(BUTTON_ACCEPT_TERMS)
 
 					// save hide terms choice to shared preferences
 					val editor = sharedPrefs.edit()
@@ -105,8 +108,9 @@ class MainActivity : AppCompatActivity() {
 					editor.apply()
 					Log.d(TAG, "preferences saved: ${sharedPrefs.all}")
 				}
-				.setNegativeButton(getString(R.string.exit)) { dialog, which ->
-					// user rejects, exit app
+				.setNegativeButton(getString(R.string.exit)) { _, _ ->
+					// user rejects terms: log event and exit app
+					Firebase.logContentSelect(BUTTON_REJECT_TERMS)
 					finishAndRemoveTask()
 				}
 				.setMessage(message)
@@ -158,6 +162,7 @@ class MainActivity : AppCompatActivity() {
 	}
 
 	companion object {
+
 		fun showToast(ctx: Context, message: String) =
 			Toast.makeText(ctx, message, Toast.LENGTH_SHORT).show()
 	}

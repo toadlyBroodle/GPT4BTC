@@ -14,8 +14,8 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import org.bitanon.chatgpt3.databinding.FragmentChatBinding
 
+//private const val TAG = "ChatFrag"
 class ChatFrag : Fragment() {
-	private val TAG = "ChatFrag"
 	private var promptCount = 0
 
 	private var _binding: FragmentChatBinding? = null
@@ -23,9 +23,9 @@ class ChatFrag : Fragment() {
 	// This property is only valid between onCreateView and onDestroyView.
 	private val binding get() = _binding!!
 
-	lateinit var etPrompt: EditText
-	lateinit var tvPrompt: TextView
-	lateinit var tvAnswer: TextView
+	private lateinit var etPrompt: EditText
+	private lateinit var tvPrompt: TextView
+	private lateinit var tvAnswer: TextView
 
 	private val viewModel: ChatViewModel by viewModels()
 
@@ -46,12 +46,24 @@ class ChatFrag : Fragment() {
 			findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
 		}*/
 
+		Firebase.logScreenView(SCREEN_CHAT)
+
 		etPrompt = binding.edittextAskQuestion
 		tvPrompt = binding.textviewQuestion
 		tvAnswer = binding.textviewAnswer
 
 		binding.buttonPrompt.setOnClickListener {
+			// check for internet connection
+			if (!viewModel.requestRepository.isOnline(requireContext())) {
+				// toast user to connect
+				MainActivity.showToast(requireContext(),
+					getString(R.string.toast_no_internet))
+				return@setOnClickListener
+			}
+
 			if (!etPrompt.text.isNullOrBlank()) {
+				Firebase.logContentSelect(BUTTON_PROMPT_SEND)
+
 				val q = etPrompt.text.toString()
 				etPrompt.text.clear()
 				tvPrompt.text = q
@@ -77,8 +89,10 @@ class ChatFrag : Fragment() {
 										   count: Int, after: Int) {}
 			override fun onTextChanged(s: CharSequence, start: Int,
 									   before: Int, count: Int) {
-				if (s.length >= resources.getInteger(R.integer.chat_edit_text_max_length))
+				if (s.length >= resources.getInteger(R.integer.chat_edit_text_max_length)) {
+					Firebase.logNotificationShow(NOTIFICATION_PROMPT_TRUNCATED)
 					MainActivity.showToast(requireContext(), getString(R.string.toast_prompt_truncated))
+				}
 			}
 		})
 
@@ -89,9 +103,11 @@ class ChatFrag : Fragment() {
 
 					// add truncated notification when response longer than max allowed
 					if (output.endsWith("…\n\n")) {
+						Firebase.logNotificationShow(NOTIFICATION_RESPONSE_TRUNCATED)
 						output += getString(R.string.append_response_truncated)
 					}
 
+					Firebase.logAnswerShow(EVENT_OPENAI_RESPONSE_SHOW)
 					tvAnswer.text = output
 				}
 			}

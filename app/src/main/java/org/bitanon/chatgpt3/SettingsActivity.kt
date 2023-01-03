@@ -1,6 +1,7 @@
 package org.bitanon.chatgpt3
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.util.Log
@@ -10,11 +11,11 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 
+private const val TAG = "SettingsActivity"
 class SettingsActivity : AppCompatActivity() {
-	private val TAG = "SettingsActivity"
 
-	var prefShowTerms = true
-	lateinit var showTermsCheckbox: CheckBox
+	private var prefShowTerms = true
+	private lateinit var showTermsCheckbox: CheckBox
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -34,6 +35,8 @@ class SettingsActivity : AppCompatActivity() {
 	override fun onStart() {
 		super.onStart()
 
+		Firebase.logScreenView(SCREEN_SETTINGS)
+
 		// Make links clickable
 		findViewById<TextView>(R.id.terms_of_use_link).movementMethod =
 			LinkMovementMethod.getInstance()
@@ -49,7 +52,17 @@ class SettingsActivity : AppCompatActivity() {
 		Log.d(TAG, "preferences loaded: ${sharedPrefs.all}")
 
 		findViewById<Button>(R.id.button_subscribe).setOnClickListener {
+			Firebase.logContentSelect(BUTTON_SUBSCRIBE)
+
 			Billing.subscribe(this, lifecycleScope)
+		}
+
+		findViewById<Button>(R.id.button_join_testers).setOnClickListener {
+			Firebase.logContentSelect(BUTTON_JOIN_TEST_GROUP)
+
+			composeEmail(arrayOf("anon@bitanon.org"),
+				getString(R.string.join_testers),
+				getString(R.string.require_gmail))
 		}
 	}
 
@@ -62,6 +75,19 @@ class SettingsActivity : AppCompatActivity() {
 		editor.putBoolean(PREF_SHOW_TERMS, showTermsCheckbox.isChecked)
 		editor.apply()
 		Log.d(TAG, "preferences saved: ${sharedPrefs.all}")
+	}
+
+	private fun composeEmail(addresses: Array<String>, subject: String, text: String) {
+		val intent = Intent(Intent.ACTION_SEND).apply {
+			//data = Uri.parse("mailto:")  // only choose from email apps
+			type = "message/rfc822"
+			putExtra(Intent.EXTRA_EMAIL, addresses)
+			putExtra(Intent.EXTRA_SUBJECT, subject)
+			putExtra(Intent.EXTRA_TEXT, text)
+		}
+		if (intent.resolveActivity(packageManager) != null) {
+			startActivity(intent)
+		}
 	}
 
 /*	class SettingsFragment : PreferenceFragmentCompat() {

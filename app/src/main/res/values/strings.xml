@@ -5,10 +5,9 @@
     <string name="chat_fragment_label">ChatGPT3</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="terms_agreement">Terms and Privacy Agreement</string>
-    <string name="privacy_agreement_message">\tThis app does not store any of your personal information, nor does it share any personally identifiable information with any third parties.
-        \n\tHowever, all the content you enter in prompts are necessarily sent to OpenAI for processing by their ChatGPT3 model.
-        \n\tTo use this app you are required to accept OpenAI\'s terms of use and privacy policy.
-        \n\tFor more information see: </string>
+    <string name="privacy_agreement_message">\tYour prompts are sent to OpenAI
+        for processing by their ChatGPT3 model.\n\tBy using this app,
+        you accept OpenAI\'s terms of use and privacy policy:</string>
     <string name="exit">Exit</string>
     <string name="accept">Accept</string>
     <string name="next">Next</string>
@@ -22,6 +21,7 @@
     <string name="elipsis">…</string>
     <string name="response_thinking">Thinking…</string>
     <string name="toast_enter_prompt">First, enter a prompt.</string>
+    <string name="toast_no_internet">No internet connection. Connect and retry.</string>
     <string name="toast_prompt_truncated">Maximum prompt length reached: Settings->Subscribe to enable longer prompts.</string>
     <string name="append_response_truncated">***OpenAI\'s response is longer than allowed in the free version.
         \nPlease go to Settings->Subscribe to remove all prompt and response limits, and to remove all ads.</string>
@@ -29,11 +29,11 @@
     <!-- Settings Preferences -->
     <string name="title_activity_settings">Settings</string>
     <string name="upgrade">Upgrade</string>
-    <string name="remove_limits_ads">Remove all prompt and response limits, and remove all ads!</string>
+    <string name="remove_limits_ads">Remove all prompt and response limits, and remove all ads: coming soon!</string>
     <string name="subscribe">Subscribe</string>
-    <string name="testing_warning">***WARNING: subscription is in early development. By subscribing,
-        you have agreed to contribute to testing the feature, which may not result in immediate removal
-        of limits or ads. Please notify me of any such issues, so I can fix it asap.</string>
+    <string name="apply_early_access">To gain early access to subscription and test new features and releases, apply as a tester:</string>
+    <string name="join_testers">Join Test Group</string>
+    <string name="require_gmail">***Gmail address required to join test Android ChatGPT3 group.***</string>
     <string name="terms_header">OpenAI\'s Terms Agreement</string>
     <string name="you_agree_to_terms">By using this app, you have agreed to the following terms:</string>
     <string name="terms_of_use_title"><a href="https://openai.com/terms/">Terms of Use</a></string>

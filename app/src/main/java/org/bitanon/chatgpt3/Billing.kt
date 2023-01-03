@@ -13,13 +13,13 @@ import kotlinx.coroutines.withContext
 
 const val SUBSCRIPTION_PRODUCT_ID = "chatgpt3_subscription"
 
+private const val TAG = "Billing"
 class Billing {
 
 	companion object {
-		private const val TAG = "Billing"
 
-		var billingClient: BillingClient? = null
-		var subscriptionDetails: ProductDetails? = null
+		private var billingClient: BillingClient? = null
+		private var subscriptionDetails: ProductDetails? = null
 
 		fun init(ctx: Context, lifecycleScope: LifecycleCoroutineScope) {
 

@@ -8,10 +8,10 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.io.IOException
 
+private const val TAG = "ChatViewModel"
 class ChatViewModel(): ViewModel() {
-	private val TAG = "ChatViewModel"
 
-	private val requestRepository = RequestRepository()
+	val requestRepository = RequestRepository()
 
 	// Backing property to avoid state updates from other classes
 	private val _uiState = MutableStateFlow(emptyList<String>())
@@ -21,7 +21,7 @@ class ChatViewModel(): ViewModel() {
 	fun sendPrompt(p: String) {
 
 		// Create a new coroutine on the UI thread
-		val job = viewModelScope.launch {
+		viewModelScope.launch { // can get job with: val job =
 			// Make the network call and suspend execution until it finishes
 			var result: List<String>? = null
 			try {
