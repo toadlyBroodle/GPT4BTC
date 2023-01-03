@@ -46,8 +46,6 @@ class ChatFrag : Fragment() {
 			findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
 		}*/
 
-		Firebase.logScreenView(SCREEN_CHAT)
-
 		etPrompt = binding.edittextAskQuestion
 		tvPrompt = binding.textviewQuestion
 		tvAnswer = binding.textviewAnswer
@@ -62,7 +60,7 @@ class ChatFrag : Fragment() {
 			}
 
 			if (!etPrompt.text.isNullOrBlank()) {
-				Firebase.logContentSelect(BUTTON_PROMPT_SEND)
+				Firebase.logCustomEvent(BUTTON_PROMPT_SEND)
 
 				val q = etPrompt.text.toString()
 				etPrompt.text.clear()
@@ -90,7 +88,7 @@ class ChatFrag : Fragment() {
 			override fun onTextChanged(s: CharSequence, start: Int,
 									   before: Int, count: Int) {
 				if (s.length >= resources.getInteger(R.integer.chat_edit_text_max_length)) {
-					Firebase.logNotificationShow(NOTIFICATION_PROMPT_TRUNCATED)
+					Firebase.logCustomEvent(NOTIFICATION_PROMPT_TRUNCATED)
 					MainActivity.showToast(requireContext(), getString(R.string.toast_prompt_truncated))
 				}
 			}
@@ -103,11 +101,11 @@ class ChatFrag : Fragment() {
 
 					// add truncated notification when response longer than max allowed
 					if (output.endsWith("…\n\n")) {
-						Firebase.logNotificationShow(NOTIFICATION_RESPONSE_TRUNCATED)
+						Firebase.logCustomEvent(NOTIFICATION_RESPONSE_TRUNCATED)
 						output += getString(R.string.append_response_truncated)
 					}
 
-					Firebase.logAnswerShow(EVENT_OPENAI_RESPONSE_SHOW)
+					Firebase.logCustomEvent(OPENAI_RESPONSE_SHOW)
 					tvAnswer.text = output
 				}
 			}

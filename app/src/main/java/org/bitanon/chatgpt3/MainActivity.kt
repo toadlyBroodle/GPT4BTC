@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
 
 		// prompt user to accept terms agreement if not previously hidden
 		if (showTerms) {
-			Firebase.logScreenView(SCREEN_TERMS_AGREEMENT)
+			Firebase.logCustomEvent(TERMS_AGREEMENT_SHOW)
 
 			// get openai links
 			val message = SpannableString(
@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
 					getString(R.string.accept)
 				) { _, _ ->
 					// user accepts terms: log event
-					Firebase.logContentSelect(BUTTON_ACCEPT_TERMS)
+					Firebase.logCustomEvent(BUTTON_ACCEPT_TERMS)
 
 					// save hide terms choice to shared preferences
 					val editor = sharedPrefs.edit()
@@ -110,7 +110,7 @@ class MainActivity : AppCompatActivity() {
 				}
 				.setNegativeButton(getString(R.string.exit)) { _, _ ->
 					// user rejects terms: log event and exit app
-					Firebase.logContentSelect(BUTTON_REJECT_TERMS)
+					Firebase.logCustomEvent(BUTTON_REJECT_TERMS)
 					finishAndRemoveTask()
 				}
 				.setMessage(message)
