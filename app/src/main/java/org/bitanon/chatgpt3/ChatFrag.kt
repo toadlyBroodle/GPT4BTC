@@ -53,6 +53,14 @@ class ChatFrag : Fragment() {
 		tvAnswer = binding.textviewAnswer
 
 		binding.buttonPrompt.setOnClickListener {
+			// check for internet connection
+			if (!viewModel.requestRepository.isOnline(requireContext())) {
+				// toast user to connect
+				MainActivity.showToast(requireContext(),
+					getString(R.string.toast_no_internet))
+				return@setOnClickListener
+			}
+
 			if (!etPrompt.text.isNullOrBlank()) {
 				Firebase.logContentSelect(BUTTON_PROMPT_SEND)
 

@@ -11,7 +11,7 @@ import java.io.IOException
 class ChatViewModel(): ViewModel() {
 	private val TAG = "ChatViewModel"
 
-	private val requestRepository = RequestRepository()
+	val requestRepository = RequestRepository()
 
 	// Backing property to avoid state updates from other classes
 	private val _uiState = MutableStateFlow(emptyList<String>())

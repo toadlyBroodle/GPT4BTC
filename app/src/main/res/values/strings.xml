@@ -5,10 +5,9 @@
     <string name="chat_fragment_label">ChatGPT3</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="terms_agreement">Terms and Privacy Agreement</string>
-    <string name="privacy_agreement_message">\tAll the content you enter in prompts
-        are necessarily sent to OpenAI for processing by their ChatGPT3 model.
-        \n\tTo use this app you are required to accept OpenAI\'s terms of use and
-        privacy policy:</string>
+    <string name="privacy_agreement_message">\tYour prompts are sent to OpenAI
+        for processing by their ChatGPT3 model.\n\tBy using this app,
+        you accept OpenAI\'s terms of use and privacy policy:</string>
     <string name="exit">Exit</string>
     <string name="accept">Accept</string>
     <string name="next">Next</string>
@@ -22,6 +21,7 @@
     <string name="elipsis">…</string>
     <string name="response_thinking">Thinking…</string>
     <string name="toast_enter_prompt">First, enter a prompt.</string>
+    <string name="toast_no_internet">No internet connection. Connect and retry.</string>
     <string name="toast_prompt_truncated">Maximum prompt length reached: Settings->Subscribe to enable longer prompts.</string>
     <string name="append_response_truncated">***OpenAI\'s response is longer than allowed in the free version.
         \nPlease go to Settings->Subscribe to remove all prompt and response limits, and to remove all ads.</string>
