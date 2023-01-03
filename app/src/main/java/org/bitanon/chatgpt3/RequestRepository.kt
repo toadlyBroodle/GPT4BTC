@@ -9,11 +9,12 @@ import com.theokanning.openai.completion.CompletionRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class RequestRepository {
+private const val OPENAI_KEY = "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"
+private const val MODEL = "text-davinci-003"
+private const val MAX_TOKENS = 32
 
-	val OPENAI_KEY = "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"
-	val MODEL = "text-davinci-003"
-	val MAX_TOKENS = 32
+//private const val TAG = "RequestRepository"
+class RequestRepository {
 
 	suspend fun queryOpenAI(
 		p: String

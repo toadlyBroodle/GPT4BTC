@@ -28,11 +28,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.bitanon.chatgpt3.databinding.ActivityMainBinding
 
-val SHARED_PREFS = "CHATGPT3_SHARED_PREFS"
-val PREF_SHOW_TERMS = "pref_show_terms_on_start"
+const val SHARED_PREFS = "CHATGPT3_SHARED_PREFS"
+const val PREF_SHOW_TERMS = "pref_show_terms_on_start"
 
+private const val TAG = "MainActivity"
 class MainActivity : AppCompatActivity() {
-	private val TAG = "MainActivity"
 
 	private lateinit var appBarConfiguration: AppBarConfiguration
 	private lateinit var binding: ActivityMainBinding
@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity() {
 			showTermsCheckbox.isChecked = showTerms
 
 			// get show terms user choice
-			showTermsCheckbox.setOnCheckedChangeListener { buttonView, isChecked ->
+			showTermsCheckbox.setOnCheckedChangeListener { _, isChecked ->
 				showTerms = isChecked
 			}
 
@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity() {
 				.setTitle(getString(R.string.terms_agreement))
 				.setPositiveButton(
 					getString(R.string.accept)
-				) { dialog, which ->
+				) { _, _ ->
 					// user accepts terms: log event
 					Firebase.logContentSelect(BUTTON_ACCEPT_TERMS)
 
@@ -108,7 +108,7 @@ class MainActivity : AppCompatActivity() {
 					editor.apply()
 					Log.d(TAG, "preferences saved: ${sharedPrefs.all}")
 				}
-				.setNegativeButton(getString(R.string.exit)) { dialog, which ->
+				.setNegativeButton(getString(R.string.exit)) { _, _ ->
 					// user rejects terms: log event and exit app
 					Firebase.logContentSelect(BUTTON_REJECT_TERMS)
 					finishAndRemoveTask()

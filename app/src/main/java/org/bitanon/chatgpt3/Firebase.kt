@@ -27,6 +27,7 @@ const val EVENT_AD_INTERSTITIAL_ENGAGE = "ad_interstitial_engage"
 const val AD_INTERSTITIAL_CLICK = "ad_interstitial_click"
 const val AD_INTERSTITIAL_DISMISS = "ad_interstitial_dismiss"
 
+//private const val TAG = "Firebase"
 class Firebase {
 	companion object {
 

@@ -7,9 +7,9 @@ import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 
+private const val TAG = "AdMob"
 class AdMob {
 	companion object {
-		private val TAG = "AdMob"
 
 		var mInterstitialAd: InterstitialAd? = null
 

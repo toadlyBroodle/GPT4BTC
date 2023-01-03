@@ -11,12 +11,11 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 
-
+private const val TAG = "SettingsActivity"
 class SettingsActivity : AppCompatActivity() {
-	private val TAG = "SettingsActivity"
 
-	var prefShowTerms = true
-	lateinit var showTermsCheckbox: CheckBox
+	private var prefShowTerms = true
+	private lateinit var showTermsCheckbox: CheckBox
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)

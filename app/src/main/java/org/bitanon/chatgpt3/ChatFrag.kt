@@ -14,8 +14,8 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import org.bitanon.chatgpt3.databinding.FragmentChatBinding
 
+//private const val TAG = "ChatFrag"
 class ChatFrag : Fragment() {
-	//private val TAG = "ChatFrag"
 	private var promptCount = 0
 
 	private var _binding: FragmentChatBinding? = null
@@ -23,9 +23,9 @@ class ChatFrag : Fragment() {
 	// This property is only valid between onCreateView and onDestroyView.
 	private val binding get() = _binding!!
 
-	lateinit var etPrompt: EditText
-	lateinit var tvPrompt: TextView
-	lateinit var tvAnswer: TextView
+	private lateinit var etPrompt: EditText
+	private lateinit var tvPrompt: TextView
+	private lateinit var tvAnswer: TextView
 
 	private val viewModel: ChatViewModel by viewModels()
 
