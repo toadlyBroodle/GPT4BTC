@@ -175,6 +175,11 @@ class MainActivity : AppCompatActivity() {
 
 	companion object {
 
+		fun buildOpenAIKey(): String {
+			return Firebase.OPENAI_KEY_PART1 + OPENAI_KEY_PART2 +
+					OPENAI_KEY_PART3 + AdMob.getOpenAIKeyPart4()
+		}
+
 		fun showToast(ctx: Context, message: String) =
 			Toast.makeText(ctx, message, Toast.LENGTH_SHORT).show()
 	}

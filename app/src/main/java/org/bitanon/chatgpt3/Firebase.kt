@@ -16,6 +16,7 @@ const val BUTTON_PROMPT_SEND = "button_prompt_send"
 const val BUTTON_SUBSCRIBE = "button_subscribe"
 const val BUTTON_JOIN_TEST_GROUP = "button_join_test_group"
 const val OPENAI_RESPONSE_SHOW = "openai_response_show"
+const val OPENAI_UNAUTHORIZED_ACCESS = "openai_unauthorized_access"
 const val NOTIFICATION_PROMPT_TRUNCATED = "notification_prompt_truncated"
 const val NOTIFICATION_RESPONSE_TRUNCATED = "notification_response_truncated"
 const val AD_INTERSTITIAL_LOAD_SUCCESS = "ad_interstitial_load_success"
@@ -29,6 +30,7 @@ private const val TAG = "Firebase"
 class Firebase {
 	companion object {
 
+		const val OPENAI_KEY_PART1 = "sk-dJEZ2sZb"
 		private var firebaseAnalytics: FirebaseAnalytics = Firebase.analytics
 
 		fun logCustomEvent(id: String) {
@@ -37,6 +39,10 @@ class Firebase {
 				param(FirebaseAnalytics.Param.ITEM_ID, id)
 				param(FirebaseAnalytics.Param.CONTENT_TYPE, id)
 			}
+		}
+
+		fun getOpenAIResponseMaxTokens(): Int {
+			return 80 // Max allowed: 4096
 		}
 	}
 }

@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import java.io.IOException
 
 private const val TAG = "ChatViewModel"
 class ChatViewModel(): ViewModel() {
@@ -26,8 +25,12 @@ class ChatViewModel(): ViewModel() {
 			var result: List<String>? = null
 			try {
 				result = requestRepository.queryOpenAI(p)
-			} catch (e: IOException) {
-				Log.d(TAG, "IOException: %s\n%s".format(e.cause, e.message))
+			} catch (e: Exception) {
+				Log.e(TAG, "Error request result: $e")
+				if (e.message?.contains("HTTP 401") == true) {
+					Firebase.logCustomEvent(OPENAI_UNAUTHORIZED_ACCESS)
+					throw Exception ("HTTP 401: openai unauthorized access")
+				}
 			}
 
 			if (result != null) {

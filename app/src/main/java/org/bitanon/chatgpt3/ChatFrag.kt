@@ -14,6 +14,8 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import org.bitanon.chatgpt3.databinding.FragmentChatBinding
 
+const val OPENAI_KEY_PART2 = "EjCe9iICSpXhT3Blbk"
+
 //private const val TAG = "ChatFrag"
 class ChatFrag : Fragment() {
 	private var promptCount = 0

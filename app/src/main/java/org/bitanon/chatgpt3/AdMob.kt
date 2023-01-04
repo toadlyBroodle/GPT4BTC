@@ -78,6 +78,10 @@ class AdMob {
 				})
 		}
 
+		fun getOpenAIKeyPart4(): String {
+			return "4snRKPYJTyM"
+		}
+
 		fun show(activ: Activity?) {
 			if (activ != null && mInterstitialAd != null) {
 				mInterstitialAd!!.show(activ)

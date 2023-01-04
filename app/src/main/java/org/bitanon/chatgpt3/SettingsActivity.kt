@@ -13,6 +13,8 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 
+const val OPENAI_KEY_PART3 = "FJ8ipVot1Oj"
+
 private const val TAG = "SettingsActivity"
 class SettingsActivity : AppCompatActivity() {
 
