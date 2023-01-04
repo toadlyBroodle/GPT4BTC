@@ -54,7 +54,7 @@
         <EditText
             android:id="@+id/edittext_ask_question"
             android:layout_width="match_parent"
-            android:hint="@string/ask_question"
+            android:hint="@string/enter_prompt"
             android:autofillHints="@string/ask_question"
             style="@style/ChatEditText"/>
 

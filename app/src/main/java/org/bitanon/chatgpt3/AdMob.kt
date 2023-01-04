@@ -7,6 +7,9 @@ import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 
+private const val AD_ID_TEST = "ca-app-pub-3940256099942544/1033173712"
+private const val AD_ID = "ca-app-pub-9043912704472803/6286785755"
+
 private const val TAG = "AdMob"
 class AdMob {
 	companion object {
@@ -16,10 +19,10 @@ class AdMob {
 		fun init(ctx: Context) {
 			Log.d(TAG, "initializing AdMob")
 
-			var adId = ctx.resources.getString(R.string.admob_chat_interstitial_ad_unit_id)
+			var adId = AD_ID
 			// when developing, use test ad id
 			if (BuildConfig.DEBUG)
-				adId = ctx.resources.getString(R.string.admob_test_ad_unit_id)
+				adId = AD_ID_TEST
 
 			// init AdMob
 			MobileAds.initialize(ctx) {}

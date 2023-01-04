@@ -1,10 +1,12 @@
 package org.bitanon.chatgpt3
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.util.Log
+import android.view.MotionEvent
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
@@ -32,14 +34,29 @@ class SettingsActivity : AppCompatActivity() {
 		Billing.init(this, lifecycleScope)
 	}
 
+	@SuppressLint("ClickableViewAccessibility")
 	override fun onStart() {
 		super.onStart()
 
-		// Make links clickable
-		findViewById<TextView>(R.id.terms_of_use_link).movementMethod =
-			LinkMovementMethod.getInstance()
-		findViewById<TextView>(R.id.privacy_policy_link).movementMethod =
-			LinkMovementMethod.getInstance()
+		// Make links clickable and log clicks
+		val linkToU = findViewById<TextView>(R.id.settings_link_terms_of_use)
+		linkToU.movementMethod = LinkMovementMethod.getInstance()
+		linkToU.setOnTouchListener { v, event ->
+			when (event?.action) {
+				MotionEvent.ACTION_DOWN ->
+					Firebase.logCustomEvent(LINK_TERMS_OF_USE_CLICK)
+			}
+			v?.onTouchEvent(event) ?: true
+		}
+		val linkPP = findViewById<TextView>(R.id.settings_link_privacy_policy)
+		linkPP.movementMethod = LinkMovementMethod.getInstance()
+		linkPP.setOnTouchListener { v, event ->
+			when (event?.action) {
+				MotionEvent.ACTION_DOWN ->
+					Firebase.logCustomEvent(LINK_PRIVACY_POLICY_CLICK)
+			}
+			v?.onTouchEvent(event) ?: true
+		}
 
 		// load shared preferences
 		val sharedPrefs = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)

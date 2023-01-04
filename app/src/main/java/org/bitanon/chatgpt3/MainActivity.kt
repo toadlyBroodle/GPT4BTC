@@ -1,14 +1,14 @@
 package org.bitanon.chatgpt3
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.text.SpannableString
 import android.text.method.LinkMovementMethod
-import android.text.util.Linkify
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.MotionEvent
 import android.view.View
 import android.widget.CheckBox
 import android.widget.TextView
@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
 	private val viewModel: ChatViewModel by viewModels()
 
 
+	@SuppressLint("ClickableViewAccessibility")
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		binding = ActivityMainBinding.inflate(layoutInflater)
@@ -75,19 +76,34 @@ class MainActivity : AppCompatActivity() {
 		if (showTerms) {
 			Firebase.logCustomEvent(TERMS_AGREEMENT_SHOW)
 
-			// get openai links
-			val message = SpannableString(
-				getString(R.string.privacy_agreement_message)
-						+ "\n" + getString(R.string.openai_link_terms_of_use)
-						+ "\n" + getString(R.string.openai_link_privacy_policy)
-			)
-			Linkify.addLinks(message, Linkify.WEB_URLS)
+			// inflate alertdialog layout
+			val alertDialogLayout = View.inflate(this,
+				R.layout.alertdialog_terms_agreement, null)
+
+			// Make links clickable and log clicks
+			val linkToU = alertDialogLayout.findViewById<TextView>(R.id.alertdialog_link_terms_of_use)
+			linkToU.movementMethod = LinkMovementMethod.getInstance()
+			linkToU.setOnTouchListener { v, event ->
+				when (event?.action) {
+					MotionEvent.ACTION_DOWN ->
+						Firebase.logCustomEvent(LINK_TERMS_OF_USE_CLICK)
+				}
+				v?.onTouchEvent(event) ?: true
+			}
+			val linkPP = alertDialogLayout.findViewById<TextView>(R.id.alertdialog_link_privacy_policy)
+			linkPP.movementMethod = LinkMovementMethod.getInstance()
+			linkPP.setOnTouchListener { v, event ->
+				when (event?.action) {
+					MotionEvent.ACTION_DOWN ->
+						Firebase.logCustomEvent(LINK_PRIVACY_POLICY_CLICK)
+				}
+				v?.onTouchEvent(event) ?: true
+			}
 
 			// inflate show terms checkbox and set ischecked same as preference
-			val checkBoxView = View.inflate(this, R.layout.alertdialog_hide_checkbox, null)
-			val showTermsCheckbox = checkBoxView.findViewById<View>(R.id.terms_agree_hide_checkbox) as CheckBox
+			val showTermsCheckbox = alertDialogLayout.findViewById<View>(
+				R.id.alertdialog_terms_agree_hide_checkbox) as CheckBox
 			showTermsCheckbox.isChecked = showTerms
-
 			// get show terms user choice
 			showTermsCheckbox.setOnCheckedChangeListener { _, isChecked ->
 				showTerms = isChecked
@@ -95,7 +111,7 @@ class MainActivity : AppCompatActivity() {
 
 			val d: AlertDialog = AlertDialog.Builder(this)
 				.setIcon(android.R.drawable.ic_dialog_alert)
-				.setTitle(getString(R.string.terms_agreement))
+				.setTitle(getString(R.string.alertdialog_terms_agreement_title))
 				.setPositiveButton(
 					getString(R.string.accept)
 				) { _, _ ->
@@ -113,14 +129,10 @@ class MainActivity : AppCompatActivity() {
 					Firebase.logCustomEvent(BUTTON_REJECT_TERMS)
 					finishAndRemoveTask()
 				}
-				.setMessage(message)
-				.setView(checkBoxView)
+				.setView(alertDialogLayout)
 				.create()
 
 			d.show()
-			// Make the textview's links clickable. Must be called after show()
-			(d.findViewById<View>(android.R.id.message) as TextView?)!!.movementMethod =
-				LinkMovementMethod.getInstance()
 		}
 	}
 

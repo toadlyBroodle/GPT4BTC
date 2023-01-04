@@ -8,6 +8,8 @@ import com.google.firebase.ktx.Firebase
 
 // custom analytics events
 const val TERMS_AGREEMENT_SHOW = "terms_agreement_show"
+const val LINK_TERMS_OF_USE_CLICK = "link_terms_of_use_click"
+const val LINK_PRIVACY_POLICY_CLICK = "link_privacy_policy_click"
 const val BUTTON_ACCEPT_TERMS = "button_accept_terms"
 const val BUTTON_REJECT_TERMS = "button_reject_terms"
 const val BUTTON_PROMPT_SEND = "button_prompt_send"
