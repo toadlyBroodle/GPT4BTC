@@ -55,7 +55,7 @@
             android:id="@+id/edittext_ask_question"
             android:layout_width="match_parent"
             android:hint="@string/enter_prompt"
-            android:autofillHints="@string/ask_question"
+            android:autofillHints="@string/enter_prompt"
             style="@style/ChatEditText"/>
 
     </LinearLayout>
