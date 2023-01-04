@@ -15,6 +15,7 @@ import kotlinx.coroutines.launch
 import org.bitanon.chatgpt3.databinding.FragmentChatBinding
 
 const val OPENAI_KEY_PART2 = "EjCe9iICSpXhT3Blbk"
+const val AD_ID_PART2 = "9043912704472803/"
 
 //private const val TAG = "ChatFrag"
 class ChatFrag : Fragment() {

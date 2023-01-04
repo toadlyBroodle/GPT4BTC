@@ -44,5 +44,9 @@ class Firebase {
 		fun getOpenAIResponseMaxTokens(): Int {
 			return 80 // Max allowed: 4096
 		}
+
+		fun getAdIdPart3(): String {
+			return "6286785755"
+		}
 	}
 }

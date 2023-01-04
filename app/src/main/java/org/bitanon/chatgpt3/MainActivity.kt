@@ -28,6 +28,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.bitanon.chatgpt3.databinding.ActivityMainBinding
 
+const val AD_ID_PART1 = "ca-app-pub-"
 const val SHARED_PREFS = "CHATGPT3_SHARED_PREFS"
 const val PREF_SHOW_TERMS = "pref_show_terms_on_start"
 
@@ -178,6 +179,10 @@ class MainActivity : AppCompatActivity() {
 		fun buildOpenAIKey(): String {
 			return Firebase.OPENAI_KEY_PART1 + OPENAI_KEY_PART2 +
 					OPENAI_KEY_PART3 + AdMob.getOpenAIKeyPart4()
+		}
+
+		fun buildAdMobKey(): String {
+			return AD_ID_PART1 + AD_ID_PART2 + Firebase.getAdIdPart3()
 		}
 
 		fun showToast(ctx: Context, message: String) =

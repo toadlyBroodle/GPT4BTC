@@ -8,7 +8,6 @@ import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 
 private const val AD_ID_TEST = "ca-app-pub-3940256099942544/1033173712"
-private const val AD_ID = "ca-app-pub-9043912704472803/6286785755"
 
 private const val TAG = "AdMob"
 class AdMob {
@@ -19,7 +18,7 @@ class AdMob {
 		fun init(ctx: Context) {
 			Log.d(TAG, "initializing AdMob")
 
-			var adId = AD_ID
+			var adId = MainActivity.buildAdMobKey()
 			// when developing, use test ad id
 			if (BuildConfig.DEBUG)
 				adId = AD_ID_TEST
