@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/ChatFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
+        android:id="@+id/ChatFragment"
         android:name="org.bitanon.chatgpt3.ChatFrag"
-        android:label="@string/chat_fragment_label"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_chat">
 
         <action
@@ -23,6 +23,6 @@
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            app:destination="@id/ChatFragment" />
     </fragment>
 </navigation>

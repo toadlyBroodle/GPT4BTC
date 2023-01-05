@@ -1,8 +1,11 @@
 <resources>
-    <string name="app_name">ChatGPT3</string>
-    <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="chat_fragment_label">ChatGPT3</string>
+
+    <!-- DO NOT translate -->
+    <string name="admob_app_id" translatable="false">ca-app-pub-9043912704472803~9575294075</string>
+    <string name="chatgpt3_playstore_link" translatable="false">https://play.google.com/store/apps/details?id=org.bitanon.chatgpt3</string>
+    <string name="app_name" translatable="false">ChatGPT3</string>
+
+    <!-- DO translate -->
     <string name="second_fragment_label">Second Fragment</string>
     <string name="alertdialog_terms_agreement_title">Terms and Privacy Agreement</string>
     <string name="alertdialog_terms_agreement_message">\t\tYour prompts are sent to OpenAI
@@ -46,9 +49,5 @@
     <string name="toast_device_no_subscriptions">Sorry, your device does not support subscriptions.</string>
     <string name="html_terms_of_use"><a href="https://openai.com/terms/">Terms of Use</a></string>
     <string name="html_privacy_policy"><a href="https://openai.com/privacy/">Privacy Policy</a></string>
-
-    <!-- DO NOT translate -->
-    <string name="admob_app_id">ca-app-pub-9043912704472803~9575294075</string>
-    <string name="chatgpt3_playstore_link">https://play.google.com/store/apps/details?id=org.bitanon.chatgpt3</string>
 
 </resources>

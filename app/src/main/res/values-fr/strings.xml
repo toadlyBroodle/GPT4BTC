@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="alertdialog_terms_agreement_title">Termes et accord de confidentialité</string>
+    <string name="alertdialog_terms_agreement_message">\t\tVos invites sont envoyées à OpenAI pour
+        être traitées par leur modèle ChatGPT3.\n\t\tEn utilisant cette application, vous acceptez
+        les conditions d\'utilisation et la politique de confidentialité d\'OpenAI:</string>
+    <string name="exit">Sortie</string>
+    <string name="accept">Accepter</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="prompt">prompt</string>
+    <string name="answer">réponse</string>
+    <string name="enter_prompt">Entrez votre invite…</string>
+    <string name="tv_p">Humain:</string>
+    <string name="tv_a">IA:</string>
+    <string name="button_prompt">Prompt</string>
+    <string name="elipsis">…</string>
+    <string name="response_thinking">En pensant…</string>
+    <string name="toast_enter_prompt">Tout d\'abord, entrez une invite.</string>
+    <string name="toast_no_internet">Pas de connexion Internet. Connectez-vous et réessayez.</string>
+    <string name="toast_prompt_truncated">Longueur d\'invite maximale atteinte: Paramètres->
+        S\'abonner pour activer des invites plus longues.</string>
+    <string name="append_response_truncated">***La réponse d\'OpenAI est plus longue que celle
+        autorisée dans la version gratuite. \nVeuillez accéder à Paramètres-> S\'abonner pour
+        supprimer toutes les limites d\'invites et de réponses, et pour supprimer toutes les publicités.</string>
+
+    <!-- Exception handling -->
+    <string name="exception_socket_timeout">La connexion à api.openai.com a expiré.
+         Veuillez réinitialiser votre connexion et réessayer plus tard.</string>
+    <string name="exception_unauthorized_access">HTTP 401: accès non autorisé à api.openai.com!
+        Télécharger l\'application autorisée</string>
+
+    <!-- Settings Preferences -->
+    <string name="title_activity_settings">Paramètres</string>
+    <string name="upgrade">Mise à niveau</string>
+    <string name="remove_limits_ads">Supprimez toutes les limites d\'invites et de réponses, et
+        supprimez toutes les publicités: bientôt disponible!</string>
+    <string name="subscribe">S\'abonner</string>
+    <string name="apply_early_access">Pour bénéficier d\'un accès anticipé à l\'abonnement et tester
+        de nouvelles fonctionnalités et versions, postulez en tant que testeur:</string>
+    <string name="join_testers">Rejoindre le groupe de test</string>
+    <string name="require_gmail">***Adresse Gmail requise pour rejoindre le groupe de test Android
+        ChatGPT3.***</string>
+    <string name="settings_terms_header">Conditions d\'utilisation d\'OpenAI</string>
+    <string name="settings_agree_to_terms">En utilisant cette application, vous avez accepté les
+        conditions suivantes:</string>
+    <string name="show_terms_agreement">Afficher l\'accord sur les conditions au démarrage</string>
+    <string name="toast_billing_error">Erreur de facturation. Veuillez activer la facturation
+        Google Play et réessayer.</string>
+    <string name="toast_device_no_subscriptions">Désolé, votre appareil ne prend pas en charge
+        les abonnements.</string>
+    <string name="html_terms_of_use"><a href="https://openai.com/terms/">Termes d\'utilisation</a></string>
+    <string name="html_privacy_policy"><a href="https://openai.com/privacy/">Politique de confidentialité</a></string>
+
+</resources>
