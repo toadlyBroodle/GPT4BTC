@@ -37,8 +37,6 @@ class MainActivity : AppCompatActivity() {
 
 	private lateinit var appBarConfiguration: AppBarConfiguration
 	private lateinit var binding: ActivityMainBinding
-	// Using the viewModels() Kotlin property delegate from the activity-ktx
-	// artifact to retrieve the ViewModel in the activity scope
 	private val viewModel: ChatViewModel by viewModels()
 
 
