@@ -18,7 +18,7 @@
             style="@style/ChatTextLabel"/>
         <TextView
             android:id="@+id/textview_question"
-            style="@style/ChatText" />
+            style="@style/ChatTextContent" />
     </LinearLayout>
 
     <LinearLayout
@@ -33,7 +33,7 @@
             style="@style/ChatTextLabel"/>
         <TextView
             android:id="@+id/textview_answer"
-            style="@style/ChatText" />
+            style="@style/ChatTextContent" />
     </LinearLayout>
 
     <LinearLayout

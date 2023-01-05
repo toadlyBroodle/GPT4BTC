@@ -35,6 +35,11 @@ class Firebase {
 
 		fun logCustomEvent(id: String) {
 			Log.d(TAG, "logCustomEvent: $id")
+
+			// don't sent events while debugging
+			if (BuildConfig.DEBUG)
+				return
+
 			firebaseAnalytics.logEvent(id) {
 				param(FirebaseAnalytics.Param.ITEM_ID, id)
 				param(FirebaseAnalytics.Param.CONTENT_TYPE, id)
@@ -42,7 +47,7 @@ class Firebase {
 		}
 
 		fun getOpenAIResponseMaxTokens(): Int {
-			return 80 // Max allowed: 4096
+			return 80 // tokens -> max allowed 4096
 		}
 
 		fun getAdIdPart3(): String {
