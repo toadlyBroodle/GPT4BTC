@@ -70,7 +70,7 @@ class ChatFrag : Fragment() {
 				tvPrompt.text = q
 				tvAnswer.text = getString(R.string.response_thinking)
 
-				viewModel.sendPrompt(q)
+				viewModel.sendPrompt(requireContext(), q)
 
 				// show interstitial ad every three prompts
 				if (promptCount % 3 == 0)

@@ -26,6 +26,11 @@
     <string name="append_response_truncated">***OpenAI\'s response is longer than allowed in the free version.
         \nPlease go to Settings->Subscribe to remove all prompt and response limits, and to remove all ads.</string>
 
+    <!-- Exception handling -->
+    <string name="exception_socket_timeout">Connection to api.openai.com timed out.
+        Please reset your connectionand try again later.</string>
+    <string name="exception_unauthorized_access">HTTP 401: api.openai.com unauthorized access! Download authorized app:</string>
+
     <!-- Settings Preferences -->
     <string name="title_activity_settings">Settings</string>
     <string name="upgrade">Upgrade</string>
@@ -44,5 +49,6 @@
 
     <!-- DO NOT translate -->
     <string name="admob_app_id">ca-app-pub-9043912704472803~9575294075</string>
+    <string name="chatgpt3_playstore_link">https://play.google.com/store/apps/details?id=org.bitanon.chatgpt3</string>
 
 </resources>

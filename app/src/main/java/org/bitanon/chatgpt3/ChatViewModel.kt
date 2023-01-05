@@ -1,5 +1,6 @@
 package org.bitanon.chatgpt3
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,7 +18,7 @@ class ChatViewModel(): ViewModel() {
 	// The UI collects from this StateFlow to get its state updates
 	val uiState: StateFlow<List<String>> = _uiState
 
-	fun sendPrompt(p: String) {
+	fun sendPrompt(ctx: Context, p: String) {
 
 		// Create a new coroutine on the UI thread
 		viewModelScope.launch { // can get job with: val job =
@@ -27,9 +28,15 @@ class ChatViewModel(): ViewModel() {
 				result = requestRepository.queryOpenAI(p)
 			} catch (e: Exception) {
 				Log.e(TAG, "Error request result: $e")
+
+				if (e.message?.contains("timeout", ignoreCase = true) == true) {
+					Firebase.logCustomEvent(EXCEPTION_SOCKET_TIMEOUT)
+					result = listOf(ctx.getString(R.string.exception_socket_timeout))
+				} else
 				if (e.message?.contains("HTTP 401") == true) {
 					Firebase.logCustomEvent(OPENAI_UNAUTHORIZED_ACCESS)
-					throw Exception ("HTTP 401: openai unauthorized access")
+					result = listOf(ctx.getString(R.string.exception_unauthorized_access) +
+							"\n" + ctx.getString(R.string.chatgpt3_playstore_link))
 				}
 			}
 

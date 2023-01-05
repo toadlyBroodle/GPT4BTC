@@ -25,6 +25,7 @@ const val AD_INTERSTITIAL_SHOW_SUCCESS = "ad_interstitial_show_success"
 const val AD_INTERSTITIAL_SHOW_FAIL = "ad_interstitial_show_fail"
 const val AD_INTERSTITIAL_CLICK = "ad_interstitial_click"
 const val AD_INTERSTITIAL_DISMISS = "ad_interstitial_dismiss"
+const val EXCEPTION_SOCKET_TIMEOUT = "exception_socket_timeout"
 
 private const val TAG = "Firebase"
 class Firebase {
