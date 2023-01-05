@@ -31,7 +31,9 @@
 
     <!-- Exception handling -->
     <string name="exception_socket_timeout">Connection to api.openai.com timed out.
-        Please reset your connectionand try again later.</string>
+        You can try resetting your connection; however, the cause it likely that OpenAI\'s
+        servers are currently overloaded. They should fix the problem soon. Thanks for your
+        patience and please try again shortly.</string>
     <string name="exception_unauthorized_access">HTTP 401: api.openai.com unauthorized access! Download authorized app:</string>
 
     <!-- Settings Preferences -->
