@@ -39,6 +39,11 @@
     <string name="remove_limits_ads">Supprimez toutes les limites d\'invites et de réponses, et
         supprimez toutes les publicités : bientôt disponible !</string>
     <string name="subscribe">S\'abonner</string>
+    <string name="testing_warning">***AVERTISSEMENT : l\'abonnement est en cours de
+        développement. En vous abonnant, vous avez accepté de contribuer au test de la
+        fonctionnalité, ce qui peut ne pas entraîner sa suppression immédiate de limites ou de
+        publicités. Veuillez m\'informer de tout problème de ce type, afin que je puisse le résoudre
+        dès que possible.</string>
     <string name="apply_early_access">Pour bénéficier d\'un accès anticipé à l\'abonnement et tester
         de nouvelles fonctionnalités et versions, postulez en tant que testeur :</string>
     <string name="join_testers">Rejoindre le groupe de test</string>
@@ -52,6 +57,7 @@
         Google Play et réessayer.</string>
     <string name="toast_device_no_subscriptions">Désolé, votre appareil ne prend pas en charge
         les abonnements.</string>
+    <string name="toast_problem_loading_subscription_details">Problem connecting to Google billing.</string>
     <string name="html_terms_of_use"><a href="https://openai.com/terms/">Termes d\'utilisation</a></string>
     <string name="html_privacy_policy"><a href="https://openai.com/privacy/">Politique de confidentialité</a></string>
 

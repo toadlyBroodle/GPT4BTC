@@ -11,8 +11,6 @@ import kotlinx.coroutines.launch
 private const val TAG = "ChatViewModel"
 class ChatViewModel : ViewModel() {
 
-	val requestRepository = RequestRepository()
-
 	// Backing property to avoid state updates from other classes
 	private val _uiState = MutableStateFlow(emptyList<String>())
 	// The UI collects from this StateFlow to get its state updates
@@ -25,7 +23,7 @@ class ChatViewModel : ViewModel() {
 			// Make the network call and suspend execution until it finishes
 			var result: List<String>? = null
 			try {
-				result = requestRepository.queryOpenAI(p)
+				result = RequestRepository.queryOpenAI(p)
 			} catch (e: Exception) {
 				Log.e(TAG, "Error request result: $e")
 

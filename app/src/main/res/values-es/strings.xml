@@ -39,6 +39,10 @@
     <string name="remove_limits_ads">Elimine todos los límites de solicitud y respuesta, y elimine
         todos los anuncios: próximamente!</string>
     <string name="subscribe">Suscribir</string>
+    <string name="testing_warning">***ADVERTENCIA: la suscripción está en desarrollo temprano. Al
+        suscribirse, ha aceptado contribuir a probar la función, lo que puede no resultar en la
+        eliminación inmediata de límites o anuncios. Por favor, notifíqueme cualquier problema de
+        este tipo, para que pueda solucionarlo lo antes posible.</string>
     <string name="apply_early_access">Para obtener acceso anticipado a la suscripción y probar
         nuevas funciones y versiones, presente su solicitud como probador:</string>
     <string name="join_testers">Unirse al grupo de prueba</string>
@@ -50,6 +54,7 @@
     <string name="toast_billing_error">Error de facturación. Habilite la facturación de Google Play
         y vuelva a intentarlo..</string>
     <string name="toast_device_no_subscriptions">Lo sentimos, su dispositivo no admite suscripciones.</string>
+    <string name="toast_problem_loading_subscription_details">Problem connecting to Google billing.</string>
     <string name="html_terms_of_use"><a href="https://openai.com/terms/">Términos de Uso</a></string>
     <string name="html_privacy_policy"><a href="https://openai.com/privacy/">Política de Privacidad</a></string>
 

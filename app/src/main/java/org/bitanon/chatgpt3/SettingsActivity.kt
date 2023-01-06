@@ -41,6 +41,16 @@ class SettingsActivity : AppCompatActivity() {
 	override fun onStart() {
 		super.onStart()
 
+		findViewById<Button>(R.id.button_join_testers).setOnClickListener {
+			Firebase.logCustomEvent(BUTTON_JOIN_TEST_GROUP)
+
+			composeEmail(
+				arrayOf("anon@bitanon.org"),
+				getString(R.string.join_testers),
+				getString(R.string.require_gmail)
+			)
+		}
+
 		// Make links clickable and log clicks
 		val linkToU = findViewById<TextView>(R.id.settings_link_terms_of_use)
 		linkToU.movementMethod = LinkMovementMethod.getInstance()

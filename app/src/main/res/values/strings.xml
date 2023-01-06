@@ -41,6 +41,8 @@
     <string name="upgrade">Upgrade</string>
     <string name="remove_limits_ads">Remove all prompt and response limits, and remove all ads!</string>
     <string name="subscribe">Subscribe</string>
+    <string name="apply_early_access">To gain early access to subscription and test new features and releases, apply as a tester:</string>
+    <string name="join_testers">Join Test Group</string>
     <string name="testing_warning">***WARNING: subscription is in early development. By subscribing,
         you have agreed to contribute to testing the feature, which may not result in immediate removal
         of limits or ads. Please notify me of any such issues, so I can fix it asap.</string>
@@ -50,6 +52,7 @@
     <string name="show_terms_agreement">Show terms agreement at startup</string>
     <string name="toast_billing_error">Billing error. Please enable Google Play billing and retry.</string>
     <string name="toast_device_no_subscriptions">Sorry, your device does not support subscriptions.</string>
+    <string name="toast_problem_loading_subscription_details">Problem connecting to Google billing.</string>
     <string name="html_terms_of_use"><a href="https://openai.com/terms/">Terms of Use</a></string>
     <string name="html_privacy_policy"><a href="https://openai.com/privacy/">Privacy Policy</a></string>
 

@@ -108,9 +108,10 @@ class Billing {
 
 			if (subscriptionDetails == null) {
 				// notify user of billing failure
-				MainActivity.showToast(activ.baseContext, activ.baseContext.getString(R.string.toast_problem_loading_subscription_details))
+				MainActivity.showToast(activ.baseContext, activ.baseContext.getString(
+					R.string.toast_problem_loading_subscription_details))
 				// retry connecting to billing client
-				//init(activ, lifecycleScope)
+				init(activ, lifecycleScope)
 				return
 			}
 
