@@ -36,33 +36,33 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/terms_header"
+        android:text="@string/settings_terms_header"
         style="@style/ChatTextLabel"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/you_agree_to_terms"
+        android:text="@string/settings_agree_to_terms"
         style="@style/ChatText"/>
 
     <TextView
-        android:id="@+id/terms_of_use_link"
+        android:id="@+id/settings_link_terms_of_use"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/terms_of_use_title"
+        android:text="@string/html_terms_of_use"
         style="@style/ChatText" />
 
     <TextView
-        android:id="@+id/privacy_policy_link"
+        android:id="@+id/settings_link_privacy_policy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/privacy_policy_title"
+        android:text="@string/html_privacy_policy"
         style="@style/ChatText" />
 
     <CheckBox
         android:id="@+id/show_terms_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/show_terms_agreement_prompt" />
+        android:text="@string/show_terms_agreement" />
 
 </LinearLayout>

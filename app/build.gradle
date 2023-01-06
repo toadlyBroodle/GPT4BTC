@@ -30,13 +30,18 @@ android {
         applicationId "org.bitanon.chatgpt3"
         minSdk 24
         targetSdk 33
-        versionCode 20
-        versionName "1.19"
+        versionCode 23
+        versionName "1.22"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
+
+        debug {
+            ext.enableCrashlytics = false
+        }
+
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="alertdialog_terms_agreement_title">Términos y Acuerdo de Privacidad</string>
+    <string name="alertdialog_terms_agreement_message">\t\tSus indicaciones se envían a OpenAI
+         para ser procesado por su modelo ChatGPT3.\n\t\tAl usar esta aplicación,
+         aceptas los términos de uso y la política de privacidad de OpenAI:</string>
+    <string name="exit">Salida</string>
+    <string name="accept">Aceptar</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="prompt">solicitud</string>
+    <string name="answer">respuesta</string>
+    <string name="enter_prompt">Ingrese su pregunta…</string>
+    <string name="tv_p">Humano:</string>
+    <string name="tv_a">IA:</string>
+    <string name="button_prompt">Solicitud</string>
+    <string name="elipsis">…</string>
+    <string name="response_thinking">Pensando…</string>
+    <string name="toast_enter_prompt">Primero, ingrese una solicitud.</string>
+    <string name="toast_no_internet">Sin conexión a Internet. Conectar y volver a intentar.</string>
+    <string name="toast_prompt_truncated">Se alcanzó la longitud máxima del aviso:
+        Ajustes->Suscríbete para habilitar avisos más largos.</string>
+    <string name="append_response_truncated">***La respuesta de OpenAI es más larga de lo permitido
+        en la versión gratuita.\nVaya a Ajustes->Suscribirse para eliminar todos los límites
+        de solicitud y respuesta, y para eliminar todos los anuncios.</string>
+
+    <!-- Exception handling -->
+    <string name="exception_socket_timeout">Se agotó el tiempo de conexión con api.openai.com.
+         Puedes intentar restablecer tu conexión; sin embargo, la causa es probable que OpenAI\'s
+         los servidores están actualmente sobrecargados. Deberían solucionar el problema pronto.
+        Gracias por tu paciencia y vuelve a intentarlo en breve.</string>
+    <string name="exception_unauthorized_access">HTTP 401: acceso no autorizado api.openai.com!
+         Descargar aplicación autorizada:</string>
+
+    <!-- Settings Preferences -->
+    <string name="title_activity_settings">Ajustes</string>
+    <string name="upgrade">Ascender de Categoría</string>
+    <string name="remove_limits_ads">Elimine todos los límites de solicitud y respuesta, y elimine
+        todos los anuncios: próximamente!</string>
+    <string name="subscribe">Suscribir</string>
+    <string name="apply_early_access">Para obtener acceso anticipado a la suscripción y probar
+        nuevas funciones y versiones, presente su solicitud como probador:</string>
+    <string name="join_testers">Unirse al grupo de prueba</string>
+    <string name="require_gmail">***Se requiere una dirección de Gmail para unirse al grupo de
+        prueba Android ChatGPT3.***</string>
+    <string name="settings_terms_header">Acuerdo de términos de OpenAI</string>
+    <string name="settings_agree_to_terms">Al usar esta aplicación, acepta los siguientes términos:</string>
+    <string name="show_terms_agreement">Mostrar acuerdo de términos al inicio</string>
+    <string name="toast_billing_error">Error de facturación. Habilite la facturación de Google Play
+        y vuelva a intentarlo..</string>
+    <string name="toast_device_no_subscriptions">Lo sentimos, su dispositivo no admite suscripciones.</string>
+    <string name="html_terms_of_use"><a href="https://openai.com/terms/">Términos de Uso</a></string>
+    <string name="html_privacy_policy"><a href="https://openai.com/privacy/">Política de Privacidad</a></string>
+
+</resources>

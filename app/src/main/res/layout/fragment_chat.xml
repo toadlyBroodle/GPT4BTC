@@ -1,64 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ChatFrag">
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/layout_question"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-        <TextView
-            android:text="@string/tv_p"
-            style="@style/ChatTextLabel"/>
-        <TextView
-            android:id="@+id/textview_question"
-            style="@style/ChatText" />
-    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
 
-    <LinearLayout
-        android:id="@+id/layout_answer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/layout_question"
-        app:layout_constraintStart_toStartOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <TextView
-            android:text="@string/tv_a"
-            style="@style/ChatTextLabel"/>
-        <TextView
-            android:id="@+id/textview_answer"
-            style="@style/ChatText" />
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layout_question"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="@string/tv_p"
+                    style="@style/ChatTextLabel"/>
+
+                <TextView
+                    android:id="@+id/textview_question"
+                    style="@style/ChatTextContent" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_answer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="@string/tv_a"
+                    style="@style/ChatTextLabel"/>
+
+                <TextView
+                    android:id="@+id/textview_answer"
+                    style="@style/ChatTextContent" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:padding="10sp">
 
         <Button
             android:id="@+id/button_prompt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/button_prompt"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:text="@string/button_prompt" />
 
         <EditText
             android:id="@+id/edittext_ask_question"
+            style="@style/ChatEditText"
             android:layout_width="match_parent"
-            android:hint="@string/ask_question"
-            android:autofillHints="@string/ask_question"
-            style="@style/ChatEditText"/>
+            android:autofillHints="@string/enter_prompt"
+            android:hint="@string/enter_prompt" />
 
     </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
-
+</LinearLayout>

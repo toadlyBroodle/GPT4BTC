@@ -9,22 +9,22 @@ import com.theokanning.openai.completion.CompletionRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-private const val OPENAI_KEY = "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"
 private const val MODEL = "text-davinci-003"
-private const val MAX_TOKENS = 32
 
 //private const val TAG = "RequestRepository"
 class RequestRepository {
 
 	companion object {
 
+		private val MAX_TOKENS = Firebase.getOpenAIResponseMaxTokens()
+
 		suspend fun queryOpenAI(
 			p: String
-		): List<String> {
+		): List<String>? {
 
 			// Move the execution of the coroutine to the I/O dispatcher
 			return withContext(Dispatchers.IO) {
-				val service = OpenAiService(OPENAI_KEY)
+				val service = OpenAiService(MainActivity.buildOpenAIKey())
 				val completionRequest = CompletionRequest.builder()
 					.prompt(p)
 					.model(MODEL)
@@ -32,22 +32,22 @@ class RequestRepository {
 					.build()
 
 				val result = service.createCompletion(completionRequest)
-				print(result)
+				print(result.choices[0].text)
 
-				val completionTokens = result.usage.completionTokens
+					val completionTokens = result.usage.completionTokens
 
-				val listChoices = mutableListOf<String>()
-				for (choice in result.choices) {
-					var text = choice.text.removePrefix("\n\n")
-					if (completionTokens >= MAX_TOKENS) {
-						// add elipsis and newlines to denote to ChatFrag a truncated response
-						text = "$text…\n\n"
+					val listChoices = mutableListOf<String>()
+					for (choice in result.choices) {
+						var text = choice.text.removePrefix("\n\n")
+						if (completionTokens >= MAX_TOKENS) {
+							// add elipsis and newlines to denote to ChatFrag a truncated response
+							text = "$text…\n\n"
+						}
+						listChoices.add(text)
 					}
-					listChoices.add(text)
-				}
 
-				listChoices.ifEmpty { "" }
-			} as List<String>
+				listChoices.ifEmpty { null }
+			}
 		}
 
 		fun isOnline(context: Context): Boolean {

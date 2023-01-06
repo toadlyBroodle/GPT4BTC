@@ -1,12 +1,15 @@
 <resources>
-    <string name="app_name">ChatGPT3</string>
-    <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="chat_fragment_label">ChatGPT3</string>
+
+    <!-- DO NOT translate -->
+    <string name="admob_app_id" translatable="false">ca-app-pub-9043912704472803~9575294075</string>
+    <string name="chatgpt3_playstore_link" translatable="false">https://play.google.com/store/apps/details?id=org.bitanon.chatgpt3</string>
+    <string name="app_name" translatable="false">ChatGPT3</string>
+
+    <!-- DO translate -->
     <string name="second_fragment_label">Second Fragment</string>
-    <string name="terms_agreement">Terms and Privacy Agreement</string>
-    <string name="privacy_agreement_message">\tYour prompts are sent to OpenAI
-        for processing by their ChatGPT3 model.\n\tBy using this app,
+    <string name="alertdialog_terms_agreement_title">Terms and Privacy Agreement</string>
+    <string name="alertdialog_terms_agreement_message">\t\tYour prompts are sent to OpenAI
+        for processing by their ChatGPT3 model.\n\t\tBy using this app,
         you accept OpenAI\'s terms of use and privacy policy:</string>
     <string name="exit">Exit</string>
     <string name="accept">Accept</string>
@@ -14,7 +17,7 @@
     <string name="previous">Previous</string>
     <string name="prompt">prompt</string>
     <string name="answer">answer</string>
-    <string name="ask_question">Enter your prompt…</string>
+    <string name="enter_prompt">Enter your prompt…</string>
     <string name="tv_p">Human:</string>
     <string name="tv_a">AI:</string>
     <string name="button_prompt">Prompt</string>
@@ -26,6 +29,13 @@
     <string name="append_response_truncated">***OpenAI\'s response is longer than allowed in the free version.
         \nPlease go to Settings->Subscribe to remove all prompt and response limits, and to remove all ads.</string>
 
+    <!-- Exception handling -->
+    <string name="exception_socket_timeout">Connection to api.openai.com timed out.
+        You can try resetting your connection; however, the cause it likely that OpenAI\'s
+        servers are currently overloaded. They should fix the problem soon. Thanks for your
+        patience and please try again shortly.</string>
+    <string name="exception_unauthorized_access">HTTP 401: api.openai.com unauthorized access! Download authorized app:</string>
+
     <!-- Settings Preferences -->
     <string name="title_activity_settings">Settings</string>
     <string name="upgrade">Upgrade</string>
@@ -35,20 +45,12 @@
         you have agreed to contribute to testing the feature, which may not result in immediate removal
         of limits or ads. Please notify me of any such issues, so I can fix it asap.</string>
     <string name="require_gmail">***Gmail address required to join test Android ChatGPT3 group.***</string>
-    <string name="terms_header">OpenAI\'s Terms Agreement</string>
-    <string name="you_agree_to_terms">By using this app, you have agreed to the following terms:</string>
-    <string name="terms_of_use_title"><a href="https://openai.com/terms/">Terms of Use</a></string>
-    <string name="privacy_policy_title"><a href="https://openai.com/privacy/">Privacy Policy</a></string>
-    <string name="show_terms_agreement_prompt">Show terms agreement prompt at startup</string>
+    <string name="settings_terms_header">OpenAI\'s Terms Agreement</string>
+    <string name="settings_agree_to_terms">By using this app, you have agreed to the following terms:</string>
+    <string name="show_terms_agreement">Show terms agreement at startup</string>
+    <string name="toast_billing_error">Billing error. Please enable Google Play billing and retry.</string>
     <string name="toast_device_no_subscriptions">Sorry, your device does not support subscriptions.</string>
-    <string name="toast_problem_loading_subscription_details">Problem loading subscription details.</string>
-    <string name="toast_problem_connecting_billing">Problem connecting to Google billing.</string>
-
-    <!-- DO NOT translate -->
-    <string name="admob_app_id">ca-app-pub-9043912704472803~9575294075</string>
-    <string name="admob_test_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
-    <string name="admob_chat_interstitial_ad_unit_id">ca-app-pub-9043912704472803/6286785755</string>
-    <string name="openai_link_terms_of_use">https://openai.com/terms/</string>
-    <string name="openai_link_privacy_policy">https://openai.com/privacy/</string>
+    <string name="html_terms_of_use"><a href="https://openai.com/terms/">Terms of Use</a></string>
+    <string name="html_privacy_policy"><a href="https://openai.com/privacy/">Privacy Policy</a></string>
 
 </resources>

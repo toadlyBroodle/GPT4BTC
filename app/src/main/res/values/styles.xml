@@ -12,6 +12,10 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="ChatTextContent" parent="ChatText">
+        <item name="android:textIsSelectable">true</item>
+    </style>
+
     <style name="ChatEditText" parent="ChatText">
         <item name="android:inputType">textMultiLine</item>
         <item name="android:maxLines">@integer/chat_edit_text_max_length</item>

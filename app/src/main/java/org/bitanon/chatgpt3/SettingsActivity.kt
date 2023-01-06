@@ -1,16 +1,20 @@
 package org.bitanon.chatgpt3
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.util.Log
+import android.view.MotionEvent
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
+
+const val OPENAI_KEY_PART3 = "FJ8ipVot1Oj"
 
 private const val TAG = "SettingsActivity"
 class SettingsActivity : AppCompatActivity() {
@@ -30,19 +34,32 @@ class SettingsActivity : AppCompatActivity() {
 		supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 		// initialize billing
-		//Billing.init(this, lifecycleScope)
+		Billing.init(this, lifecycleScope)
 	}
 
+	@SuppressLint("ClickableViewAccessibility")
 	override fun onStart() {
 		super.onStart()
 
-		Firebase.logScreenView(SCREEN_SETTINGS)
-
-		// Make links clickable
-		findViewById<TextView>(R.id.terms_of_use_link).movementMethod =
-			LinkMovementMethod.getInstance()
-		findViewById<TextView>(R.id.privacy_policy_link).movementMethod =
-			LinkMovementMethod.getInstance()
+		// Make links clickable and log clicks
+		val linkToU = findViewById<TextView>(R.id.settings_link_terms_of_use)
+		linkToU.movementMethod = LinkMovementMethod.getInstance()
+		linkToU.setOnTouchListener { v, event ->
+			when (event?.action) {
+				MotionEvent.ACTION_DOWN ->
+					Firebase.logCustomEvent(LINK_TERMS_OF_USE_CLICK)
+			}
+			v?.onTouchEvent(event) ?: true
+		}
+		val linkPP = findViewById<TextView>(R.id.settings_link_privacy_policy)
+		linkPP.movementMethod = LinkMovementMethod.getInstance()
+		linkPP.setOnTouchListener { v, event ->
+			when (event?.action) {
+				MotionEvent.ACTION_DOWN ->
+					Firebase.logCustomEvent(LINK_PRIVACY_POLICY_CLICK)
+			}
+			v?.onTouchEvent(event) ?: true
+		}
 
 		// load shared preferences
 		val sharedPrefs = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
@@ -53,7 +70,7 @@ class SettingsActivity : AppCompatActivity() {
 		Log.d(TAG, "preferences loaded: ${sharedPrefs.all}")
 
 		findViewById<Button>(R.id.button_subscribe).setOnClickListener {
-			Firebase.logContentSelect(BUTTON_SUBSCRIBE)
+			Firebase.logCustomEvent(BUTTON_SUBSCRIBE)
 
 			// check for internet connection
 			if (!RequestRepository.isOnline(baseContext)) {
