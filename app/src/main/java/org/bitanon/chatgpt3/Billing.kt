@@ -54,7 +54,7 @@ class Billing {
 			billingClient?.startConnection(object : BillingClientStateListener {
 				override fun onBillingSetupFinished(billingResult: BillingResult) {
 					if (billingResult.responseCode ==  BillingResponseCode.OK) {
-						Log.d(TAG, "The BillingClient is ready")
+						Log.d(TAG, "billingClient is ready")
 						isBillingServiceConnected = true
 
 						// process purchases
@@ -64,10 +64,10 @@ class Billing {
 							}
 						}
 
-					} else Log.d(TAG, "billingResult: $billingResult")
+					} else Log.d(TAG, "billingClient>startConnection>billingResult: $billingResult")
 				}
 				override fun onBillingServiceDisconnected() {
-					Log.d(TAG, "The billing service disconnected")
+					Log.d(TAG, "billing service disconnected")
 					isBillingServiceConnected = false
 					// Try to restart the connection on the next request to
 					// Google Play by calling the startConnection() method.
@@ -135,10 +135,11 @@ class Billing {
 				.setProductDetailsParamsList(productDetailsParamsList)
 				.build()
 
+			Log.d(TAG, "billingClient.connectionState=${billingClient?.connectionState} -> 2=CONNECTED")
+
 			// Launch the billing flow
 			val billingResult = billingClient?.launchBillingFlow(activ, billingFlowParams)
 			Log.d(TAG, "billingResult: $billingResult")
-			Log.d(TAG, "billingClient.connectionState=${billingClient?.connectionState} -> 2=CONNECTED")
 		}
 
 		//val acknowledgePurchaseResponseListener: AcknowledgePurchaseResponseListener = ...
@@ -151,12 +152,14 @@ class Billing {
 					val ackPurchaseResult = withContext(Dispatchers.IO) {
 						billingClient?.acknowledgePurchase(acknowledgePurchaseParams.build())
 					}
-					Log.d(TAG, "ackPurchaseResult: $ackPurchaseResult")
+					if (ackPurchaseResult?.responseCode == BillingResponseCode.OK)
+						Firebase.logCustomEvent(BILLING_SUBSCRIPTION_ACKNOWLEDGE)
+					else Log.d(TAG, "ackPurchaseResult>BillingResponseCode=${ackPurchaseResult?.responseCode}")
 				}
 				// TODO don't show ads
 				// TODO remove prompt/response limits
 			}
-			// TODO handle all other purchase states
+			// TODO handle all other purchase subscription states
 		}
 
 		suspend fun fetchSubscription() {
@@ -165,7 +168,7 @@ class Billing {
 
 			// uses queryPurchasesAsync Kotlin extension function
 			val purchasesResult = billingClient?.queryPurchasesAsync(params.build())
-			Log.d(TAG, "fetch subscription purchasesResult: $purchasesResult")
+			Log.d(TAG, "fetchSubscription>purchasesResult: $purchasesResult")
 		}
 
 	}
