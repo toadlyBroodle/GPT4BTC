@@ -147,7 +147,7 @@ class MainActivity : AppCompatActivity() {
 		}
 
 		// Check if user is signed in (non-null) and update UI accordingly.
-		val currentUser = Firebase.auth.currentUser
+		//val currentUser = Firebase.auth.currentUser
 		//updateUI(currentUser)
 	}
 
