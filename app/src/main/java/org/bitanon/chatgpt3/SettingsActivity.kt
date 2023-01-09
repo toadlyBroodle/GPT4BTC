@@ -11,8 +11,6 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.launch
 
 const val OPENAI_KEY_PART3 = "FJ8ipVot1Oj"
 
@@ -33,31 +31,17 @@ class SettingsActivity : AppCompatActivity() {
 		}*/
 		supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-		// initialize billing
-		Billing.init(this, lifecycleScope)
 	}
 
 	@SuppressLint("ClickableViewAccessibility")
 	override fun onStart() {
 		super.onStart()
 
-		// on join testers button click
-		findViewById<Button>(R.id.button_join_testers).setOnClickListener {
-			FirebaseAnalytics.logCustomEvent(BUTTON_JOIN_TEST_GROUP)
-
-			composeEmail(
-				arrayOf("anon@bitanon.org"),
-				getString(R.string.join_testers),
-				getString(R.string.require_gmail)
-			)
-		}
-
-		// on login button click
-		findViewById<Button>(R.id.button_login).setOnClickListener {
-			FirebaseAnalytics.logCustomEvent(BUTTON_LOGIN)
+		// on account button click
+		findViewById<Button>(R.id.button_account).setOnClickListener {
 
 			// launch FirebaseUIActivity
-			val startActivity = Intent(this, FirebaseUIActivity::class.java)
+			val startActivity = Intent(this, AccountActivity::class.java)
 			startActivity(startActivity)
 		}
 
@@ -89,21 +73,6 @@ class SettingsActivity : AppCompatActivity() {
 		showTermsCheckbox.isChecked = prefShowTerms
 		Log.d(TAG, "preferences loaded: ${sharedPrefs.all}")
 
-		findViewById<Button>(R.id.button_subscribe).setOnClickListener {
-			FirebaseAnalytics.logCustomEvent(BUTTON_SUBSCRIBE)
-
-			// check for internet connection
-			if (!RequestRepository.isOnline(baseContext)) {
-				// toast user to connect
-				MainActivity.showToast(baseContext,
-					getString(R.string.toast_no_internet))
-				return@setOnClickListener
-			}
-
-			lifecycleScope.launch {
-				Billing.subscribe(this@SettingsActivity, lifecycleScope)
-			}
-		}
 	}
 
 	override fun onPause() {
@@ -116,23 +85,4 @@ class SettingsActivity : AppCompatActivity() {
 		editor.apply()
 		Log.d(TAG, "preferences saved: ${sharedPrefs.all}")
 	}
-
-	private fun composeEmail(addresses: Array<String>, subject: String, text: String) {
-		val intent = Intent(Intent.ACTION_SEND).apply {
-			//data = Uri.parse("mailto:")  // only choose from email apps
-			type = "message/rfc822"
-			putExtra(Intent.EXTRA_EMAIL, addresses)
-			putExtra(Intent.EXTRA_SUBJECT, subject)
-			putExtra(Intent.EXTRA_TEXT, text)
-		}
-		if (intent.resolveActivity(packageManager) != null) {
-			startActivity(intent)
-		}
-	}
-
-/*	class SettingsFragment : PreferenceFragmentCompat() {
-		override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-			setPreferencesFromResource(R.xml.root_preferences, rootKey)
-		}
-	}*/
 }

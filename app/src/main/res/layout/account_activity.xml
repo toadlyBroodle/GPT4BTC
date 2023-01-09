@@ -7,20 +7,20 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/account"
+        android:text="@string/login"
         style="@style/ChatTextLabel"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/manage_account"
+        android:text="@string/login_to_enable_features"
         style="@style/ChatText"/>
 
     <Button
-        android:id="@+id/button_account"
+        android:id="@+id/button_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/account"/>
+        android:text="@string/login"/>
 
     <View
         android:layout_width="match_parent"
@@ -31,33 +31,45 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/settings_terms_header"
+        android:text="@string/upgrade"
         style="@style/ChatTextLabel"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/settings_agree_to_terms"
+        android:text="@string/remove_limits_ads"
         style="@style/ChatText"/>
 
-    <TextView
-        android:id="@+id/settings_link_terms_of_use"
+    <Button
+        android:id="@+id/button_subscribe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/html_terms_of_use"
-        style="@style/ChatText" />
+        android:text="@string/subscribe"
+        android:enabled="false"/>
 
     <TextView
-        android:id="@+id/settings_link_privacy_policy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/html_privacy_policy"
-        style="@style/ChatText" />
+        android:text="@string/testing_warning" />
 
-    <CheckBox
-        android:id="@+id/show_terms_checkbox"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/show_terms_agreement" />
+        android:text="@string/apply_early_access"
+        style="@style/ChatText"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/button_join_testers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/join_testers"
+        android:visibility="gone"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="15sp"
+        android:background="?android:attr/listDivider" />
 
 </LinearLayout>

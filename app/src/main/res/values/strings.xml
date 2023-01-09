@@ -57,5 +57,7 @@
     <string name="html_privacy_policy"><a href="https://openai.com/privacy/">Privacy Policy</a></string>
     <string name="login">Login</string>
     <string name="login_to_enable_features">Login to increase prompt and response limits and enable other features.</string>
+    <string name="account">Account</string>
+    <string name="manage_account">Manage your account</string>
 
 </resources>

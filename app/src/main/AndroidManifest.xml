@@ -47,10 +47,20 @@
         </activity>
 
         <activity
+            android:name=".AccountActivity"
+            android:exported="false"
+            android:label="@string/account"
+            android:parentActivityName=".SettingsActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
             android:name=".FirebaseUIActivity"
             android:exported="false"
             android:label="@string/login"
-            android:parentActivityName=".SettingsActivity">
+            android:parentActivityName=".AccountActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

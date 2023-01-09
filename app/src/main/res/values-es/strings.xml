@@ -60,5 +60,7 @@
     <string name="login">Acceso</string>
     <string name="login_to_enable_features">Inicie sesión para aumentar los límites de solicitud y
         respuesta y habilitar otras funciones.</string>
+    <string name="account">Cuenta</string>
+    <string name="manage_account">Manage your account</string>
 
 </resources>
