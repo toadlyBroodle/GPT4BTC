@@ -41,6 +41,7 @@ class SettingsActivity : AppCompatActivity() {
 	override fun onStart() {
 		super.onStart()
 
+		// on join testers button click
 		findViewById<Button>(R.id.button_join_testers).setOnClickListener {
 			Firebase.logCustomEvent(BUTTON_JOIN_TEST_GROUP)
 
@@ -49,6 +50,13 @@ class SettingsActivity : AppCompatActivity() {
 				getString(R.string.join_testers),
 				getString(R.string.require_gmail)
 			)
+		}
+
+		// on login button click
+		findViewById<Button>(R.id.button_login).setOnClickListener {
+			Firebase.logCustomEvent(BUTTON_LOGIN)
+
+			Firebase.signIn(this)
 		}
 
 		// Make links clickable and log clicks
@@ -105,6 +113,13 @@ class SettingsActivity : AppCompatActivity() {
 		editor.putBoolean(PREF_SHOW_TERMS, showTermsCheckbox.isChecked)
 		editor.apply()
 		Log.d(TAG, "preferences saved: ${sharedPrefs.all}")
+	}
+
+	@Deprecated("Deprecated in Java")
+	override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+		super.onActivityResult(requestCode, resultCode, data)
+
+		Firebase.onSignInResult(this, requestCode, resultCode, data)
 	}
 
 	private fun composeEmail(addresses: Array<String>, subject: String, text: String) {

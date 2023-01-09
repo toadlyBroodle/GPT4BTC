@@ -32,6 +32,7 @@ const val AD_ID_PART1 = "ca-app-pub-"
 const val SHARED_PREFS = "CHATGPT3_SHARED_PREFS"
 const val PREF_SHOW_TERMS = "pref_show_terms_on_start"
 
+
 private const val TAG = "MainActivity"
 class MainActivity : AppCompatActivity() {
 
@@ -45,10 +46,6 @@ class MainActivity : AppCompatActivity() {
 		super.onCreate(savedInstanceState)
 		binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
-
-		// initialize ads, billing, and analytics
-		AdMob.init(this)
-		Billing.init(this, lifecycleScope)
 
 		setSupportActionBar(binding.toolbar)
 
@@ -65,6 +62,10 @@ class MainActivity : AppCompatActivity() {
 				}
 			}
 		}
+
+		// initialize ads, billing, and analytics
+		AdMob.init(this)
+		Billing.init(this, lifecycleScope)
 
 		// load shared preferences
 		val sharedPrefs = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
@@ -144,6 +145,10 @@ class MainActivity : AppCompatActivity() {
 				Billing.fetchSubscription()
 			}
 		}
+
+		// Check if user is signed in (non-null) and update UI accordingly.
+		val currentUser = Firebase.auth.currentUser
+		//updateUI(currentUser)
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
