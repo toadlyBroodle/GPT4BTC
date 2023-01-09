@@ -63,7 +63,7 @@ class ChatFrag : Fragment() {
 			}
 
 			if (!etPrompt.text.isNullOrBlank()) {
-				Firebase.logCustomEvent(BUTTON_PROMPT_SEND)
+				FirebaseAnalytics.logCustomEvent(BUTTON_PROMPT_SEND)
 
 				val q = etPrompt.text.toString()
 				etPrompt.text.clear()
@@ -91,7 +91,7 @@ class ChatFrag : Fragment() {
 			override fun onTextChanged(s: CharSequence, start: Int,
 									   before: Int, count: Int) {
 				if (s.length >= resources.getInteger(R.integer.chat_edit_text_max_length)) {
-					Firebase.logCustomEvent(NOTIFICATION_PROMPT_TRUNCATED)
+					FirebaseAnalytics.logCustomEvent(NOTIFICATION_PROMPT_TRUNCATED)
 					MainActivity.showToast(requireContext(), getString(R.string.toast_prompt_truncated))
 				}
 			}
@@ -104,11 +104,11 @@ class ChatFrag : Fragment() {
 
 					// add truncated notification when response longer than max allowed
 					if (output.endsWith("…\n\n")) {
-						Firebase.logCustomEvent(NOTIFICATION_RESPONSE_TRUNCATED)
+						FirebaseAnalytics.logCustomEvent(NOTIFICATION_RESPONSE_TRUNCATED)
 						output += getString(R.string.append_response_truncated)
 					}
 
-					Firebase.logCustomEvent(OPENAI_RESPONSE_SHOW)
+					FirebaseAnalytics.logCustomEvent(OPENAI_RESPONSE_SHOW)
 					tvAnswer.text = output
 				}
 			}

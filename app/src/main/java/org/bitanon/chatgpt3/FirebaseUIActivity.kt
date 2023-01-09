@@ -42,7 +42,7 @@ class FirebaseUIActivity: AppCompatActivity() {
 			// Successfully signed in
 			val user = FirebaseAuth.getInstance().currentUser
 			Log.d(TAG, "Login success: user: ${user?.email}")
-			Firebase.logCustomEvent(LOGIN_SUCCESS)
+			FirebaseAnalytics.logCustomEvent(LOGIN_SUCCESS)
 			MainActivity.showToast(this, "Signed in as ${user?.displayName}")
 
 		} else {
@@ -50,7 +50,7 @@ class FirebaseUIActivity: AppCompatActivity() {
 			// sign-in flow using the back button. Otherwise check
 			// response.getError().getErrorCode() and handle the error.
 			Log.d(TAG, "Login error: ${response?.error}")
-			Firebase.logCustomEvent(LOGIN_FAIL)
+			FirebaseAnalytics.logCustomEvent(LOGIN_FAIL)
 			MainActivity.showToast(this, "Login failed: ${response?.error}")
 
 		}

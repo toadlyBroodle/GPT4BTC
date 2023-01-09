@@ -28,11 +28,11 @@ class ChatViewModel : ViewModel() {
 				Log.e(TAG, "Error request result: $e")
 
 				if (e.message?.contains("timeout", ignoreCase = true) == true) {
-					Firebase.logCustomEvent(EXCEPTION_SOCKET_TIMEOUT)
+					FirebaseAnalytics.logCustomEvent(EXCEPTION_SOCKET_TIMEOUT)
 					result = listOf(ctx.getString(R.string.exception_socket_timeout))
 				} else
 				if (e.message?.contains("HTTP 401") == true) {
-					Firebase.logCustomEvent(OPENAI_UNAUTHORIZED_ACCESS)
+					FirebaseAnalytics.logCustomEvent(OPENAI_UNAUTHORIZED_ACCESS)
 					result = listOf(ctx.getString(R.string.exception_unauthorized_access) +
 							"\n" + ctx.getString(R.string.chatgpt3_playstore_link))
 				}

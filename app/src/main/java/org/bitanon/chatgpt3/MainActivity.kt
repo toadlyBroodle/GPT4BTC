@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
 
 		// prompt user to accept terms agreement if not previously hidden
 		if (showTerms) {
-			Firebase.logCustomEvent(TERMS_AGREEMENT_SHOW)
+			FirebaseAnalytics.logCustomEvent(TERMS_AGREEMENT_SHOW)
 
 			// inflate alertdialog layout
 			val alertDialogLayout = View.inflate(this,
@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
 			linkToU.setOnTouchListener { v, event ->
 				when (event?.action) {
 					MotionEvent.ACTION_DOWN ->
-						Firebase.logCustomEvent(LINK_TERMS_OF_USE_CLICK)
+						FirebaseAnalytics.logCustomEvent(LINK_TERMS_OF_USE_CLICK)
 				}
 				v?.onTouchEvent(event) ?: true
 			}
@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity() {
 			linkPP.setOnTouchListener { v, event ->
 				when (event?.action) {
 					MotionEvent.ACTION_DOWN ->
-						Firebase.logCustomEvent(LINK_PRIVACY_POLICY_CLICK)
+						FirebaseAnalytics.logCustomEvent(LINK_PRIVACY_POLICY_CLICK)
 				}
 				v?.onTouchEvent(event) ?: true
 			}
@@ -116,7 +116,7 @@ class MainActivity : AppCompatActivity() {
 					getString(R.string.accept)
 				) { _, _ ->
 					// user accepts terms: log event
-					Firebase.logCustomEvent(BUTTON_ACCEPT_TERMS)
+					FirebaseAnalytics.logCustomEvent(BUTTON_ACCEPT_TERMS)
 
 					// save hide terms choice to shared preferences
 					val editor = sharedPrefs.edit()
@@ -126,7 +126,7 @@ class MainActivity : AppCompatActivity() {
 				}
 				.setNegativeButton(getString(R.string.exit)) { _, _ ->
 					// user rejects terms: log event and exit app
-					Firebase.logCustomEvent(BUTTON_REJECT_TERMS)
+					FirebaseAnalytics.logCustomEvent(BUTTON_REJECT_TERMS)
 					finishAndRemoveTask()
 				}
 				.setView(alertDialogLayout)
@@ -180,12 +180,12 @@ class MainActivity : AppCompatActivity() {
 	companion object {
 
 		fun buildOpenAIKey(): String {
-			return Firebase.OPENAI_KEY_PART1 + OPENAI_KEY_PART2 +
+			return FirebaseAnalytics.OPENAI_KEY_PART1 + OPENAI_KEY_PART2 +
 					OPENAI_KEY_PART3 + AdMob.getOpenAIKeyPart4()
 		}
 
 		fun buildAdMobKey(): String {
-			return AD_ID_PART1 + AD_ID_PART2 + Firebase.getAdIdPart3()
+			return AD_ID_PART1 + AD_ID_PART2 + FirebaseAnalytics.getAdIdPart3()
 		}
 
 		fun showToast(ctx: Context, message: String) =

@@ -153,7 +153,7 @@ class Billing {
 						billingClient?.acknowledgePurchase(acknowledgePurchaseParams.build())
 					}
 					if (ackPurchaseResult?.responseCode == BillingResponseCode.OK)
-						Firebase.logCustomEvent(BILLING_SUBSCRIPTION_ACKNOWLEDGE)
+						FirebaseAnalytics.logCustomEvent(BILLING_SUBSCRIPTION_ACKNOWLEDGE)
 					else Log.d(TAG, "ackPurchaseResult>BillingResponseCode=${ackPurchaseResult?.responseCode}")
 				}
 				// TODO don't show ads

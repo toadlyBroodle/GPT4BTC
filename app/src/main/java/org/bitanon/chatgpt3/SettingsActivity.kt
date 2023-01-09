@@ -43,7 +43,7 @@ class SettingsActivity : AppCompatActivity() {
 
 		// on join testers button click
 		findViewById<Button>(R.id.button_join_testers).setOnClickListener {
-			Firebase.logCustomEvent(BUTTON_JOIN_TEST_GROUP)
+			FirebaseAnalytics.logCustomEvent(BUTTON_JOIN_TEST_GROUP)
 
 			composeEmail(
 				arrayOf("anon@bitanon.org"),
@@ -54,7 +54,7 @@ class SettingsActivity : AppCompatActivity() {
 
 		// on login button click
 		findViewById<Button>(R.id.button_login).setOnClickListener {
-			Firebase.logCustomEvent(BUTTON_LOGIN)
+			FirebaseAnalytics.logCustomEvent(BUTTON_LOGIN)
 
 			// launch FirebaseUIActivity
 			val startActivity = Intent(this, FirebaseUIActivity::class.java)
@@ -67,7 +67,7 @@ class SettingsActivity : AppCompatActivity() {
 		linkToU.setOnTouchListener { v, event ->
 			when (event?.action) {
 				MotionEvent.ACTION_DOWN ->
-					Firebase.logCustomEvent(LINK_TERMS_OF_USE_CLICK)
+					FirebaseAnalytics.logCustomEvent(LINK_TERMS_OF_USE_CLICK)
 			}
 			v?.onTouchEvent(event) ?: true
 		}
@@ -76,7 +76,7 @@ class SettingsActivity : AppCompatActivity() {
 		linkPP.setOnTouchListener { v, event ->
 			when (event?.action) {
 				MotionEvent.ACTION_DOWN ->
-					Firebase.logCustomEvent(LINK_PRIVACY_POLICY_CLICK)
+					FirebaseAnalytics.logCustomEvent(LINK_PRIVACY_POLICY_CLICK)
 			}
 			v?.onTouchEvent(event) ?: true
 		}
@@ -90,7 +90,7 @@ class SettingsActivity : AppCompatActivity() {
 		Log.d(TAG, "preferences loaded: ${sharedPrefs.all}")
 
 		findViewById<Button>(R.id.button_subscribe).setOnClickListener {
-			Firebase.logCustomEvent(BUTTON_SUBSCRIBE)
+			FirebaseAnalytics.logCustomEvent(BUTTON_SUBSCRIBE)
 
 			// check for internet connection
 			if (!RequestRepository.isOnline(baseContext)) {

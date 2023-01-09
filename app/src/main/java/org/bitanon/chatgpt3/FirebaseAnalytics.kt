@@ -32,7 +32,7 @@ const val LOGIN_SUCCESS = "login_success"
 const val LOGIN_FAIL = "login_fail"
 
 private const val TAG = "Firebase"
-class Firebase {
+class FirebaseAnalytics {
 	companion object {
 
 		const val OPENAI_KEY_PART1 = "sk-dJEZ2sZb"

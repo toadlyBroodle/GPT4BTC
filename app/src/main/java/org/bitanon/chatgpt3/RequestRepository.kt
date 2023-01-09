@@ -16,7 +16,7 @@ class RequestRepository {
 
 	companion object {
 
-		private val MAX_TOKENS = Firebase.getOpenAIResponseMaxTokens()
+		private val MAX_TOKENS = FirebaseAnalytics.getOpenAIResponseMaxTokens()
 
 		suspend fun queryOpenAI(
 			p: String
