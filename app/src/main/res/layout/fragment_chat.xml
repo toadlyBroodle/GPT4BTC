@@ -21,7 +21,8 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:text="@string/tv_p"
+                    android:id="@+id/textview_label_name"
+                    android:text="@string/anon"
                     style="@style/ChatTextLabel"/>
 
                 <TextView

@@ -15,16 +15,16 @@
     <string name="prompt">prompt</string>
     <string name="answer">answer</string>
     <string name="enter_prompt">Enter your prompt…</string>
-    <string name="tv_p">Human:</string>
     <string name="tv_a">AI:</string>
     <string name="button_prompt">Prompt</string>
     <string name="elipsis">…</string>
     <string name="response_thinking">Thinking…</string>
     <string name="toast_enter_prompt">First, enter a prompt.</string>
     <string name="toast_no_internet">No internet connection. Connect and retry.</string>
-    <string name="toast_prompt_truncated">Maximum prompt length reached: Settings->Subscribe to enable longer prompts.</string>
-    <string name="append_response_truncated">***OpenAI\'s response is longer than allowed in the free version.
-        \nPlease go to Settings->Subscribe to remove all prompt and response limits, and to remove all ads.</string>
+    <string name="toast_prompt_truncated">Maximum prompt length reached:
+        \nLogin or Subscribe for longer prompts.</string>
+    <string name="append_response_truncated">***OpenAI\'s response is longer than allowed in the
+        free version.\nLogin or Subscribe to remove all prompt and response limits, and to remove all ads.</string>
 
     <!-- Exception handling -->
     <string name="exception_socket_timeout">Connection to api.openai.com timed out.
@@ -63,5 +63,10 @@
     <string name="logged_out">Logged out</string>
     <string name="terms">Terms</string>
     <string name="app_terms_header">App Terms Agreement</string>
+    <string name="account_label_name">Name:</string>
+    <string name="anon">anon</string>
+    <string name="account_label_prompt_limit">Prompt Limit:</string>
+    <string name="account_label_response_limit">Response Limit:</string>
+    <string name="words">words</string>
 
 </resources>

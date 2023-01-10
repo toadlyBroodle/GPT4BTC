@@ -16,8 +16,6 @@ class RequestRepository {
 
 	companion object {
 
-		private val MAX_TOKENS = FirebaseAnalytics.getOpenAIResponseMaxTokens()
-
 		suspend fun queryOpenAI(
 			p: String
 		): List<String>? {
@@ -28,7 +26,7 @@ class RequestRepository {
 				val completionRequest = CompletionRequest.builder()
 					.prompt(p)
 					.model(MODEL)
-					.maxTokens(MAX_TOKENS)
+					.maxTokens(AccountActivity.getMaxResponseTokens())
 					.build()
 
 				val result = service.createCompletion(completionRequest)
@@ -39,7 +37,7 @@ class RequestRepository {
 					val listChoices = mutableListOf<String>()
 					for (choice in result.choices) {
 						var text = choice.text.removePrefix("\n\n")
-						if (completionTokens >= MAX_TOKENS) {
+						if (completionTokens >= AccountActivity.getMaxPromptChars()) {
 							// add elipsis and newlines to denote to ChatFrag a truncated response
 							text = "$text…\n\n"
 						}

@@ -4,30 +4,44 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
+import org.bitanon.chatgpt3.databinding.AccountActivityBinding
+import kotlin.math.roundToInt
 
 class AccountActivity: AppCompatActivity() {
 
+	private lateinit var binding: AccountActivityBinding
+
 	private lateinit var buttonLogin: Button
 	private lateinit var buttonLogout: Button
-
+	private lateinit var tvName: TextView
+	private lateinit var tvPromptLimit: TextView
+	private lateinit var tvResponseLimit: TextView
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.account_activity)
+		binding = AccountActivityBinding.inflate(layoutInflater)
+		setContentView(binding.root)
 
 		// initialize billing
 		Billing.init(this, lifecycleScope)
 	}
 
-	@SuppressLint("ClickableViewAccessibility")
-	override fun onResume() {
-		super.onResume()
+	@SuppressLint("ClickableViewAccessibility", "SetTextI18n")
+	override fun onStart() {
+		super.onStart()
 
-		buttonLogin = findViewById<Button>(R.id.button_login)
+		// get textviews
+		tvName = binding.accountName
+		tvPromptLimit = binding.accountPromptLimit
+		tvResponseLimit = binding.accountResponseLimit
+
+		// get buttons, set click listeners, and log events
+		buttonLogin = binding.buttonLogin
 		buttonLogin.setOnClickListener {
 			FirebaseAnalytics.logCustomEvent(BUTTON_LOGIN)
 
@@ -35,8 +49,7 @@ class AccountActivity: AppCompatActivity() {
 			val startActivity = Intent(this, FirebaseUIActivity::class.java)
 			startActivity(startActivity)
 		}
-
-		buttonLogout = findViewById<Button>(R.id.button_logout)
+		buttonLogout = binding.buttonLogout
 		buttonLogout.setOnClickListener {
 			FirebaseAnalytics.logCustomEvent(BUTTON_LOGOUT)
 
@@ -46,9 +59,7 @@ class AccountActivity: AppCompatActivity() {
 			setLoginButtonVisibility(false)
 
 		}
-
-		// on join testers button click
-		findViewById<Button>(R.id.button_join_testers).setOnClickListener {
+		binding.buttonJoinTesters.setOnClickListener {
 			FirebaseAnalytics.logCustomEvent(BUTTON_JOIN_TEST_GROUP)
 
 			composeEmail(
@@ -57,9 +68,7 @@ class AccountActivity: AppCompatActivity() {
 				getString(R.string.require_gmail)
 			)
 		}
-
-		// on subscribe button click
-		findViewById<Button>(R.id.button_subscribe).setOnClickListener {
+		binding.buttonSubscribe.setOnClickListener {
 			FirebaseAnalytics.logCustomEvent(BUTTON_SUBSCRIBE)
 
 			// check for internet connection
@@ -70,17 +79,39 @@ class AccountActivity: AppCompatActivity() {
 				return@setOnClickListener
 			}
 
+			// launch subscription process
 			lifecycleScope.launch {
 				Billing.subscribe(this@AccountActivity, lifecycleScope)
 			}
 		}
 
-		// set button visibilities
+
+		// collect changes to logged in user
 		lifecycleScope.launch {
-			FirebaseUIActivity.userState.collect { userState ->
-				if (userState == null)
+			FirebaseUIActivity.userState.collect { user ->
+
+				var userName = getString(R.string.anon)
+
+				if (user == null) {
 					setLoginButtonVisibility(false)
-				else setLoginButtonVisibility(true)
+
+					maxPromptChars = FirebaseAnalytics.getPromptMaxChars()
+					maxResponseTokens = FirebaseAnalytics.getResponseMaxTokens()
+				}
+				else {
+					setLoginButtonVisibility(true)
+
+					// set user properties
+					userName = user.displayName.toString()
+					maxPromptChars = 80
+					maxResponseTokens = 80
+				}
+
+				// set textview properties
+				// update user details ui
+				tvName.text = userName
+				tvPromptLimit.text = "~${getPromptLimitWords()} ${getString(R.string.words)}"
+				tvResponseLimit.text = "~${getResponseLimitWords()} ${getString(R.string.words)}"
 			}
 		}
 	}
@@ -98,6 +129,7 @@ class AccountActivity: AppCompatActivity() {
 		}
 	}
 
+	// show/hide login/logout buttons depending on user login status
 	private fun setLoginButtonVisibility(loggedIn: Boolean) {
 		if (loggedIn) {
 			buttonLogin.isVisible = false
@@ -105,6 +137,22 @@ class AccountActivity: AppCompatActivity() {
 		} else {
 			buttonLogin.isVisible = true
 			buttonLogout.isVisible = false
+		}
+	}
+
+	companion object {
+
+		private var maxPromptChars = FirebaseAnalytics.getResponseMaxTokens()
+		fun getMaxPromptChars(): Int { return maxPromptChars}
+		private var maxResponseTokens = FirebaseAnalytics.getPromptMaxChars()
+		fun getMaxResponseTokens(): Int { return maxResponseTokens}
+
+		fun getPromptLimitWords(): String {
+			return (maxPromptChars / 5).toString()
+		}
+
+		fun getResponseLimitWords(): String {
+			return (maxResponseTokens * 0.75).roundToInt().toString()
 		}
 	}
 

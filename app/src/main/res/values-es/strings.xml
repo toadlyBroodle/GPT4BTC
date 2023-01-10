@@ -9,7 +9,6 @@
     <string name="prompt">solicitud</string>
     <string name="answer">respuesta</string>
     <string name="enter_prompt">Ingrese su pregunta…</string>
-    <string name="tv_p">Humano:</string>
     <string name="tv_a">IA:</string>
     <string name="button_prompt">Solicitud</string>
     <string name="elipsis">…</string>
@@ -17,10 +16,10 @@
     <string name="toast_enter_prompt">Primero, ingrese una solicitud.</string>
     <string name="toast_no_internet">Sin conexión a Internet. Conectar y volver a intentar.</string>
     <string name="toast_prompt_truncated">Se alcanzó la longitud máxima del aviso:
-        Ajustes->Suscríbete para habilitar avisos más largos.</string>
+        \nAjustes->Suscríbete para habilitar avisos más largos.</string>
     <string name="append_response_truncated">***La respuesta de OpenAI es más larga de lo permitido
-        en la versión gratuita.\nVaya a Ajustes->Suscribirse para eliminar todos los límites
-        de solicitud y respuesta, y para eliminar todos los anuncios.</string>
+        en la versión gratuita.\nInicie sesión o suscríbase para eliminar todos los límites de
+        solicitud y respuesta, y para eliminar todos los anuncios.</string>
 
     <!-- Exception handling -->
     <string name="exception_socket_timeout">Se agotó el tiempo de conexión con api.openai.com.
@@ -66,5 +65,10 @@
     <string name="logged_out">Cerrado sesión</string>
     <string name="terms">Términos</string>
     <string name="app_terms_header">Acuerdo de Términos App</string>
+    <string name="account_label_name">Nombre:</string>
+    <string name="anon">anon</string>
+    <string name="account_label_prompt_limit">Límite de solicitud:</string>
+    <string name="account_label_response_limit">Límite de respuesta:</string>
+    <string name="words">palabras</string>
 
 </resources>

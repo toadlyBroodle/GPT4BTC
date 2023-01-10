@@ -1,7 +1,9 @@
 package org.bitanon.chatgpt3
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputFilter
 import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
@@ -26,9 +28,10 @@ class ChatFrag : Fragment() {
 	// This property is only valid between onCreateView and onDestroyView.
 	private val binding get() = _binding!!
 
-	private lateinit var etPrompt: EditText
+	private lateinit var tvPromptLabelName: TextView
 	private lateinit var tvPrompt: TextView
 	private lateinit var tvAnswer: TextView
+	private lateinit var etPrompt: EditText
 
 	private val viewModel: ChatViewModel by viewModels()
 
@@ -42,17 +45,16 @@ class ChatFrag : Fragment() {
 		return binding.root
 	}
 
+	@SuppressLint("SetTextI18n")
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
-/*		binding.buttonFirst.setOnClickListener {
-			findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-		}*/
-
-		etPrompt = binding.edittextAskQuestion
+		tvPromptLabelName = binding.textviewLabelName
 		tvPrompt = binding.textviewQuestion
 		tvAnswer = binding.textviewAnswer
+		etPrompt = binding.edittextAskQuestion
 
+		// set prompt button on click listener logic
 		binding.buttonPrompt.setOnClickListener {
 			// check for internet connection
 			if (!RequestRepository.isOnline(requireContext())) {
@@ -84,19 +86,21 @@ class ChatFrag : Fragment() {
 			} else MainActivity.showToast(requireContext(), getString(R.string.toast_enter_prompt))
 		}
 
+		// set prompt edit text text changed listener and logic
 		etPrompt.addTextChangedListener(object : TextWatcher {
 			override fun afterTextChanged(s: Editable) {}
 			override fun beforeTextChanged(s: CharSequence, start: Int,
 										   count: Int, after: Int) {}
 			override fun onTextChanged(s: CharSequence, start: Int,
 									   before: Int, count: Int) {
-				if (s.length >= resources.getInteger(R.integer.chat_edit_text_max_length)) {
+				if (s.length >= AccountActivity.getMaxPromptChars()) {
 					FirebaseAnalytics.logCustomEvent(NOTIFICATION_PROMPT_TRUNCATED)
 					MainActivity.showToast(requireContext(), getString(R.string.toast_prompt_truncated))
 				}
 			}
 		})
 
+		// collect changes to UI state
 		lifecycleScope.launch {
 			viewModel.uiState.collect { uiState ->
 				if (uiState.isNotEmpty()) {
@@ -111,6 +115,18 @@ class ChatFrag : Fragment() {
 					FirebaseAnalytics.logCustomEvent(OPENAI_RESPONSE_SHOW)
 					tvAnswer.text = output
 				}
+			}
+		}
+
+		// collect changes to user state
+		lifecycleScope.launch {
+			FirebaseUIActivity.userState.collect { user ->
+
+				// set prompt label display name
+				tvPromptLabelName.text = "${user?.displayName ?: getString(R.string.anon)}:"
+
+				// set max length of prompt edittext
+				etPrompt.filters = arrayOf(InputFilter.LengthFilter(AccountActivity.getMaxPromptChars()))
 			}
 		}
 

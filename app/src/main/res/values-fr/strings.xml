@@ -9,18 +9,17 @@
     <string name="prompt">prompt</string>
     <string name="answer">réponse</string>
     <string name="enter_prompt">Entrez votre invite…</string>
-    <string name="tv_p">Humain :</string>
     <string name="tv_a">IA :</string>
     <string name="button_prompt">Prompt</string>
     <string name="elipsis">…</string>
     <string name="response_thinking">En pensant…</string>
     <string name="toast_enter_prompt">Tout d\'abord, entrez une invite.</string>
     <string name="toast_no_internet">Pas de connexion Internet. Connectez-vous et réessayez.</string>
-    <string name="toast_prompt_truncated">Longueur d\'invite maximale atteinte : Paramètres->
-        S\'abonner pour activer des invites plus longues.</string>
+    <string name="toast_prompt_truncated">Longueur maximale des invites atteinte :
+        \nconnectez-vous ou abonnez-vous pour des invites plus longues.</string>
     <string name="append_response_truncated">***La réponse d\'OpenAI est plus longue que celle
-        autorisée dans la version gratuite. \nVeuillez accéder à Paramètres-> S\'abonner pour
-        supprimer toutes les limites d\'invites et de réponses, et pour supprimer toutes les publicités.</string>
+        autorisée dans la version gratuite.\nConnectez-vous ou abonnez-vous pour supprimer toutes
+        les limites d\'invites et de réponses et pour supprimer toutes les publicités.</string>
 
     <!-- Exception handling -->
     <string name="exception_socket_timeout">La connexion à api.openai.com a expiré.
@@ -69,5 +68,10 @@
     <string name="logged_out">Déconnexion</string>
     <string name="terms">Termes</string>
     <string name="app_terms_header">Conditions d\'Utilisation App</string>
+    <string name="account_label_name">Nom :</string>
+    <string name="anon">anon</string>
+    <string name="account_label_prompt_limit">Limite d\'invite :</string>
+    <string name="account_label_response_limit">Limite de réponse :</string>
+    <string name="words">mots</string>
 
 </resources>
