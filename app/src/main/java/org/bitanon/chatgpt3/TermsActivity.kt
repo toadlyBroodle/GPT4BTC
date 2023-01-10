@@ -36,21 +36,30 @@ class TermsActivity : AppCompatActivity() {
 		super.onStart()
 
 		// Make links clickable and log clicks
-		val linkToU = findViewById<TextView>(R.id.settings_link_terms_of_use)
-		linkToU.movementMethod = LinkMovementMethod.getInstance()
-		linkToU.setOnTouchListener { v, event ->
-			when (event?.action) {
-				MotionEvent.ACTION_DOWN ->
-					FirebaseAnalytics.logCustomEvent(LINK_TERMS_OF_USE_CLICK)
-			}
-			v?.onTouchEvent(event) ?: true
-		}
-		val linkPP = findViewById<TextView>(R.id.settings_link_privacy_policy)
+		val linkPP = findViewById<TextView>(R.id.app_link_privacy_policy)
 		linkPP.movementMethod = LinkMovementMethod.getInstance()
 		linkPP.setOnTouchListener { v, event ->
 			when (event?.action) {
 				MotionEvent.ACTION_DOWN ->
-					FirebaseAnalytics.logCustomEvent(LINK_PRIVACY_POLICY_CLICK)
+					FirebaseAnalytics.logCustomEvent(APP_PRIVACY_POLICY_CLICK)
+			}
+			v?.onTouchEvent(event) ?: true
+		}
+		val openaiLinkToU = findViewById<TextView>(R.id.openai_link_terms_of_use)
+		openaiLinkToU.movementMethod = LinkMovementMethod.getInstance()
+		openaiLinkToU.setOnTouchListener { v, event ->
+			when (event?.action) {
+				MotionEvent.ACTION_DOWN ->
+					FirebaseAnalytics.logCustomEvent(OPENAI_TERMS_OF_USE_CLICK)
+			}
+			v?.onTouchEvent(event) ?: true
+		}
+		val openaiLinkPP = findViewById<TextView>(R.id.settings_link_privacy_policy)
+		openaiLinkPP.movementMethod = LinkMovementMethod.getInstance()
+		openaiLinkPP.setOnTouchListener { v, event ->
+			when (event?.action) {
+				MotionEvent.ACTION_DOWN ->
+					FirebaseAnalytics.logCustomEvent(OPENAI_PRIVACY_POLICY_CLICK)
 			}
 			v?.onTouchEvent(event) ?: true
 		}

@@ -39,7 +39,7 @@
         <activity
             android:name=".TermsActivity"
             android:exported="false"
-            android:label="@string/title_activity_settings"
+            android:label="@string/terms"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.app.lib_name"

@@ -1,39 +1,70 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="5sp">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/settings_terms_header"
-        style="@style/ChatTextLabel"/>
+        android:orientation="vertical"
+        android:padding="5sp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/settings_agree_to_terms"
-        style="@style/ChatText"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_terms_header"
+            style="@style/ChatTextLabel"/>
 
-    <TextView
-        android:id="@+id/settings_link_terms_of_use"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/html_terms_of_use"
-        style="@style/ChatText" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/agree_to_terms"
+            style="@style/ChatText"/>
 
-    <TextView
-        android:id="@+id/settings_link_privacy_policy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/html_privacy_policy"
-        style="@style/ChatText" />
+        <TextView
+            android:id="@+id/app_link_privacy_policy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/html_app_privacy_policy"
+            style="@style/ChatText" />
 
-    <CheckBox
-        android:id="@+id/show_terms_checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/show_terms_agreement" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="15sp"
+            android:background="?android:attr/listDivider" />
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/openai_terms_header"
+            style="@style/ChatTextLabel"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/agree_to_terms"
+            style="@style/ChatText"/>
+
+        <TextView
+            android:id="@+id/openai_link_terms_of_use"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/html_openai_terms_of_use"
+            style="@style/ChatText" />
+
+        <TextView
+            android:id="@+id/settings_link_privacy_policy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/html_openai_privacy_policy"
+            style="@style/ChatText" />
+
+        <CheckBox
+            android:id="@+id/show_terms_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/show_terms_agreement" />
+
+    </LinearLayout>
+
+</ScrollView>

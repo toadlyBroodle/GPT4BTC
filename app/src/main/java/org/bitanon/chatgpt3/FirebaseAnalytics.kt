@@ -8,14 +8,16 @@ import com.google.firebase.ktx.Firebase
 
 // custom analytics events
 const val TERMS_AGREEMENT_SHOW = "terms_agreement_show"
-const val LINK_TERMS_OF_USE_CLICK = "link_terms_of_use_click"
-const val LINK_PRIVACY_POLICY_CLICK = "link_privacy_policy_click"
 const val BUTTON_ACCEPT_TERMS = "button_accept_terms"
 const val BUTTON_REJECT_TERMS = "button_reject_terms"
 const val BUTTON_PROMPT_SEND = "button_prompt_send"
 const val BUTTON_LOGIN = "button_login"
+const val BUTTON_LOGOUT = "button_logout"
 const val BUTTON_SUBSCRIBE = "button_subscribe"
 const val BUTTON_JOIN_TEST_GROUP = "button_join_test_group"
+const val APP_PRIVACY_POLICY_CLICK = "app_privacy_policy_click"
+const val OPENAI_TERMS_OF_USE_CLICK = "openai_terms_of_use_click"
+const val OPENAI_PRIVACY_POLICY_CLICK = "openai_privacy_policy_click"
 const val OPENAI_RESPONSE_SHOW = "openai_response_show"
 const val OPENAI_UNAUTHORIZED_ACCESS = "openai_unauthorized_access"
 const val NOTIFICATION_PROMPT_TRUNCATED = "notification_prompt_truncated"

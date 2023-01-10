@@ -2,9 +2,6 @@
 <resources>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="alertdialog_terms_agreement_title">Termes et accord de confidentialité</string>
-    <string name="alertdialog_terms_agreement_message">\t\tVos invites sont envoyées à OpenAI pour
-        être traitées par leur modèle ChatGPT3.\n\t\tEn utilisant cette application, vous acceptez
-        les conditions d\'utilisation et la politique de confidentialité d\'OpenAI :</string>
     <string name="exit">Sortie</string>
     <string name="accept">Accepter</string>
     <string name="next">Next</string>
@@ -33,8 +30,9 @@
     <string name="exception_unauthorized_access">HTTP 401 : accès non autorisé à api.openai.com !
         Télécharger l\'application autorisée</string>
 
-    <!-- Settings Preferences -->
     <string name="title_activity_settings">Paramètres</string>
+
+    <!-- Terms Screens -->
     <string name="upgrade">Mise à niveau</string>
     <string name="remove_limits_ads">Supprimez toutes les limites d\'invites et de réponses, et
         supprimez toutes les publicités : bientôt disponible !</string>
@@ -49,8 +47,8 @@
     <string name="join_testers">Rejoindre le groupe de test</string>
     <string name="require_gmail">***Adresse Gmail requise pour rejoindre le groupe de test Android
         ChatGPT3.***</string>
-    <string name="settings_terms_header">Conditions d\'utilisation d\'OpenAI</string>
-    <string name="settings_agree_to_terms">En utilisant cette application, vous avez accepté les
+    <string name="openai_terms_header">Conditions d\'utilisation d\'OpenAI</string>
+    <string name="agree_to_terms">En utilisant cette application, vous avez accepté les
         conditions suivantes :</string>
     <string name="show_terms_agreement">Afficher l\'accord sur les conditions au démarrage</string>
     <string name="toast_billing_error">Erreur de facturation. Veuillez activer la facturation
@@ -58,8 +56,9 @@
     <string name="toast_device_no_subscriptions">Désolé, votre appareil ne prend pas en charge
         les abonnements.</string>
     <string name="toast_problem_loading_subscription_details">Problem connecting to Google billing.</string>
-    <string name="html_terms_of_use"><a href="https://openai.com/terms/">Termes d\'utilisation</a></string>
-    <string name="html_privacy_policy"><a href="https://openai.com/privacy/">Politique de confidentialité</a></string>
+    <string name="html_app_privacy_policy"><a href="https://chatgpt3-android.app/privacy-policy.html">Politique de confidentialité, Termes</a></string>
+    <string name="html_openai_terms_of_use"><a href="https://openai.com/terms/">Termes d\'utilisation</a></string>
+    <string name="html_openai_privacy_policy"><a href="https://openai.com/privacy/">Politique de confidentialité</a></string>
     <string name="login">Connexion</string>
     <string name="login_to_enable_features">Connectez-vous pour augmenter les limites d\'invites et
         de réponses et activer d\'autres fonctionnalités.</string>
@@ -69,5 +68,6 @@
     <string name="login_failed">Échec de la connexion:</string>
     <string name="logged_out">Déconnexion</string>
     <string name="terms">Termes</string>
+    <string name="app_terms_header">Conditions d\'Utilisation App</string>
 
 </resources>

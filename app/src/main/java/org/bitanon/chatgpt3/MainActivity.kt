@@ -78,31 +78,40 @@ class MainActivity : AppCompatActivity() {
 
 			// inflate alertdialog layout
 			val alertDialogLayout = View.inflate(this,
-				R.layout.alertdialog_terms_agreement, null)
+				R.layout.terms_activity, null)
 
 			// Make links clickable and log clicks
-			val linkToU = alertDialogLayout.findViewById<TextView>(R.id.alertdialog_link_terms_of_use)
-			linkToU.movementMethod = LinkMovementMethod.getInstance()
-			linkToU.setOnTouchListener { v, event ->
-				when (event?.action) {
-					MotionEvent.ACTION_DOWN ->
-						FirebaseAnalytics.logCustomEvent(LINK_TERMS_OF_USE_CLICK)
-				}
-				v?.onTouchEvent(event) ?: true
-			}
-			val linkPP = alertDialogLayout.findViewById<TextView>(R.id.alertdialog_link_privacy_policy)
+			val linkPP = alertDialogLayout.findViewById<TextView>(R.id.app_link_privacy_policy)
 			linkPP.movementMethod = LinkMovementMethod.getInstance()
 			linkPP.setOnTouchListener { v, event ->
 				when (event?.action) {
 					MotionEvent.ACTION_DOWN ->
-						FirebaseAnalytics.logCustomEvent(LINK_PRIVACY_POLICY_CLICK)
+						FirebaseAnalytics.logCustomEvent(APP_PRIVACY_POLICY_CLICK)
+				}
+				v?.onTouchEvent(event) ?: true
+			}
+			val openaiLinkToU = alertDialogLayout.findViewById<TextView>(R.id.openai_link_terms_of_use)
+			openaiLinkToU.movementMethod = LinkMovementMethod.getInstance()
+			openaiLinkToU.setOnTouchListener { v, event ->
+				when (event?.action) {
+					MotionEvent.ACTION_DOWN ->
+						FirebaseAnalytics.logCustomEvent(OPENAI_TERMS_OF_USE_CLICK)
+				}
+				v?.onTouchEvent(event) ?: true
+			}
+			val openaiLinkPP = alertDialogLayout.findViewById<TextView>(R.id.settings_link_privacy_policy)
+			openaiLinkPP.movementMethod = LinkMovementMethod.getInstance()
+			openaiLinkPP.setOnTouchListener { v, event ->
+				when (event?.action) {
+					MotionEvent.ACTION_DOWN ->
+						FirebaseAnalytics.logCustomEvent(OPENAI_PRIVACY_POLICY_CLICK)
 				}
 				v?.onTouchEvent(event) ?: true
 			}
 
 			// inflate show terms checkbox and set ischecked same as preference
 			val showTermsCheckbox = alertDialogLayout.findViewById<View>(
-				R.id.alertdialog_terms_agree_hide_checkbox) as CheckBox
+				R.id.show_terms_checkbox) as CheckBox
 			showTermsCheckbox.isChecked = showTerms
 			// get show terms user choice
 			showTermsCheckbox.setOnCheckedChangeListener { _, isChecked ->

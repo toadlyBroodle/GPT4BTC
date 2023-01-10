@@ -8,9 +8,6 @@
     <!-- DO translate -->
     <string name="second_fragment_label">Second Fragment</string>
     <string name="alertdialog_terms_agreement_title">Terms and Privacy Agreement</string>
-    <string name="alertdialog_terms_agreement_message">\t\tYour prompts are sent to OpenAI
-        for processing by their ChatGPT3 model.\n\t\tBy using this app,
-        you accept OpenAI\'s terms of use and privacy policy:</string>
     <string name="exit">Exit</string>
     <string name="accept">Accept</string>
     <string name="next">Next</string>
@@ -36,8 +33,9 @@
         patience and please try again shortly.</string>
     <string name="exception_unauthorized_access">HTTP 401: api.openai.com unauthorized access! Download authorized app:</string>
 
-    <!-- Settings Preferences -->
     <string name="title_activity_settings">Settings</string>
+
+    <!-- Terms Screens -->
     <string name="upgrade">Upgrade</string>
     <string name="remove_limits_ads">Remove all prompt and response limits, and remove all ads!</string>
     <string name="subscribe">Subscribe</string>
@@ -47,14 +45,15 @@
         you have agreed to contribute to testing the feature, which may not result in immediate removal
         of limits or ads. Please notify me of any such issues, so I can fix it asap.</string>
     <string name="require_gmail">***Gmail address required to join test Android ChatGPT3 group.***</string>
-    <string name="settings_terms_header">OpenAI\'s Terms Agreement</string>
-    <string name="settings_agree_to_terms">By using this app, you have agreed to the following terms:</string>
+    <string name="openai_terms_header">OpenAI\'s Terms Agreement</string>
+    <string name="agree_to_terms">By using this app, you have agreed to the following terms:</string>
     <string name="show_terms_agreement">Show terms agreement at startup</string>
     <string name="toast_billing_error">Billing error. Please enable Google Play billing and retry.</string>
     <string name="toast_device_no_subscriptions">Sorry, your device does not support subscriptions.</string>
     <string name="toast_problem_loading_subscription_details">Problem connecting to Google billing.</string>
-    <string name="html_terms_of_use"><a href="https://openai.com/terms/">Terms of Use</a></string>
-    <string name="html_privacy_policy"><a href="https://openai.com/privacy/">Privacy Policy</a></string>
+    <string name="html_app_privacy_policy"><a href="https://chatgpt3-android.app/privacy-policy.html">Privacy Policy, Terms</a></string>
+    <string name="html_openai_terms_of_use"><a href="https://openai.com/terms/">Terms of Use</a></string>
+    <string name="html_openai_privacy_policy"><a href="https://openai.com/privacy/">Privacy Policy</a></string>
     <string name="login">Login</string>
     <string name="login_to_enable_features">Login to increase prompt and response limits and enable other features.</string>
     <string name="account">Account</string>
@@ -63,5 +62,6 @@
     <string name="login_failed">Login failed:</string>
     <string name="logged_out">Logged out</string>
     <string name="terms">Terms</string>
+    <string name="app_terms_header">App Terms Agreement</string>
 
 </resources>
