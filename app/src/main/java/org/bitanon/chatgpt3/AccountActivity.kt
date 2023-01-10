@@ -5,10 +5,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 
 class AccountActivity: AppCompatActivity() {
+
+	private lateinit var buttonLogin: Button
+	private lateinit var buttonLogout: Button
+
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -19,15 +24,25 @@ class AccountActivity: AppCompatActivity() {
 	}
 
 	@SuppressLint("ClickableViewAccessibility")
-	override fun onStart() {
-		super.onStart()
+	override fun onResume() {
+		super.onResume()
 
-		// on account button click
-		findViewById<Button>(R.id.button_login).setOnClickListener {
+		buttonLogin = findViewById<Button>(R.id.button_login)
+		buttonLogin.setOnClickListener {
 
 			// launch FirebaseUIActivity
 			val startActivity = Intent(this, FirebaseUIActivity::class.java)
 			startActivity(startActivity)
+		}
+
+		buttonLogout = findViewById<Button>(R.id.button_logout)
+		buttonLogout.setOnClickListener {
+
+			FirebaseUIActivity.signOut(this)
+
+			// set button visibilities
+			setLoginButtonVisibility(false)
+
 		}
 
 		// on join testers button click
@@ -41,6 +56,7 @@ class AccountActivity: AppCompatActivity() {
 			)
 		}
 
+		// on subscribe button click
 		findViewById<Button>(R.id.button_subscribe).setOnClickListener {
 			FirebaseAnalytics.logCustomEvent(BUTTON_SUBSCRIBE)
 
@@ -57,6 +73,14 @@ class AccountActivity: AppCompatActivity() {
 			}
 		}
 
+		// set button visibilities
+		lifecycleScope.launch {
+			FirebaseUIActivity.userState.collect { userState ->
+				if (userState == null)
+					setLoginButtonVisibility(false)
+				else setLoginButtonVisibility(true)
+			}
+		}
 	}
 
 	private fun composeEmail(addresses: Array<String>, subject: String, text: String) {
@@ -71,4 +95,15 @@ class AccountActivity: AppCompatActivity() {
 			startActivity(intent)
 		}
 	}
+
+	private fun setLoginButtonVisibility(loggedIn: Boolean) {
+		if (loggedIn) {
+			buttonLogin.isVisible = false
+			buttonLogout.isVisible = true
+		} else {
+			buttonLogin.isVisible = true
+			buttonLogout.isVisible = false
+		}
+	}
+
 }

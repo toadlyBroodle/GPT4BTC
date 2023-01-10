@@ -64,6 +64,9 @@
     <string name="login_to_enable_features">Connectez-vous pour augmenter les limites d\'invites et
         de réponses et activer d\'autres fonctionnalités.</string>
     <string name="account">Compte</string>
-    <string name="manage_account">Manage your account</string>
+    <string name="manage_account">Gérer votre compte</string>
+    <string name="logout">Se déconnecter</string>
+    <string name="login_failed">Échec de la connexion:</string>
+    <string name="logged_out">Déconnexion</string>
 
 </resources>

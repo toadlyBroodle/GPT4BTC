@@ -59,5 +59,8 @@
     <string name="login_to_enable_features">Login to increase prompt and response limits and enable other features.</string>
     <string name="account">Account</string>
     <string name="manage_account">Manage your account</string>
+    <string name="logout">Logout</string>
+    <string name="login_failed">Login failed:</string>
+    <string name="logged_out">Logged out</string>
 
 </resources>

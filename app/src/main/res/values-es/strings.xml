@@ -61,6 +61,9 @@
     <string name="login_to_enable_features">Inicie sesión para aumentar los límites de solicitud y
         respuesta y habilitar otras funciones.</string>
     <string name="account">Cuenta</string>
-    <string name="manage_account">Manage your account</string>
+    <string name="manage_account">Gestiona tu cuenta</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="login_failed">Error de inicio de sesion:</string>
+    <string name="logged_out">Cerrado sesión</string>
 
 </resources>
