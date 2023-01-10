@@ -29,6 +29,7 @@ class AccountActivity: AppCompatActivity() {
 
 		buttonLogin = findViewById<Button>(R.id.button_login)
 		buttonLogin.setOnClickListener {
+			FirebaseAnalytics.logCustomEvent(BUTTON_LOGIN)
 
 			// launch FirebaseUIActivity
 			val startActivity = Intent(this, FirebaseUIActivity::class.java)
@@ -37,6 +38,7 @@ class AccountActivity: AppCompatActivity() {
 
 		buttonLogout = findViewById<Button>(R.id.button_logout)
 		buttonLogout.setOnClickListener {
+			FirebaseAnalytics.logCustomEvent(BUTTON_LOGOUT)
 
 			FirebaseUIActivity.signOut(this)
 
