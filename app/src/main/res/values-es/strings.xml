@@ -65,5 +65,6 @@
     <string name="logout">Cerrar sesión</string>
     <string name="login_failed">Error de inicio de sesion:</string>
     <string name="logged_out">Cerrado sesión</string>
+    <string name="terms">Términos</string>
 
 </resources>

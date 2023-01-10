@@ -2,27 +2,25 @@ package org.bitanon.chatgpt3
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.util.Log
 import android.view.MotionEvent
-import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 const val OPENAI_KEY_PART3 = "FJ8ipVot1Oj"
 
-private const val TAG = "SettingsActivity"
-class SettingsActivity : AppCompatActivity() {
+private const val TAG = "TermsActivity"
+class TermsActivity : AppCompatActivity() {
 
 	private var prefShowTerms = true
 	private lateinit var showTermsCheckbox: CheckBox
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.settings_activity)
+		setContentView(R.layout.terms_activity)
 /*		if (savedInstanceState == null) {
 			supportFragmentManager
 				.beginTransaction()
@@ -36,14 +34,6 @@ class SettingsActivity : AppCompatActivity() {
 	@SuppressLint("ClickableViewAccessibility")
 	override fun onStart() {
 		super.onStart()
-
-		// on account button click
-		findViewById<Button>(R.id.button_account).setOnClickListener {
-
-			// launch FirebaseUIActivity
-			val startActivity = Intent(this, AccountActivity::class.java)
-			startActivity(startActivity)
-		}
 
 		// Make links clickable and log clicks
 		val linkToU = findViewById<TextView>(R.id.settings_link_terms_of_use)

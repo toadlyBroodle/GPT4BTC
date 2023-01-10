@@ -62,5 +62,6 @@
     <string name="logout">Logout</string>
     <string name="login_failed">Login failed:</string>
     <string name="logged_out">Logged out</string>
+    <string name="terms">Terms</string>
 
 </resources>

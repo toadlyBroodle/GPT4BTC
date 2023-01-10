@@ -68,5 +68,6 @@
     <string name="logout">Se déconnecter</string>
     <string name="login_failed">Échec de la connexion:</string>
     <string name="logged_out">Déconnexion</string>
+    <string name="terms">Termes</string>
 
 </resources>

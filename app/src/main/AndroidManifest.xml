@@ -37,7 +37,7 @@
         </activity>
 
         <activity
-            android:name=".SettingsActivity"
+            android:name=".TermsActivity"
             android:exported="false"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".MainActivity">
@@ -50,7 +50,7 @@
             android:name=".AccountActivity"
             android:exported="false"
             android:label="@string/account"
-            android:parentActivityName=".SettingsActivity">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
