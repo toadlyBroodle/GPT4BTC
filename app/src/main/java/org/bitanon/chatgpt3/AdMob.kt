@@ -18,10 +18,10 @@ class AdMob {
 		fun init(ctx: Context) {
 			Log.d(TAG, "initializing AdMob")
 
-			//var adId = MainActivity.buildAdMobKey()
+			var adId = MainActivity.buildAdMobKey()
 			// when developing, use test ad id
-			//if (BuildConfig.DEBUG)
-			val	adId = AD_ID_TEST
+			if (BuildConfig.DEBUG)
+				adId = AD_ID_TEST
 
 			// init AdMob
 			MobileAds.initialize(ctx) {}
