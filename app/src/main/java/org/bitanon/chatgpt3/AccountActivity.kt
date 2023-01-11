@@ -23,8 +23,6 @@ class AccountActivity: AppCompatActivity() {
 	private lateinit var tvPromptLimit: TextView
 	private lateinit var tvResponseLimit: TextView
 
-	private val firestore = Firestore()
-
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		binding = AccountActivityBinding.inflate(layoutInflater)

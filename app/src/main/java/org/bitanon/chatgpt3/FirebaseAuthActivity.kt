@@ -84,6 +84,7 @@ class FirebaseAuthActivity: AppCompatActivity() {
 					MainActivity.showToast(ctx, ctx.getString(R.string.logged_out))
 				}
 			_userAuthState.value = null
+			Firestore.logOutUser()
 		}
 	}
 }

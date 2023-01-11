@@ -21,7 +21,7 @@ const val AD_ID_PART2 = "9043912704472803/"
 
 //private const val TAG = "ChatFrag"
 class ChatFrag : Fragment() {
-	private var promptCount = 0
+	private var sessionPromptCount = 0
 
 	private var _binding: FragmentChatBinding? = null
 
@@ -34,6 +34,8 @@ class ChatFrag : Fragment() {
 	private lateinit var etPrompt: EditText
 
 	private val viewModel: ChatViewModel by viewModels()
+
+	private val firestore = Firestore()
 
 
 	override fun onCreateView(
@@ -75,13 +77,13 @@ class ChatFrag : Fragment() {
 				viewModel.sendPrompt(requireContext(), q)
 
 				// show interstitial ad every three prompts
-				if (promptCount % 3 == 0)
+				if (sessionPromptCount % 3 == 0)
 					AdMob.show(activity)
 				else  { // load new interstitial after last one shown
-					if (promptCount % 3 == 1)
+					if (sessionPromptCount % 3 == 1)
 						AdMob.init(requireContext())
 				}
-				promptCount++
+				sessionPromptCount++
 
 			} else MainActivity.showToast(requireContext(), getString(R.string.toast_enter_prompt))
 		}
@@ -114,13 +116,16 @@ class ChatFrag : Fragment() {
 
 					FirebaseAnalytics.logCustomEvent(OPENAI_RESPONSE_SHOW)
 					tvAnswer.text = output
+
+					// increment promptCount in firestore
+					firestore.incrementUserPrompts()
 				}
 			}
 		}
 
 		// collect changes to user state
 		lifecycleScope.launch {
-			FirebaseAuthActivity.userAuthState.collect { user ->
+			Firestore.userState.collect { user ->
 
 				// set prompt label display name
 				tvPromptLabelName.text = "${user?.displayName ?: getString(R.string.anon)}:"
