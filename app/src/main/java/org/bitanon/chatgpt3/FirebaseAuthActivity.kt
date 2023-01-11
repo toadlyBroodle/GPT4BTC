@@ -13,8 +13,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 private const val TAG = "FirebaseUIActivity"
-class FirebaseUIActivity: AppCompatActivity() {
+class FirebaseAuthActivity: AppCompatActivity() {
 
+	val firestore = Firestore()
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -46,11 +47,14 @@ class FirebaseUIActivity: AppCompatActivity() {
 		if (result.resultCode == RESULT_OK) {
 			// Successfully signed in
 			val u = FirebaseAuth.getInstance().currentUser
-			_userState.value = u
+			_userAuthState.value = u
 
-			Log.d(TAG, "Login success: user: ${u?.email}")
+			Log.d(TAG, "Login success: user: ${u?.uid}")
 			FirebaseAnalytics.logCustomEvent(LOGIN_SUCCESS)
 			MainActivity.showToast(this, "Signed in as ${u?.displayName}")
+
+			// try reading user from firestore
+			firestore.readUser(u)
 
 		} else {
 			// Sign in failed. If response is null the user canceled the
@@ -69,9 +73,9 @@ class FirebaseUIActivity: AppCompatActivity() {
 	companion object {
 
 		// Backing property to avoid state updates from other classes
-		private val _userState: MutableStateFlow<FirebaseUser?> = MutableStateFlow(null)
+		private val _userAuthState: MutableStateFlow<FirebaseUser?> = MutableStateFlow(null)
 		// The UI collects from this StateFlow to get its state updates
-		var userState: StateFlow<FirebaseUser?> = _userState
+		var userAuthState: StateFlow<FirebaseUser?> = _userAuthState
 
 		fun signOut(ctx: Context) {
 			AuthUI.getInstance()
@@ -79,7 +83,7 @@ class FirebaseUIActivity: AppCompatActivity() {
 				.addOnCompleteListener {
 					MainActivity.showToast(ctx, ctx.getString(R.string.logged_out))
 				}
-			_userState.value = null
+			_userAuthState.value = null
 		}
 	}
 }

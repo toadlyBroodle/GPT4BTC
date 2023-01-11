@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 import org.bitanon.chatgpt3.databinding.AccountActivityBinding
 import kotlin.math.roundToInt
 
+private const val TAG = "AccountActivity"
 class AccountActivity: AppCompatActivity() {
 
 	private lateinit var binding: AccountActivityBinding
@@ -21,6 +22,8 @@ class AccountActivity: AppCompatActivity() {
 	private lateinit var tvName: TextView
 	private lateinit var tvPromptLimit: TextView
 	private lateinit var tvResponseLimit: TextView
+
+	private val firestore = Firestore()
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -46,14 +49,14 @@ class AccountActivity: AppCompatActivity() {
 			FirebaseAnalytics.logCustomEvent(BUTTON_LOGIN)
 
 			// launch FirebaseUIActivity
-			val startActivity = Intent(this, FirebaseUIActivity::class.java)
+			val startActivity = Intent(this, FirebaseAuthActivity::class.java)
 			startActivity(startActivity)
 		}
 		buttonLogout = binding.buttonLogout
 		buttonLogout.setOnClickListener {
 			FirebaseAnalytics.logCustomEvent(BUTTON_LOGOUT)
 
-			FirebaseUIActivity.signOut(this)
+			FirebaseAuthActivity.signOut(this)
 
 			// set button visibilities
 			setLoginButtonVisibility(false)
@@ -88,11 +91,10 @@ class AccountActivity: AppCompatActivity() {
 
 		// collect changes to logged in user
 		lifecycleScope.launch {
-			FirebaseUIActivity.userState.collect { user ->
+			FirebaseAuthActivity.userAuthState.collect { fbUser ->
 
 				var userName = getString(R.string.anon)
-
-				if (user == null) {
+				if (fbUser == null) {
 					setLoginButtonVisibility(false)
 
 					maxPromptChars = FirebaseAnalytics.getPromptMaxChars()
@@ -102,7 +104,7 @@ class AccountActivity: AppCompatActivity() {
 					setLoginButtonVisibility(true)
 
 					// set user properties
-					userName = user.displayName.toString()
+					userName = fbUser.displayName.toString()
 					maxPromptChars = 80
 					maxResponseTokens = 80
 				}
@@ -112,6 +114,7 @@ class AccountActivity: AppCompatActivity() {
 				tvName.text = userName
 				tvPromptLimit.text = "~${getPromptLimitWords()} ${getString(R.string.words)}"
 				tvResponseLimit.text = "~${getResponseLimitWords()} ${getString(R.string.words)}"
+
 			}
 		}
 	}

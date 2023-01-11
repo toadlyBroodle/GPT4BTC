@@ -57,7 +57,7 @@
         </activity>
 
         <activity
-            android:name=".FirebaseUIActivity"
+            android:name=".FirebaseAuthActivity"
             android:exported="false"
             android:label="@string/login"
             android:parentActivityName=".AccountActivity">

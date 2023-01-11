@@ -120,7 +120,7 @@ class ChatFrag : Fragment() {
 
 		// collect changes to user state
 		lifecycleScope.launch {
-			FirebaseUIActivity.userState.collect { user ->
+			FirebaseAuthActivity.userAuthState.collect { user ->
 
 				// set prompt label display name
 				tvPromptLabelName.text = "${user?.displayName ?: getString(R.string.anon)}:"
