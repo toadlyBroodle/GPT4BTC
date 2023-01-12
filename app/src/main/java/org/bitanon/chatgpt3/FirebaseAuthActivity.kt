@@ -8,9 +8,6 @@ import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 
 private const val TAG = "FirebaseUIActivity"
 class FirebaseAuthActivity: AppCompatActivity() {
@@ -47,7 +44,6 @@ class FirebaseAuthActivity: AppCompatActivity() {
 		if (result.resultCode == RESULT_OK) {
 			// Successfully signed in
 			val u = FirebaseAuth.getInstance().currentUser
-			_userAuthState.value = u
 
 			Log.d(TAG, "Login success: user: ${u?.uid}")
 			FirebaseAnalytics.logCustomEvent(LOGIN_SUCCESS)
@@ -63,7 +59,7 @@ class FirebaseAuthActivity: AppCompatActivity() {
 			Log.d(TAG, "Login error: ${response?.error}")
 			FirebaseAnalytics.logCustomEvent(LOGIN_FAIL)
 			MainActivity.showToast(this, getString(R.string.login_failed)
-					+ " " + response?.error)
+					+ " " + (response?.error ?: ""))
 
 		}
 
@@ -72,18 +68,12 @@ class FirebaseAuthActivity: AppCompatActivity() {
 
 	companion object {
 
-		// Backing property to avoid state updates from other classes
-		private val _userAuthState: MutableStateFlow<FirebaseUser?> = MutableStateFlow(null)
-		// The UI collects from this StateFlow to get its state updates
-		var userAuthState: StateFlow<FirebaseUser?> = _userAuthState
-
 		fun signOut(ctx: Context) {
 			AuthUI.getInstance()
 				.signOut(ctx)
 				.addOnCompleteListener {
 					MainActivity.showToast(ctx, ctx.getString(R.string.logged_out))
 				}
-			_userAuthState.value = null
 			Firestore.logOutUser()
 		}
 	}

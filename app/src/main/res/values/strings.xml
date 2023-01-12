@@ -37,7 +37,7 @@
 
     <!-- Terms Screens -->
     <string name="upgrade">Upgrade</string>
-    <string name="remove_limits_ads">Remove all prompt and response limits, and remove all ads!</string>
+    <string name="remove_limits_ads">Remove all prompt and response limits, and remove all ads! Coming soon…</string>
     <string name="subscribe">Subscribe</string>
     <string name="apply_early_access">To gain early access to subscription and test new features and releases, apply as a tester:</string>
     <string name="join_testers">Join Test Group</string>
@@ -67,6 +67,6 @@
     <string name="anon">anon</string>
     <string name="account_label_prompt_limit">Prompt Limit:</string>
     <string name="account_label_response_limit">Response Limit:</string>
-    <string name="words">words</string>
+    <string name="words">%1$s words</string>
 
 </resources>

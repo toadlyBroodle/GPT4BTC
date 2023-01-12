@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import org.bitanon.chatgpt3.databinding.AccountActivityBinding
 import kotlin.math.roundToInt
 
-private const val TAG = "AccountActivity"
+//private const val TAG = "AccountActivity"
 class AccountActivity: AppCompatActivity() {
 
 	private lateinit var binding: AccountActivityBinding
@@ -32,7 +32,7 @@ class AccountActivity: AppCompatActivity() {
 		Billing.init(this, lifecycleScope)
 	}
 
-	@SuppressLint("ClickableViewAccessibility", "SetTextI18n")
+	@SuppressLint("ClickableViewAccessibility")
 	override fun onStart() {
 		super.onStart()
 
@@ -46,7 +46,7 @@ class AccountActivity: AppCompatActivity() {
 		buttonLogin.setOnClickListener {
 			FirebaseAnalytics.logCustomEvent(BUTTON_LOGIN)
 
-			// launch FirebaseUIActivity
+			// launch FirebaseAuthActivity
 			val startActivity = Intent(this, FirebaseAuthActivity::class.java)
 			startActivity(startActivity)
 		}
@@ -89,10 +89,10 @@ class AccountActivity: AppCompatActivity() {
 
 		// collect changes to logged in user
 		lifecycleScope.launch {
-			FirebaseAuthActivity.userAuthState.collect { fbUser ->
+			Firestore.userState.collect { user ->
 
 				var userName = getString(R.string.anon)
-				if (fbUser == null) {
+				if (user == null) {
 					setLoginButtonVisibility(false)
 
 					maxPromptChars = FirebaseAnalytics.getPromptMaxChars()
@@ -102,7 +102,7 @@ class AccountActivity: AppCompatActivity() {
 					setLoginButtonVisibility(true)
 
 					// set user properties
-					userName = fbUser.displayName.toString()
+					userName = user.displayName.toString()
 					maxPromptChars = 80
 					maxResponseTokens = 80
 				}
@@ -110,8 +110,8 @@ class AccountActivity: AppCompatActivity() {
 				// set textview properties
 				// update user details ui
 				tvName.text = userName
-				tvPromptLimit.text = "~${getPromptLimitWords()} ${getString(R.string.words)}"
-				tvResponseLimit.text = "~${getResponseLimitWords()} ${getString(R.string.words)}"
+				tvPromptLimit.text = getString(R.string.words).format(getPromptLimitWords())
+				tvResponseLimit.text = getString(R.string.words).format(getResponseLimitWords())
 
 			}
 		}
