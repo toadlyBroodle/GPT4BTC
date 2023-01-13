@@ -51,7 +51,8 @@
     <string name="toast_billing_error">Billing error. Please enable Google Play billing and retry.</string>
     <string name="toast_device_no_subscriptions">Sorry, your device does not support subscriptions.</string>
     <string name="toast_problem_loading_subscription_details">Problem connecting to Google billing.</string>
-    <string name="html_app_privacy_policy"><a href="https://chatgpt3-android.app/privacy-policy.html">Privacy Policy, Terms</a></string>
+    <string name="html_app_terms_of_use"><a href="https://chatgpt3-android.app/terms-of-use.html">Terms of Use</a></string>
+    <string name="html_app_privacy_policy"><a href="https://chatgpt3-android.app/privacy-policy.html">Privacy Policy</a></string>
     <string name="html_openai_terms_of_use"><a href="https://openai.com/terms/">Terms of Use</a></string>
     <string name="html_openai_privacy_policy"><a href="https://openai.com/privacy/">Privacy Policy</a></string>
     <string name="login">Login</string>

@@ -81,6 +81,15 @@ class MainActivity : AppCompatActivity() {
 				R.layout.terms_activity, null)
 
 			// Make links clickable and log clicks
+			val linkToU = alertDialogLayout.findViewById<TextView>(R.id.app_link_terms_of_use)
+			linkToU.movementMethod = LinkMovementMethod.getInstance()
+			linkToU.setOnTouchListener { v, event ->
+				when (event?.action) {
+					MotionEvent.ACTION_DOWN ->
+						FirebaseAnalytics.logCustomEvent(APP_PRIVACY_TERMS_OF_USE)
+				}
+				v?.onTouchEvent(event) ?: true
+			}
 			val linkPP = alertDialogLayout.findViewById<TextView>(R.id.app_link_privacy_policy)
 			linkPP.movementMethod = LinkMovementMethod.getInstance()
 			linkPP.setOnTouchListener { v, event ->
