@@ -108,6 +108,9 @@ class AccountActivity: AppCompatActivity() {
 					userName = user.displayName.toString()
 					maxPromptChars = 80
 					maxResponseTokens = 80
+
+					// enable subscribe button TODO if user not subscribed
+					buttonSubscribe.isEnabled = !user.subs
 				}
 
 				// set textview properties
