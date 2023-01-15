@@ -9,23 +9,24 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
-import org.bitanon.chatgpt3.databinding.AccountActivityBinding
+import org.bitanon.chatgpt3.databinding.ActivityAccountBinding
 import kotlin.math.roundToInt
 
 //private const val TAG = "AccountActivity"
 class AccountActivity: AppCompatActivity() {
 
-	private lateinit var binding: AccountActivityBinding
+	private lateinit var binding: ActivityAccountBinding
 
 	private lateinit var buttonLogin: Button
 	private lateinit var buttonLogout: Button
+	private lateinit var buttonSubscribe: Button
 	private lateinit var tvName: TextView
 	private lateinit var tvPromptLimit: TextView
 	private lateinit var tvResponseLimit: TextView
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		binding = AccountActivityBinding.inflate(layoutInflater)
+		binding = ActivityAccountBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 
 		// initialize billing
@@ -69,7 +70,8 @@ class AccountActivity: AppCompatActivity() {
 				getString(R.string.require_gmail)
 			)
 		}
-		binding.buttonSubscribe.setOnClickListener {
+		buttonSubscribe = binding.buttonSubscribe
+		buttonSubscribe.setOnClickListener {
 			FirebaseAnalytics.logCustomEvent(BUTTON_SUBSCRIBE)
 
 			// check for internet connection
@@ -91,6 +93,7 @@ class AccountActivity: AppCompatActivity() {
 		lifecycleScope.launch {
 			Firestore.userState.collect { user ->
 
+				// user not logged in
 				var userName = getString(R.string.anon)
 				if (user == null) {
 					setLoginButtonVisibility(false)
@@ -98,7 +101,7 @@ class AccountActivity: AppCompatActivity() {
 					maxPromptChars = FirebaseAnalytics.getPromptMaxChars()
 					maxResponseTokens = FirebaseAnalytics.getResponseMaxTokens()
 				}
-				else {
+				else { // user logged in
 					setLoginButtonVisibility(true)
 
 					// set user properties

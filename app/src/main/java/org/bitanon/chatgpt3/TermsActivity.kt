@@ -7,26 +7,24 @@ import android.text.method.LinkMovementMethod
 import android.util.Log
 import android.view.MotionEvent
 import android.widget.CheckBox
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import org.bitanon.chatgpt3.databinding.ActivityTermsBinding
 
 const val OPENAI_KEY_PART3 = "FJ8ipVot1Oj"
 
 private const val TAG = "TermsActivity"
 class TermsActivity : AppCompatActivity() {
 
+	private lateinit var binding: ActivityTermsBinding
+
 	private var prefShowTerms = true
 	private lateinit var showTermsCheckbox: CheckBox
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.terms_activity)
-/*		if (savedInstanceState == null) {
-			supportFragmentManager
-				.beginTransaction()
-				.replace(R.id.settings, SettingsFragment())
-				.commit()
-		}*/
+		binding = ActivityTermsBinding.inflate(layoutInflater)
+		setContentView(binding.root)
+
 		supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 	}
@@ -35,8 +33,10 @@ class TermsActivity : AppCompatActivity() {
 	override fun onStart() {
 		super.onStart()
 
+		showTermsCheckbox = binding.showTermsCheckbox
+
 		// Make links clickable and log clicks
-		val linkToU = findViewById<TextView>(R.id.app_link_terms_of_use)
+		val linkToU = binding.appLinkTermsOfUse
 		linkToU.movementMethod = LinkMovementMethod.getInstance()
 		linkToU.setOnTouchListener { v, event ->
 			when (event?.action) {
@@ -45,7 +45,7 @@ class TermsActivity : AppCompatActivity() {
 			}
 			v?.onTouchEvent(event) ?: true
 		}
-		val linkPP = findViewById<TextView>(R.id.app_link_privacy_policy)
+		val linkPP = binding.appLinkPrivacyPolicy
 		linkPP.movementMethod = LinkMovementMethod.getInstance()
 		linkPP.setOnTouchListener { v, event ->
 			when (event?.action) {
@@ -54,7 +54,7 @@ class TermsActivity : AppCompatActivity() {
 			}
 			v?.onTouchEvent(event) ?: true
 		}
-		val openaiLinkToU = findViewById<TextView>(R.id.openai_link_terms_of_use)
+		val openaiLinkToU = binding.openaiLinkTermsOfUse
 		openaiLinkToU.movementMethod = LinkMovementMethod.getInstance()
 		openaiLinkToU.setOnTouchListener { v, event ->
 			when (event?.action) {
@@ -63,7 +63,7 @@ class TermsActivity : AppCompatActivity() {
 			}
 			v?.onTouchEvent(event) ?: true
 		}
-		val openaiLinkPP = findViewById<TextView>(R.id.settings_link_privacy_policy)
+		val openaiLinkPP = binding.openaiLinkPrivacyPolicy
 		openaiLinkPP.movementMethod = LinkMovementMethod.getInstance()
 		openaiLinkPP.setOnTouchListener { v, event ->
 			when (event?.action) {
@@ -77,7 +77,6 @@ class TermsActivity : AppCompatActivity() {
 		val sharedPrefs = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
 		prefShowTerms = sharedPrefs.getBoolean(PREF_SHOW_TERMS, true)
 		// set show terms agreement checkbox from preferences
-		showTermsCheckbox = findViewById(R.id.show_terms_checkbox)
 		showTermsCheckbox.isChecked = prefShowTerms
 		Log.d(TAG, "preferences loaded: ${sharedPrefs.all}")
 

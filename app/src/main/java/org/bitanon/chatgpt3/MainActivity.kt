@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
 
 			// inflate alertdialog layout
 			val alertDialogLayout = View.inflate(this,
-				R.layout.terms_activity, null)
+				R.layout.activity_terms, null)
 
 			// Make links clickable and log clicks
 			val linkToU = alertDialogLayout.findViewById<TextView>(R.id.app_link_terms_of_use)
@@ -108,7 +108,7 @@ class MainActivity : AppCompatActivity() {
 				}
 				v?.onTouchEvent(event) ?: true
 			}
-			val openaiLinkPP = alertDialogLayout.findViewById<TextView>(R.id.settings_link_privacy_policy)
+			val openaiLinkPP = alertDialogLayout.findViewById<TextView>(R.id.openai_link_privacy_policy)
 			openaiLinkPP.movementMethod = LinkMovementMethod.getInstance()
 			openaiLinkPP.setOnTouchListener { v, event ->
 				when (event?.action) {

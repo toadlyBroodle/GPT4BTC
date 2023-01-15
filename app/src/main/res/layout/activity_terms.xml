@@ -60,7 +60,7 @@
             style="@style/ChatText" />
 
         <TextView
-            android:id="@+id/settings_link_privacy_policy"
+            android:id="@+id/openai_link_privacy_policy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/html_openai_privacy_policy"

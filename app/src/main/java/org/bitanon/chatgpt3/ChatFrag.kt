@@ -1,5 +1,6 @@
 package org.bitanon.chatgpt3
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.InputFilter
@@ -47,6 +48,7 @@ class ChatFrag : Fragment() {
 	}
 
 
+	@SuppressLint("SetTextI18n")
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
