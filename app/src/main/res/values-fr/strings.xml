@@ -74,5 +74,6 @@
     <string name="account_label_prompt_limit">Limite d\'invite :</string>
     <string name="account_label_response_limit">Limite de réponse :</string>
     <string name="words">mots</string>
+    <string name="response_dictation_requires_subscription">Dictée de réponse à venir…</string>
 
 </resources>

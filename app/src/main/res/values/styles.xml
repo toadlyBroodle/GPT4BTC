@@ -10,6 +10,7 @@
 
     <style name="ChatTextLabel" parent="ChatText">
         <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginStart">@dimen/chat_label_margin</item>
     </style>
 
     <style name="ChatTextContent" parent="ChatText">

@@ -99,12 +99,11 @@ class Firestore {
 			u.displayName,
 			u.hashCode(),
 			u.email,
-			u.isEmailVerified,
-			u.phoneNumber,
 			u.photoUrl.toString(),
 			Date().time,
 			Date().time,
 			0,
+			false,
 		)
 	}
 }
@@ -115,12 +114,11 @@ data class User(
 	val displayName: String? = null,
 	val hashCode: Int? = null,
 	val email: String? = null,
-	val isEmailVerified: Boolean? = null,
-	val phoneNumber: String? = null,
 	val photoUrl: String? = null,
 	val timeLastLogin: Long? = null,
 	val timeFirstCreated: Long? = null,
 	val promptCount: Int? = null,
+	val subs: Boolean = false,
 )
 
 /*

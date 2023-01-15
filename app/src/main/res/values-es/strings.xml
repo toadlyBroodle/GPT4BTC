@@ -71,5 +71,6 @@
     <string name="account_label_prompt_limit">Límite de solicitud:</string>
     <string name="account_label_response_limit">Límite de respuesta:</string>
     <string name="words">palabras</string>
+    <string name="response_dictation_requires_subscription">Dictado de respuesta próximamente…</string>
 
 </resources>

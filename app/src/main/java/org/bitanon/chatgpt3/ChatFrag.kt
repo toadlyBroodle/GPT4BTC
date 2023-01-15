@@ -1,6 +1,5 @@
 package org.bitanon.chatgpt3
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.InputFilter
@@ -47,7 +46,7 @@ class ChatFrag : Fragment() {
 		return binding.root
 	}
 
-	@SuppressLint("SetTextI18n")
+
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
@@ -88,6 +87,12 @@ class ChatFrag : Fragment() {
 			} else MainActivity.showToast(requireContext(), getString(R.string.toast_enter_prompt))
 		}
 
+		// set prompt button on click listener logic
+		binding.buttonAudioDictation.setOnClickListener {
+			MainActivity.showToast(requireContext(),
+				getString(R.string.response_dictation_requires_subscription))
+		}
+
 		// set prompt edit text text changed listener and logic
 		etPrompt.addTextChangedListener(object : TextWatcher {
 			override fun afterTextChanged(s: Editable) {}
@@ -97,7 +102,8 @@ class ChatFrag : Fragment() {
 									   before: Int, count: Int) {
 				if (s.length >= AccountActivity.getMaxPromptChars()) {
 					FirebaseAnalytics.logCustomEvent(NOTIFICATION_PROMPT_TRUNCATED)
-					MainActivity.showToast(requireContext(), getString(R.string.toast_prompt_truncated))
+					MainActivity.showToast(requireContext(),
+						getString(R.string.toast_prompt_truncated))
 				}
 			}
 		})
