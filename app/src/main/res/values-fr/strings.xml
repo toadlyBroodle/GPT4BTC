@@ -36,11 +36,10 @@
     <string name="remove_limits_ads">Supprimez toutes les limites d\'invites et de réponses, et
         supprimez toutes les publicités ! Bientôt disponible…</string>
     <string name="subscribe">S\'abonner</string>
-    <string name="testing_warning">***AVERTISSEMENT : l\'abonnement est en cours de
-        développement. En vous abonnant, vous avez accepté de contribuer au test de la
-        fonctionnalité, ce qui peut ne pas entraîner sa suppression immédiate de limites ou de
-        publicités. Veuillez m\'informer de tout problème de ce type, afin que je puisse le résoudre
-        dès que possible.</string>
+    <string name="testing_warning">***AVERTISSEMENT : l\'abonnement est en cours de développement.
+        En vous abonnant, vous avez accepté de contribuer au test de la fonctionnalité, ce qui peut
+        ne pas entraîner de résultat immédiat implémentation de fonctionnalités supplémentaires.
+        Veuillez m\'informer d\'un tel problème, afin que je puisse le résoudre dès que possible.</string>
     <string name="apply_early_access">Pour bénéficier d\'un accès anticipé à l\'abonnement et tester
         de nouvelles fonctionnalités et versions, postulez en tant que testeur :</string>
     <string name="join_testers">Rejoindre le groupe de test</string>

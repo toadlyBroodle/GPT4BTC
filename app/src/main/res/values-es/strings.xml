@@ -37,9 +37,9 @@
         todos los anuncios! Muy pronto…</string>
     <string name="subscribe">Suscribir</string>
     <string name="testing_warning">***ADVERTENCIA: la suscripción está en desarrollo temprano. Al
-        suscribirse, ha aceptado contribuir a probar la función, lo que puede no resultar en la
-        eliminación inmediata de límites o anuncios. Por favor, notifíqueme cualquier problema de
-        este tipo, para que pueda solucionarlo lo antes posible.</string>
+        suscribirse, ha aceptado contribuir a probar la función, lo que puede no resultar en una
+         implementación de características adicionales. Por favor notifíqueme de tal problema,
+        para que pueda solucionarlo lo antes posible.</string>
     <string name="apply_early_access">Para obtener acceso anticipado a la suscripción y probar
         nuevas funciones y versiones, presente su solicitud como probador:</string>
     <string name="join_testers">Unirse al grupo de prueba</string>

@@ -44,8 +44,8 @@
     <string name="apply_early_access">To gain early access to subscription and test new features and releases, apply as a tester:</string>
     <string name="join_testers">Join Test Group</string>
     <string name="testing_warning">***WARNING: subscription is in early development. By subscribing,
-        you have agreed to contribute to testing the feature, which may not result in immediate removal
-        of limits or ads. Please notify me of any such issues, so I can fix it asap.</string>
+        you have agreed to contribute to testing the feature, which may not result in immediate
+        implementation of additional features. Please notify me of such issue, so I can fix it asap.</string>
     <string name="require_gmail">***Gmail address required to join test Android ChatGPT3 group.***</string>
     <string name="openai_terms_header">OpenAI\'s Terms Agreement</string>
     <string name="agree_to_terms">By using this app, you have agreed to the following terms:</string>
