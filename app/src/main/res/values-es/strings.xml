@@ -58,7 +58,7 @@
     <string name="html_openai_privacy_policy"><a href="https://openai.com/privacy/">Política de Privacidad</a></string>
     <string name="login">Acceso</string>
     <string name="login_to_enable_features">Inicie sesión para aumentar los límites de solicitud y
-        respuesta y habilitar otras funciones.</string>
+        respuesta y habilitar funciones adicionales.</string>
     <string name="account">Cuenta</string>
     <string name="manage_account">Gestiona tu cuenta</string>
     <string name="logout">Cerrar sesión</string>
@@ -92,5 +92,8 @@
     <string name="random_prompt_14">¿Cual es la edad de la Tierra?</string>
     <string name="random_prompt_15">¿Tienes sentimientos?</string>
     <string name="random_prompt_16">Da un ejemplo de ironía</string>
+    <string name="random_prompt_17">Historia corta de emoji del fin de los dinosaurios</string>
+    <string name="random_prompt_18">Lista de idiomas que puedes traducir</string>
+    <string name="random_prompt_19">Generar página HTML sobre gatos</string>
 
 </resources>

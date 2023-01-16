@@ -59,7 +59,8 @@
     <string name="html_openai_terms_of_use"><a href="https://openai.com/terms/">Terms of Use</a></string>
     <string name="html_openai_privacy_policy"><a href="https://openai.com/privacy/">Privacy Policy</a></string>
     <string name="login">Login</string>
-    <string name="login_to_enable_features">Login to increase prompt and response limits and enable other features.</string>
+    <string name="login_to_enable_features">Login to increase prompt and response limits and enable
+        additional features.</string>
     <string name="account">Account</string>
     <string name="manage_account">Manage your account</string>
     <string name="logout">Logout</string>
@@ -92,4 +93,7 @@
     <string name="random_prompt_14">How old is the Earth?</string>
     <string name="random_prompt_15">Do you have feelings?</string>
     <string name="random_prompt_16">Provide an example of irony</string>
+    <string name="random_prompt_17">Short emoji story of end of dinosaurs</string>
+    <string name="random_prompt_18">List of languages you can translate</string>
+    <string name="random_prompt_19">Generate HTML page about cats</string>
 </resources>

@@ -60,7 +60,7 @@
     <string name="html_openai_privacy_policy"><a href="https://openai.com/privacy/">Politique de confidentialité</a></string>
     <string name="login">Connexion</string>
     <string name="login_to_enable_features">Connectez-vous pour augmenter les limites d\'invites et
-        de réponses et activer d\'autres fonctionnalités.</string>
+        de réponses et activer des fonctionnalités supplémentaires.</string>
     <string name="account">Compte</string>
     <string name="manage_account">Gérer votre compte</string>
     <string name="logout">Se déconnecter</string>
@@ -85,7 +85,7 @@
     <string name="random_prompt_5">L\'homme est-il à l\'origine du changement climatique ?</string>
     <string name="random_prompt_6">L\'IA va-t-elle asservir l\'humanité ?</string>
     <string name="random_prompt_7">Écrivez un court poème sur Elon Musk achetant Twitter</string>
-    <string name="random_prompt_8">Générer tl; dr pour la Bible</string>
+    <string name="random_prompt_8">Générer tl;dr pour la Bible</string>
     <string name="random_prompt_9">Qu\'est-ce que le bitcoin ?</string>
     <string name="random_prompt_10">Est-ce une bonne idée d\'acheter du Bitcoin ?</string>
     <string name="random_prompt_11">Raconte-moi une blague drôle</string>
@@ -94,5 +94,8 @@
     <string name="random_prompt_14">Quel âge a la Terre ?</string>
     <string name="random_prompt_15">Avez-vous des sentiments ?</string>
     <string name="random_prompt_16">Donnez un exemple d\'ironie</string>
+    <string name="random_prompt_17">Courte histoire d\'emoji de la fin des dinosaures</string>
+    <string name="random_prompt_18">Liste des langues que vous pouvez traduire</string>
+    <string name="random_prompt_19">Générer une page HTML sur les chats</string>
 
 </resources>

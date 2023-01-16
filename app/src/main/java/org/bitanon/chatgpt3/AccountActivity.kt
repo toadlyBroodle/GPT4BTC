@@ -110,7 +110,7 @@ class AccountActivity: AppCompatActivity() {
 					maxResponseTokens = 80
 
 					// enable subscribe button TODO if user not subscribed
-					buttonSubscribe.isEnabled = !user.subs
+					//buttonSubscribe.isEnabled = !user.subs
 				}
 
 				// set textview properties

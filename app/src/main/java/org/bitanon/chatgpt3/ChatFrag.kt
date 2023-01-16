@@ -102,7 +102,7 @@ class ChatFrag : Fragment() {
 			FirebaseAnalytics.logCustomEvent(BUTTON_PROMPT_RANDOM)
 
 			if (Firestore.isUserLoggedIn()) {
-				val rand = (1..16).random()
+				val rand = (1..19).random()
 				val strRes = "random_prompt_$rand"
 				etPrompt.setText(resources.getIdentifier(strRes, "string",
 					requireContext().packageName))
