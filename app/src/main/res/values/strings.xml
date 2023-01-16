@@ -74,5 +74,22 @@
     <string name="words">%1$s words</string>
     <string name="response_dictation_requires_subscription">Response dictation coming soon…</string>
 
-
+    <!-- Random prompts -->
+    <string name="toast_login_generate_random_prompts">Login to generate random prompts</string>
+    <string name="random_prompt_1">How many people died from Covid19?</string>
+    <string name="random_prompt_2">How many people die in car accidents globally each year?</string>
+    <string name="random_prompt_3">Are mRNA vaccines safe and effective?</string>
+    <string name="random_prompt_4">Clearly describe quantum computing</string>
+    <string name="random_prompt_5">Are humans causing climate change?</string>
+    <string name="random_prompt_6">Will AI enslave humanity?</string>
+    <string name="random_prompt_7">Write a short poem about Elon Musk buying Twitter</string>
+    <string name="random_prompt_8">Generate tl;dr for The Bible</string>
+    <string name="random_prompt_9">What is Bitcoin?</string>
+    <string name="random_prompt_10">Is it a good idea to buy Bitcoin?</string>
+    <string name="random_prompt_11">Tell me a funny joke</string>
+    <string name="random_prompt_12">What is life?</string>
+    <string name="random_prompt_13">What is the meaning of life?</string>
+    <string name="random_prompt_14">How old is the Earth?</string>
+    <string name="random_prompt_15">Do you have feelings?</string>
+    <string name="random_prompt_16">Provide an example of irony</string>
 </resources>

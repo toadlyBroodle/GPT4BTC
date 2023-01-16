@@ -73,4 +73,24 @@
     <string name="words">palabras</string>
     <string name="response_dictation_requires_subscription">Dictado de respuesta próximamente…</string>
 
+    <!-- Random prompts -->
+    <string name="toast_login_generate_random_prompts">Inicie sesión para generar avisos aleatorios</string>
+    <string name="random_prompt_1">¿Cuántas personas murieron por Covid 19?</string>
+    <string name="random_prompt_2">¿Cuántas personas mueren en accidentes automovilísticos a nivel
+        mundial cada año?</string>
+    <string name="random_prompt_3">¿Son seguras y eficaces las vacunas de ARNm?</string>
+    <string name="random_prompt_4">Describir claramente la computación cuántica</string>
+    <string name="random_prompt_5">¿Están los humanos causando el cambio climático?</string>
+    <string name="random_prompt_6">¿La IA esclavizará a la humanidad?</string>
+    <string name="random_prompt_7">Escribe un breve poema sobre la compra de Twitter de Elon Musk</string>
+    <string name="random_prompt_8">Generar tl;dr para La Biblia</string>
+    <string name="random_prompt_9">¿Qué es Bitcoin?</string>
+    <string name="random_prompt_10">¿Es una buena idea comprar Bitcoin?</string>
+    <string name="random_prompt_11">Cuéntame un chiste gracioso</string>
+    <string name="random_prompt_12">¿Qué es la vida?</string>
+    <string name="random_prompt_13">¿Cuál es el significado de la vida?</string>
+    <string name="random_prompt_14">¿Cual es la edad de la Tierra?</string>
+    <string name="random_prompt_15">¿Tienes sentimientos?</string>
+    <string name="random_prompt_16">Da un ejemplo de ironía</string>
+
 </resources>

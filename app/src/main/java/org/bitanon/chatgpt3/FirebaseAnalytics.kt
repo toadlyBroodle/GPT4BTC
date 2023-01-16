@@ -10,6 +10,8 @@ import com.google.firebase.ktx.Firebase
 const val TERMS_AGREEMENT_SHOW = "terms_agreement_show"
 const val BUTTON_ACCEPT_TERMS = "button_accept_terms"
 const val BUTTON_REJECT_TERMS = "button_reject_terms"
+const val BUTTON_PROMPT_DICTATE = "button_prompt_dictate"
+const val BUTTON_PROMPT_RANDOM = "button_prompt_random"
 const val BUTTON_PROMPT_SEND = "button_prompt_send"
 const val BUTTON_LOGIN = "button_login"
 const val BUTTON_LOGOUT = "button_logout"

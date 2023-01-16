@@ -25,6 +25,10 @@ class Firestore {
 			_userState.value = null
 		}
 
+		fun isUserLoggedIn(): Boolean {
+			return _userState.value != null
+		}
+
 	}
 
 	private val db = Firebase.firestore

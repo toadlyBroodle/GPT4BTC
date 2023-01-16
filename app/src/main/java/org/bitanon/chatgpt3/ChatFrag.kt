@@ -48,7 +48,7 @@ class ChatFrag : Fragment() {
 	}
 
 
-	@SuppressLint("SetTextI18n")
+	@SuppressLint("SetTextI18n", "DiscouragedApi")
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
@@ -89,10 +89,25 @@ class ChatFrag : Fragment() {
 			} else MainActivity.showToast(requireContext(), getString(R.string.toast_enter_prompt))
 		}
 
-		// set prompt button on click listener logic
+		// set dictation button on click listener logic
 		binding.buttonLeftAudioDictation.setOnClickListener {
+			FirebaseAnalytics.logCustomEvent(BUTTON_PROMPT_DICTATE)
+
 			MainActivity.showToast(requireContext(),
 				getString(R.string.response_dictation_requires_subscription))
+		}
+
+		// set random prompt button on click listener logic
+		binding.buttonLeftPromptRandom.setOnClickListener {
+			FirebaseAnalytics.logCustomEvent(BUTTON_PROMPT_RANDOM)
+
+			if (Firestore.isUserLoggedIn()) {
+				val rand = (1..16).random()
+				val strRes = "random_prompt_$rand"
+				etPrompt.setText(resources.getIdentifier(strRes, "string",
+					requireContext().packageName))
+			} else MainActivity.showToast(requireContext(),
+				getString(R.string.toast_login_generate_random_prompts))
 		}
 
 		// set prompt edit text text changed listener and logic

@@ -75,4 +75,24 @@
     <string name="words">mots</string>
     <string name="response_dictation_requires_subscription">Dictée de réponse à venir…</string>
 
+    <!-- Random prompts -->
+    <string name="toast_login_generate_random_prompts">Connectez-vous pour générer des invites aléatoires</string>
+    <string name="random_prompt_1">Combien de personnes sont mortes du Covid 19 ?</string>
+    <string name="random_prompt_2">Combien de personnes meurent chaque année dans des accidents de
+        voiture dans le monde ?</string>
+    <string name="random_prompt_3">Les vaccins à ARNm sont-ils sûrs et efficaces ?</string>
+    <string name="random_prompt_4">Décrire clairement l\'informatique quantique</string>
+    <string name="random_prompt_5">L\'homme est-il à l\'origine du changement climatique ?</string>
+    <string name="random_prompt_6">L\'IA va-t-elle asservir l\'humanité ?</string>
+    <string name="random_prompt_7">Écrivez un court poème sur Elon Musk achetant Twitter</string>
+    <string name="random_prompt_8">Générer tl; dr pour la Bible</string>
+    <string name="random_prompt_9">Qu\'est-ce que le bitcoin ?</string>
+    <string name="random_prompt_10">Est-ce une bonne idée d\'acheter du Bitcoin ?</string>
+    <string name="random_prompt_11">Raconte-moi une blague drôle</string>
+    <string name="random_prompt_12">Qu\'est ce que la vie ?</string>
+    <string name="random_prompt_13">Quel est le sens de la vie ?</string>
+    <string name="random_prompt_14">Quel âge a la Terre ?</string>
+    <string name="random_prompt_15">Avez-vous des sentiments ?</string>
+    <string name="random_prompt_16">Donnez un exemple d\'ironie</string>
+
 </resources>
