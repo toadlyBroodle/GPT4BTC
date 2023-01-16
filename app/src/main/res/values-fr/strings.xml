@@ -85,7 +85,7 @@
     <string name="random_prompt_5">L\'homme est-il à l\'origine du changement climatique ?</string>
     <string name="random_prompt_6">L\'IA va-t-elle asservir l\'humanité ?</string>
     <string name="random_prompt_7">Écrivez un court poème sur Elon Musk achetant Twitter</string>
-    <string name="random_prompt_8">Générer tl;dr pour la Bible</string>
+    <string name="random_prompt_8">Générer tl; dr pour le Coran</string>
     <string name="random_prompt_9">Qu\'est-ce que le bitcoin ?</string>
     <string name="random_prompt_10">Est-ce une bonne idée d\'acheter du Bitcoin ?</string>
     <string name="random_prompt_11">Raconte-moi une blague drôle</string>
