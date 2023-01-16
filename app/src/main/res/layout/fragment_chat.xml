@@ -34,7 +34,8 @@
             <RelativeLayout
                 android:id="@+id/layout_response"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="0dp"
+                android:layout_weight="1">
 
                 <TextView
                     android:id="@+id/label_ai"
@@ -44,10 +45,10 @@
                     style="@style/ChatTextLabel"/>
 
                 <Button
-                    android:id="@+id/button_audio_dictation"
+                    android:id="@+id/button_left_audio_dictation"
                     android:layout_width="30sp"
                     android:layout_height="wrap_content"
-                    android:text="@string/audio_icon_auto"
+                    android:text="@string/audio_icon_left_auto"
                     style="@style/ChatTextLabel"
                     android:layout_below="@id/label_ai"/>
 
@@ -58,6 +59,13 @@
                     style="@style/ChatTextContent" />
 
             </RelativeLayout>
+
+            <Button
+                android:id="@+id/button_left_prompt_random"
+                android:layout_width="30sp"
+                android:layout_height="wrap_content"
+                android:text="@string/audio_icon_left_random"
+                style="@style/ChatTextLabel" />
 
         </LinearLayout>
     </ScrollView>

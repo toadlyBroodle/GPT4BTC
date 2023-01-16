@@ -4,8 +4,9 @@
     <string name="admob_app_id" translatable="false">ca-app-pub-9043912704472803~9575294075</string>
     <string name="chatgpt3_playstore_link" translatable="false">https://play.google.com/store/apps/details?id=org.bitanon.chatgpt3</string>
     <string name="app_name" translatable="false">ChatGPT3</string>
-    <string name="audio_icon_auto" translatable="false">🔊</string>
-    <string name="audio_icon_manual" translatable="false">🔈</string>
+    <string name="audio_icon_left_auto" translatable="false">🔊</string>
+    <string name="audio_icon_left_manual" translatable="false">🔈</string>
+    <string name="audio_icon_left_random" translatable="false">🎲</string>
 
     <!-- DO translate -->
     <string name="second_fragment_label">Second Fragment</string>

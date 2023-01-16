@@ -90,7 +90,7 @@ class ChatFrag : Fragment() {
 		}
 
 		// set prompt button on click listener logic
-		binding.buttonAudioDictation.setOnClickListener {
+		binding.buttonLeftAudioDictation.setOnClickListener {
 			MainActivity.showToast(requireContext(),
 				getString(R.string.response_dictation_requires_subscription))
 		}
