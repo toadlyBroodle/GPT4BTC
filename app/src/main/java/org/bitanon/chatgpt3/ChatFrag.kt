@@ -54,7 +54,7 @@ class ChatFrag : Fragment() {
 
 		tvPromptLabelName = binding.textviewLabelName
 		tvPrompt = binding.textviewQuestion
-		tvAnswer = binding.textviewAnswer
+		tvAnswer = binding.textviewResponse
 		etPrompt = binding.edittextAskQuestion
 
 		// set prompt button on click listener logic

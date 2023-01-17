@@ -4,71 +4,87 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fillViewport="true">
-
         <LinearLayout
+            android:id="@+id/layout_question"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textview_label_name"
+                android:text="@string/anon"
+                style="@style/ChatTextLabel"/>
+
+            <TextView
+                android:id="@+id/textview_question"
+                style="@style/ChatTextContent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_response"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1">
 
             <LinearLayout
-                android:id="@+id/layout_question"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/textview_label_name"
-                    android:text="@string/anon"
-                    style="@style/ChatTextLabel"/>
-
-                <TextView
-                    android:id="@+id/textview_question"
-                    style="@style/ChatTextContent" />
-
-            </LinearLayout>
-
-            <RelativeLayout
-                android:id="@+id/layout_response"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/label_ai"
+                    android:layout_width="wrap_content"
                     android:text="@string/tv_a"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
                     style="@style/ChatTextLabel"/>
 
-                <Button
-                    android:id="@+id/button_left_audio_dictation"
-                    android:layout_width="30sp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/audio_icon_left_auto"
-                    style="@style/ChatTextLabel"
-                    android:layout_below="@id/label_ai"/>
+                <ScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fillViewport="true">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/button_left_audio_dictation"
+                            android:layout_width="30sp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/audio_icon_left_auto"
+                            style="@style/ChatLeftButton"/>
+
+                        <TextView
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            style="@style/ChatTextLabel"/>
+
+                        <Button
+                            android:id="@+id/button_left_prompt_random"
+                            android:text="@string/audio_icon_left_random"
+                            style="@style/ChatLeftButton" />
+
+                    </LinearLayout>
+
+                </ScrollView>
+
+            </LinearLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
 
                 <TextView
-                    android:id="@+id/textview_answer"
+                    android:id="@+id/textview_response"
                     android:layout_width="match_parent"
-                    android:layout_toEndOf="@id/label_ai"
                     style="@style/ChatTextContent" />
 
-            </RelativeLayout>
-
-            <Button
-                android:id="@+id/button_left_prompt_random"
-                android:layout_width="30sp"
-                android:layout_height="wrap_content"
-                android:text="@string/audio_icon_left_random"
-                style="@style/ChatTextLabel" />
+            </ScrollView>
 
         </LinearLayout>
-    </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"

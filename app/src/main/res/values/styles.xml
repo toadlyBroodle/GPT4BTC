@@ -11,6 +11,11 @@
     <style name="ChatTextLabel" parent="ChatText">
         <item name="android:textStyle">bold</item>
         <item name="android:layout_marginStart">@dimen/chat_label_margin</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="ChatLeftButton" parent="ChatTextLabel">
+        <item name="android:layout_width">@dimen/chat_label_layout_width</item>
     </style>
 
     <style name="ChatTextContent" parent="ChatText">
@@ -19,7 +24,7 @@
 
     <style name="ChatEditText" parent="ChatText">
         <item name="android:inputType">textMultiLine</item>
-        <item name="android:maxLines">@integer/chat_edit_text_max_length</item>
+        <item name="android:maxLines">@integer/chat_edit_text_max_lines</item>
         <item name="android:maxLength">@integer/chat_edit_text_max_length</item>
         <item name="android:scrollHorizontally">false</item>
     </style>

@@ -3,4 +3,5 @@
     <dimen name="chat_text_size">18sp</dimen>
     <dimen name="chat_text_padding">5sp</dimen>
     <dimen name="chat_label_margin">2sp</dimen>
+    <dimen name="chat_label_layout_width">30sp</dimen>
 </resources>
