@@ -102,9 +102,15 @@ class ChatFrag : Fragment(), TextToSpeech.OnInitListener {
 
 		// set dictation button listener logic
 		binding.buttonLeftAudioDictation.setOnClickListener {
-			FirebaseAnalytics.logCustomEvent(BUTTON_PROMPT_DICTATE)
+			// if already dictating, then stop
+			if (tts?.isSpeaking == true) {
+				tts?.stop()
+				return@setOnClickListener
+			}
 
+			// otherwise start response dictation
 			if (ttsAvailable) {
+				FirebaseAnalytics.logCustomEvent(BUTTON_PROMPT_DICTATE)
 				dictate(tvResponse.text.toString())
 			}
 		}
