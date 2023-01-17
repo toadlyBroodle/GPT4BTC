@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.MotionEvent
 import android.widget.CheckBox
 import androidx.appcompat.app.AppCompatActivity
+import org.bitanon.chatgpt3.MainActivity.Companion.prefShowTerms
 import org.bitanon.chatgpt3.databinding.ActivityTermsBinding
 
 const val OPENAI_KEY_PART3 = "FJ8ipVot1Oj"
@@ -17,7 +18,6 @@ class TermsActivity : AppCompatActivity() {
 
 	private lateinit var binding: ActivityTermsBinding
 
-	private var prefShowTerms = true
 	private lateinit var showTermsCheckbox: CheckBox
 
 	override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,12 +73,8 @@ class TermsActivity : AppCompatActivity() {
 			v?.onTouchEvent(event) ?: true
 		}
 
-		// load shared preferences
-		val sharedPrefs = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
-		prefShowTerms = sharedPrefs.getBoolean(PREF_SHOW_TERMS, true)
-		// set show terms agreement checkbox from preferences
+		// set show terms agreement checkbox from main preferences
 		showTermsCheckbox.isChecked = prefShowTerms
-		Log.d(TAG, "preferences loaded: ${sharedPrefs.all}")
 
 	}
 

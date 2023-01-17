@@ -1,6 +1,7 @@
 package org.bitanon.chatgpt3
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -24,6 +25,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.bitanon.chatgpt3.databinding.ActivityMainBinding
@@ -31,7 +34,7 @@ import org.bitanon.chatgpt3.databinding.ActivityMainBinding
 const val AD_ID_PART1 = "ca-app-pub-"
 const val SHARED_PREFS = "CHATGPT3_SHARED_PREFS"
 const val PREF_SHOW_TERMS = "pref_show_terms_on_start"
-
+const val PREF_DICTATE_AUTO = "pref_dictate_auto"
 
 private const val TAG = "MainActivity"
 class MainActivity : AppCompatActivity() {
@@ -40,10 +43,10 @@ class MainActivity : AppCompatActivity() {
 	private lateinit var binding: ActivityMainBinding
 	private val viewModel: ChatViewModel by viewModels()
 
-
 	@SuppressLint("ClickableViewAccessibility")
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
+
 		binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 
@@ -67,13 +70,11 @@ class MainActivity : AppCompatActivity() {
 		AdMob.init(this)
 		Billing.init(this, lifecycleScope)
 
-		// load shared preferences
-		val sharedPrefs = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
-		var showTerms = sharedPrefs.getBoolean(PREF_SHOW_TERMS, true)
-		Log.d(TAG, "preferences loaded: ${sharedPrefs.all}")
+		// load prefs
+		loadPrefs(this)
 
 		// prompt user to accept terms agreement if not previously hidden
-		if (showTerms) {
+		if (prefShowTerms) {
 			FirebaseAnalytics.logCustomEvent(TERMS_AGREEMENT_SHOW)
 
 			// inflate alertdialog layout
@@ -121,10 +122,10 @@ class MainActivity : AppCompatActivity() {
 			// inflate show terms checkbox and set ischecked same as preference
 			val showTermsCheckbox = alertDialogLayout.findViewById<View>(
 				R.id.show_terms_checkbox) as CheckBox
-			showTermsCheckbox.isChecked = showTerms
-			// get show terms user choice
+			showTermsCheckbox.isChecked = prefShowTerms
+			// get show terms checked state
 			showTermsCheckbox.setOnCheckedChangeListener { _, isChecked ->
-				showTerms = isChecked
+				prefShowTerms = isChecked
 			}
 
 			val d: AlertDialog = AlertDialog.Builder(this)
@@ -136,11 +137,8 @@ class MainActivity : AppCompatActivity() {
 					// user accepts terms: log event
 					FirebaseAnalytics.logCustomEvent(BUTTON_ACCEPT_TERMS)
 
-					// save hide terms choice to shared preferences
-					val editor = sharedPrefs.edit()
-					editor.putBoolean(PREF_SHOW_TERMS, showTerms)
-					editor.apply()
-					Log.d(TAG, "preferences saved: ${sharedPrefs.all}")
+					// save show terms check state to preferences
+					savePrefs(this)
 				}
 				.setNegativeButton(getString(R.string.exit)) { _, _ ->
 					// user rejects terms: log event and exit app
@@ -164,9 +162,6 @@ class MainActivity : AppCompatActivity() {
 			}
 		}
 
-		// Check if user is signed in (non-null) and update UI accordingly.
-		//val currentUser = Firebase.auth.currentUser
-		//updateUI(currentUser)
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -180,16 +175,22 @@ class MainActivity : AppCompatActivity() {
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		return when (item.itemId) {
-			R.id.action_terms -> {
-				val startActivity = Intent(this, TermsActivity::class.java)
-				startActivity(startActivity)
-				true
-			}
 			R.id.action_account -> {
 				val startActivity = Intent(this, AccountActivity::class.java)
 				startActivity(startActivity)
 				true
 			}
+			R.id.action_settings -> {
+				val startActivity = Intent(this, SettingsActivity::class.java)
+				startActivity(startActivity)
+				true
+			}
+			R.id.action_terms -> {
+				val startActivity = Intent(this, TermsActivity::class.java)
+				startActivity(startActivity)
+				true
+			}
+
 			else -> super.onOptionsItemSelected(item)
 		}
 	}
@@ -202,6 +203,15 @@ class MainActivity : AppCompatActivity() {
 
 	companion object {
 
+		var prefShowTerms = true
+
+		private val _prefDictateAuto = MutableStateFlow(false)
+		fun setPrefDictateAuto(activ: Activity, b: Boolean) {
+			_prefDictateAuto.value = b
+			savePrefs(activ)
+		}
+		val prefDictateAuto: StateFlow<Boolean> = _prefDictateAuto
+
 		fun buildOpenAIKey(): String {
 			return FirebaseAnalytics.OPENAI_KEY_PART1 + OPENAI_KEY_PART2 +
 					OPENAI_KEY_PART3 + AdMob.getOpenAIKeyPart4()
@@ -213,5 +223,24 @@ class MainActivity : AppCompatActivity() {
 
 		fun showToast(ctx: Context, message: String) =
 			Toast.makeText(ctx, message, Toast.LENGTH_SHORT).show()
+
+		fun loadPrefs(activ: Activity) {
+			// load shared preferences
+			val sharedPrefs = activ.getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
+			prefShowTerms = sharedPrefs.getBoolean(PREF_SHOW_TERMS, true)
+			_prefDictateAuto.value = sharedPrefs.getBoolean(PREF_DICTATE_AUTO, false)
+			Log.d(TAG, "preferences loaded: ${sharedPrefs.all}")
+		}
+
+		fun savePrefs(activ: Activity) {
+			// save hide terms choice to shared preferences
+			val sharedPrefs = activ.getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
+			val editor = sharedPrefs.edit()
+			editor.putBoolean(PREF_SHOW_TERMS, prefShowTerms)
+			editor.putBoolean(PREF_DICTATE_AUTO, _prefDictateAuto.value)
+			editor.apply()
+			Log.d(TAG, "preferences saved: ${sharedPrefs.all}")
+		}
 	}
+
 }

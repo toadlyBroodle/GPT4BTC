@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
+import org.bitanon.chatgpt3.MainActivity.Companion.prefDictateAuto
 import org.bitanon.chatgpt3.databinding.FragmentChatBinding
 import java.util.*
 
@@ -60,6 +61,7 @@ class ChatFrag : Fragment(), TextToSpeech.OnInitListener {
 		tvResponse = binding.textviewResponse
 		etPrompt = binding.edittextAskQuestion
 
+		// init tts
 		tts = TextToSpeech(requireContext(), this)
 
 		// set prompt button on click listener logic
@@ -88,7 +90,17 @@ class ChatFrag : Fragment(), TextToSpeech.OnInitListener {
 			} else MainActivity.showToast(requireContext(), getString(R.string.toast_enter_prompt))
 		}
 
-		// set dictation button on click listener logic
+		// collect changes to prefDictateAuto and update button state
+		lifecycleScope.launch {
+			prefDictateAuto.collect {
+				// update widget states from preferences
+				binding.buttonLeftAudioDictation.text =
+					if (it) getString(R.string.audio_icon_left_auto)
+					else getString(R.string.audio_icon_left_manual)
+			}
+		}
+
+		// set dictation button listener logic
 		binding.buttonLeftAudioDictation.setOnClickListener {
 			FirebaseAnalytics.logCustomEvent(BUTTON_PROMPT_DICTATE)
 
@@ -142,6 +154,10 @@ class ChatFrag : Fragment(), TextToSpeech.OnInitListener {
 
 					// increment promptCount in firestore
 					firestore.incrementUserPrompts()
+
+					// autoDictate if enabled
+					if (prefDictateAuto.value)
+						dictate(output)
 				}
 			}
 		}
@@ -173,6 +189,7 @@ class ChatFrag : Fragment(), TextToSpeech.OnInitListener {
 		_binding = null
 	}
 
+	// TTS initialized
 	override fun onInit(status: Int) {
 		if (status == TextToSpeech.SUCCESS) {
 			val result = tts!!.setLanguage(Locale.getDefault())

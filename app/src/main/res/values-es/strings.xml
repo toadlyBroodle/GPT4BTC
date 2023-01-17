@@ -53,6 +53,8 @@
 
     <!-- Settings Activity -->
     <string name="title_activity_settings">Ajustes</string>
+    <string name="dictation">Dictado</string>
+    <string name="automatically_dictate_responses">Dictar respuestas automáticamente</string>
 
     <!-- Terms Activity -->
     <string name="terms">Términos</string>
@@ -91,5 +93,6 @@
     <string name="random_prompt_17">Historia corta de emoji del fin de los dinosaurios</string>
     <string name="random_prompt_18">Lista de idiomas que puedes traducir</string>
     <string name="random_prompt_19">Generar página HTML sobre gatos</string>
+
 
 </resources>

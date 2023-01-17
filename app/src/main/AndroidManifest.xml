@@ -44,9 +44,9 @@
         </activity>
 
         <activity
-            android:name=".TermsActivity"
+            android:name=".AccountActivity"
             android:exported="false"
-            android:label="@string/terms"
+            android:label="@string/account"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.app.lib_name"
@@ -54,9 +54,19 @@
         </activity>
 
         <activity
-            android:name=".AccountActivity"
+            android:name=".SettingsActivity"
             android:exported="false"
-            android:label="@string/account"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".TermsActivity"
+            android:exported="false"
+            android:label="@string/terms"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.app.lib_name"
