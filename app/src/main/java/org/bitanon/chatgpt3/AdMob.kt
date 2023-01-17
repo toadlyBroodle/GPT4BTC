@@ -12,6 +12,7 @@ private const val AD_ID_TEST = "ca-app-pub-3940256099942544/1033173712"
 private const val TAG = "AdMob"
 class AdMob {
 	companion object {
+		private var showReqCount = 0
 
 		var mInterstitialAd: InterstitialAd? = null
 
@@ -82,6 +83,15 @@ class AdMob {
 		}
 
 		fun show(activ: Activity?) {
+			showReqCount++
+
+			// only show interstitial ad every second prompt
+			if (showReqCount % 2 == 0) {
+				// load new ad and return
+				activ?.baseContext?.let { init(it) }
+				return
+			}
+
 			if (activ != null && mInterstitialAd != null) {
 				mInterstitialAd!!.show(activ)
 			} else {

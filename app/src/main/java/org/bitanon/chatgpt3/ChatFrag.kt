@@ -21,8 +21,6 @@ const val AD_ID_PART2 = "9043912704472803/"
 
 //private const val TAG = "ChatFrag"
 class ChatFrag : Fragment() {
-	private var sessionPromptCount = 0
-
 	private var _binding: FragmentChatBinding? = null
 
 	// This property is only valid between onCreateView and onDestroyView.
@@ -77,14 +75,8 @@ class ChatFrag : Fragment() {
 
 				viewModel.sendPrompt(requireContext(), q)
 
-				// show interstitial ad every three prompts
-				if (sessionPromptCount % 3 == 0)
-					AdMob.show(activity)
-				else  { // load new interstitial after last one shown
-					if (sessionPromptCount % 3 == 1)
-						AdMob.init(requireContext())
-				}
-				sessionPromptCount++
+				// try showing ad
+				AdMob.show(activity)
 
 			} else MainActivity.showToast(requireContext(), getString(R.string.toast_enter_prompt))
 		}
