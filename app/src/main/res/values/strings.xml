@@ -4,24 +4,22 @@
     <string name="admob_app_id" translatable="false">ca-app-pub-9043912704472803~9575294075</string>
     <string name="chatgpt3_playstore_link" translatable="false">https://play.google.com/store/apps/details?id=org.bitanon.chatgpt3</string>
     <string name="app_name" translatable="false">ChatGPT3</string>
+    <string name="anon" translatable="false">Anon</string>
     <string name="audio_icon_left_auto" translatable="false">🔊</string>
     <string name="audio_icon_left_manual" translatable="false">🔈</string>
     <string name="audio_icon_left_random" translatable="false">🎲</string>
 
     <!-- DO translate -->
-    <string name="second_fragment_label">Second Fragment</string>
+    <!-- Chat Fragment -->
     <string name="alertdialog_terms_agreement_title">Terms and Privacy Agreement</string>
     <string name="exit">Exit</string>
     <string name="accept">Accept</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-    <string name="prompt">prompt</string>
-    <string name="answer">answer</string>
-    <string name="enter_prompt">Enter your prompt…</string>
-    <string name="tv_a">AI:</string>
+    <string name="label_ai">AI:</string>
     <string name="button_prompt">Prompt</string>
+    <string name="enter_prompt">Enter your prompt…</string>
     <string name="elipsis">…</string>
     <string name="response_thinking">Thinking…</string>
+    <string name="toast_dictation_subscription">Response dictation coming soon…</string>
     <string name="toast_enter_prompt">First, enter a prompt.</string>
     <string name="toast_no_internet">No internet connection. Connect and retry.</string>
     <string name="toast_prompt_truncated">Maximum prompt length reached:
@@ -36,9 +34,18 @@
         patience and please try again shortly.</string>
     <string name="exception_unauthorized_access">HTTP 401: api.openai.com unauthorized access! Download authorized app:</string>
 
-    <string name="title_activity_settings">Settings</string>
-
-    <!-- Terms Screens -->
+    <!-- Account Activity -->
+    <string name="account">Account</string>
+    <string name="login_to_enable_features">Login to increase prompt and response limits and enable
+        additional features.</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="account_label_name">Name:</string>
+    <string name="account_label_prompt_limit">Prompt Limit:</string>
+    <string name="account_label_response_limit">Response Limit:</string>
+    <string name="words">%1$s words</string>
+    <string name="login_failed">Login failed:</string>
+    <string name="logged_out">Logged out</string>
     <string name="upgrade">Upgrade</string>
     <string name="remove_limits_ads">Remove all prompt and response limits, and remove all ads! Coming soon…</string>
     <string name="subscribe">Subscribe</string>
@@ -48,6 +55,13 @@
         you have agreed to contribute to testing the feature, which may not result in immediate
         implementation of additional features. Please notify me of such issue, so I can fix it asap.</string>
     <string name="require_gmail">***Gmail address required to join test Android ChatGPT3 group.***</string>
+
+    <!-- Settings Activity -->
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Terms Activity -->
+    <string name="terms">Terms</string>
+    <string name="app_terms_header">App Terms Agreement</string>
     <string name="openai_terms_header">OpenAI\'s Terms Agreement</string>
     <string name="agree_to_terms">By using this app, you have agreed to the following terms:</string>
     <string name="show_terms_agreement">Show terms agreement at startup</string>
@@ -58,22 +72,6 @@
     <string name="html_app_privacy_policy"><a href="https://chatgpt3-android.app/privacy-policy.html">Privacy Policy</a></string>
     <string name="html_openai_terms_of_use"><a href="https://openai.com/terms/">Terms of Use</a></string>
     <string name="html_openai_privacy_policy"><a href="https://openai.com/privacy/">Privacy Policy</a></string>
-    <string name="login">Login</string>
-    <string name="login_to_enable_features">Login to increase prompt and response limits and enable
-        additional features.</string>
-    <string name="account">Account</string>
-    <string name="manage_account">Manage your account</string>
-    <string name="logout">Logout</string>
-    <string name="login_failed">Login failed:</string>
-    <string name="logged_out">Logged out</string>
-    <string name="terms">Terms</string>
-    <string name="app_terms_header">App Terms Agreement</string>
-    <string name="account_label_name">Name:</string>
-    <string name="anon">anon</string>
-    <string name="account_label_prompt_limit">Prompt Limit:</string>
-    <string name="account_label_response_limit">Response Limit:</string>
-    <string name="words">%1$s words</string>
-    <string name="response_dictation_requires_subscription">Response dictation coming soon…</string>
 
     <!-- Random prompts -->
     <string name="toast_login_generate_random_prompts">Login to generate random prompts</string>

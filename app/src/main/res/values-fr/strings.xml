@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="second_fragment_label">Second Fragment</string>
     <string name="alertdialog_terms_agreement_title">Termes et accord de confidentialité</string>
     <string name="exit">Sortie</string>
     <string name="accept">Accepter</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-    <string name="prompt">prompt</string>
-    <string name="answer">réponse</string>
-    <string name="enter_prompt">Entrez votre invite…</string>
-    <string name="tv_a">IA :</string>
+    <string name="label_ai">IA :</string>
     <string name="button_prompt">Prompt</string>
+    <string name="enter_prompt">Entrez votre invite…</string>
     <string name="elipsis">…</string>
     <string name="response_thinking">En pensant…</string>
+    <string name="toast_dictation_subscription">Dictée de réponse à venir…</string>
     <string name="toast_enter_prompt">Tout d\'abord, entrez une invite.</string>
     <string name="toast_no_internet">Pas de connexion Internet. Connectez-vous et réessayez.</string>
     <string name="toast_prompt_truncated">Longueur maximale des invites atteinte :
@@ -29,9 +25,18 @@
     <string name="exception_unauthorized_access">HTTP 401 : accès non autorisé à api.openai.com !
         Télécharger l\'application autorisée</string>
 
-    <string name="title_activity_settings">Paramètres</string>
-
-    <!-- Terms Screens -->
+    <!-- Account Activity -->
+    <string name="account">Compte</string>
+    <string name="login_to_enable_features">Connectez-vous pour augmenter les limites d\'invites et
+        de réponses et activer des fonctionnalités supplémentaires.</string>
+    <string name="login">Connexion</string>
+    <string name="logout">Se déconnecter</string>
+    <string name="account_label_name">Nom :</string>
+    <string name="account_label_prompt_limit">Limite d\'invite :</string>
+    <string name="account_label_response_limit">Limite de réponse :</string>
+    <string name="words">mots</string>
+    <string name="login_failed">Échec de la connexion:</string>
+    <string name="logged_out">Déconnexion</string>
     <string name="upgrade">Mise à niveau</string>
     <string name="remove_limits_ads">Supprimez toutes les limites d\'invites et de réponses, et
         supprimez toutes les publicités ! Bientôt disponible…</string>
@@ -45,6 +50,13 @@
     <string name="join_testers">Rejoindre le groupe de test</string>
     <string name="require_gmail">***Adresse Gmail requise pour rejoindre le groupe de test Android
         ChatGPT3.***</string>
+
+    <!-- Settings Activity -->
+    <string name="title_activity_settings">Paramètres</string>
+
+    <!-- Terms Activity -->
+    <string name="terms">Termes</string>
+    <string name="app_terms_header">Conditions d\'Utilisation App</string>
     <string name="openai_terms_header">Conditions d\'utilisation d\'OpenAI</string>
     <string name="agree_to_terms">En utilisant cette application, vous avez accepté les
         conditions suivantes :</string>
@@ -58,22 +70,6 @@
     <string name="html_app_privacy_policy"><a href="https://chatgpt3-android.app/privacy-policy.html">Politique de confidentialité</a></string>
     <string name="html_openai_terms_of_use"><a href="https://openai.com/terms/">Termes d\'utilisation</a></string>
     <string name="html_openai_privacy_policy"><a href="https://openai.com/privacy/">Politique de confidentialité</a></string>
-    <string name="login">Connexion</string>
-    <string name="login_to_enable_features">Connectez-vous pour augmenter les limites d\'invites et
-        de réponses et activer des fonctionnalités supplémentaires.</string>
-    <string name="account">Compte</string>
-    <string name="manage_account">Gérer votre compte</string>
-    <string name="logout">Se déconnecter</string>
-    <string name="login_failed">Échec de la connexion:</string>
-    <string name="logged_out">Déconnexion</string>
-    <string name="terms">Termes</string>
-    <string name="app_terms_header">Conditions d\'Utilisation App</string>
-    <string name="account_label_name">Nom :</string>
-    <string name="anon">anon</string>
-    <string name="account_label_prompt_limit">Limite d\'invite :</string>
-    <string name="account_label_response_limit">Limite de réponse :</string>
-    <string name="words">mots</string>
-    <string name="response_dictation_requires_subscription">Dictée de réponse à venir…</string>
 
     <!-- Random prompts -->
     <string name="toast_login_generate_random_prompts">Connectez-vous pour générer des invites aléatoires</string>

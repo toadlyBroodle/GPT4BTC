@@ -94,7 +94,7 @@ class ChatFrag : Fragment() {
 			FirebaseAnalytics.logCustomEvent(BUTTON_PROMPT_DICTATE)
 
 			MainActivity.showToast(requireContext(),
-				getString(R.string.response_dictation_requires_subscription))
+				getString(R.string.toast_dictation_subscription))
 		}
 
 		// set random prompt button on click listener logic
