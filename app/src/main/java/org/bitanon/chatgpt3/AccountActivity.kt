@@ -149,9 +149,9 @@ class AccountActivity: AppCompatActivity() {
 
 	companion object {
 
-		private var maxPromptChars = FirebaseAnalytics.getResponseMaxTokens()
+		private var maxPromptChars = FirebaseAnalytics.getPromptMaxChars()
 		fun getMaxPromptChars(): Int { return maxPromptChars}
-		private var maxResponseTokens = FirebaseAnalytics.getPromptMaxChars()
+		private var maxResponseTokens = FirebaseAnalytics.getResponseMaxTokens()
 		fun getMaxResponseTokens(): Int { return maxResponseTokens}
 
 		fun getPromptLimitWords(): String {
