@@ -2,9 +2,11 @@ package org.bitanon.chatgpt3
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.text.Editable
 import android.text.InputFilter
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,26 +17,29 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import org.bitanon.chatgpt3.databinding.FragmentChatBinding
+import java.util.*
+
 
 const val OPENAI_KEY_PART2 = "EjCe9iICSpXhT3Blbk"
 const val AD_ID_PART2 = "9043912704472803/"
 
 //private const val TAG = "ChatFrag"
-class ChatFrag : Fragment() {
+class ChatFrag : Fragment(), TextToSpeech.OnInitListener {
 	private var _binding: FragmentChatBinding? = null
-
 	// This property is only valid between onCreateView and onDestroyView.
 	private val binding get() = _binding!!
 
+	private val viewModel: ChatViewModel by viewModels()
+
 	private lateinit var tvPromptLabelName: TextView
 	private lateinit var tvPrompt: TextView
-	private lateinit var tvAnswer: TextView
+	private lateinit var tvResponse: TextView
 	private lateinit var etPrompt: EditText
-
-	private val viewModel: ChatViewModel by viewModels()
 
 	private val firestore = Firestore()
 
+	private var tts: TextToSpeech? = null
+	private var ttsAvailable = false
 
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,
@@ -52,8 +57,10 @@ class ChatFrag : Fragment() {
 
 		tvPromptLabelName = binding.textviewLabelName
 		tvPrompt = binding.textviewQuestion
-		tvAnswer = binding.textviewResponse
+		tvResponse = binding.textviewResponse
 		etPrompt = binding.edittextAskQuestion
+
+		tts = TextToSpeech(requireContext(), this)
 
 		// set prompt button on click listener logic
 		binding.buttonPrompt.setOnClickListener {
@@ -71,7 +78,7 @@ class ChatFrag : Fragment() {
 				val q = etPrompt.text.toString()
 				etPrompt.text.clear()
 				tvPrompt.text = q
-				tvAnswer.text = getString(R.string.response_thinking)
+				tvResponse.text = getString(R.string.response_thinking)
 
 				viewModel.sendPrompt(requireContext(), q)
 
@@ -85,8 +92,9 @@ class ChatFrag : Fragment() {
 		binding.buttonLeftAudioDictation.setOnClickListener {
 			FirebaseAnalytics.logCustomEvent(BUTTON_PROMPT_DICTATE)
 
-			MainActivity.showToast(requireContext(),
-				getString(R.string.toast_dictation_subscription))
+			if (ttsAvailable) {
+				dictate(tvResponse.text.toString())
+			}
 		}
 
 		// set random prompt button on click listener logic
@@ -130,7 +138,7 @@ class ChatFrag : Fragment() {
 					}
 
 					FirebaseAnalytics.logCustomEvent(OPENAI_RESPONSE_SHOW)
-					tvAnswer.text = output
+					tvResponse.text = output
 
 					// increment promptCount in firestore
 					firestore.incrementUserPrompts()
@@ -154,6 +162,34 @@ class ChatFrag : Fragment() {
 
 	override fun onDestroyView() {
 		super.onDestroyView()
+
+		// shutdown TextToSpeech
+		if (tts != null) {
+			tts!!.stop()
+			tts!!.shutdown()
+		}
+
+		// unbind
 		_binding = null
+	}
+
+	override fun onInit(status: Int) {
+		if (status == TextToSpeech.SUCCESS) {
+			val result = tts!!.setLanguage(Locale.getDefault())
+
+			ttsAvailable = if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+				Log.e("TTS","Language not supported in TTS")
+				false
+			} else
+				true
+		}
+	}
+
+	private fun dictate(text: String) {
+		if (text.isEmpty()) {
+			tts?.speak(getString(R.string.toast_enter_prompt), TextToSpeech.QUEUE_FLUSH,
+				null,"")
+		} else
+			tts?.speak(text, TextToSpeech.QUEUE_FLUSH,null,"")
 	}
 }
