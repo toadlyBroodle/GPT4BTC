@@ -6,19 +6,41 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="5sp">
+        android:padding="5sp"
+        android:layout_marginEnd="5sp">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="@string/dictation"
             style="@style/ChatTextLabel"/>
 
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/settings_switch_dictate_auto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/automatically_dictate_responses"/>
+            android:text="@string/automatically_dictate_responses"
+            style="@style/ChatText"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/dictation_speed"
+                android:layout_weight="1"
+                style="@style/ChatText"/>
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/settings_slider_speech_speed"
+                android:layout_width="@dimen/settings_speech_speed_slider_width"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5sp"
+                android:valueFrom="0.5"
+                android:valueTo="2.0"
+                android:stepSize="0.5"
+                android:value="1.0"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -16,13 +16,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
-import org.bitanon.chatgpt3.MainActivity.Companion.prefDictateAuto
+import org.bitanon.chatgpt3.MainActivity.Companion.prefDictationAuto
+import org.bitanon.chatgpt3.MainActivity.Companion.prefDictationSpeed
 import org.bitanon.chatgpt3.databinding.FragmentChatBinding
 import java.util.*
 
-
 const val OPENAI_KEY_PART2 = "EjCe9iICSpXhT3Blbk"
 const val AD_ID_PART2 = "9043912704472803/"
+const val TTS_PITCH = 0.85f
+
 
 //private const val TAG = "ChatFrag"
 class ChatFrag : Fragment(), TextToSpeech.OnInitListener {
@@ -90,7 +92,7 @@ class ChatFrag : Fragment(), TextToSpeech.OnInitListener {
 
 		// collect changes to prefDictateAuto and update button state
 		lifecycleScope.launch {
-			prefDictateAuto.collect {
+			prefDictationAuto.collect {
 				// update widget states from preferences
 				binding.buttonLeftAudioDictation.text =
 					if (it) getString(R.string.audio_icon_left_auto)
@@ -106,11 +108,13 @@ class ChatFrag : Fragment(), TextToSpeech.OnInitListener {
 				return@setOnClickListener
 			}
 
-			// otherwise start response dictation
+			// start response dictation
 			if (ttsAvailable) {
 				FirebaseAnalytics.logCustomEvent(BUTTON_PROMPT_DICTATE)
 				dictate(tvResponse.text.toString())
-			}
+			} else // or toast that language is not supported
+				MainActivity.showToast(requireContext(),
+					getString(R.string.toast_tts_not_supported))
 		}
 
 		// set random prompt button on click listener logic
@@ -160,7 +164,7 @@ class ChatFrag : Fragment(), TextToSpeech.OnInitListener {
 					MainActivity.firestore.incrementUserPrompts()
 
 					// autoDictate if enabled
-					if (prefDictateAuto.value)
+					if (prefDictationAuto.value)
 						dictate(output)
 				}
 			}
@@ -185,8 +189,8 @@ class ChatFrag : Fragment(), TextToSpeech.OnInitListener {
 
 		// shutdown TextToSpeech
 		if (tts != null) {
-			tts!!.stop()
-			tts!!.shutdown()
+			tts?.stop()
+			tts?.shutdown()
 		}
 
 		// unbind
@@ -196,13 +200,18 @@ class ChatFrag : Fragment(), TextToSpeech.OnInitListener {
 	// TTS initialized
 	override fun onInit(status: Int) {
 		if (status == TextToSpeech.SUCCESS) {
-			val result = tts!!.setLanguage(Locale.getDefault())
 
+			// try setting device default language and check if supported
+			val result = tts!!.setLanguage(Locale.getDefault())
 			ttsAvailable = if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
 				Log.e("TTS","Language not supported in TTS")
 				false
 			} else
 				true
+
+			// set dictation attributes
+			tts?.setPitch(TTS_PITCH)
+			tts?.setSpeechRate(prefDictationSpeed)
 		}
 	}
 

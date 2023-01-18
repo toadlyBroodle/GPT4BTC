@@ -34,7 +34,8 @@ import org.bitanon.chatgpt3.databinding.ActivityMainBinding
 const val AD_ID_PART1 = "ca-app-pub-"
 const val SHARED_PREFS = "CHATGPT3_SHARED_PREFS"
 const val PREF_SHOW_TERMS = "pref_show_terms_on_start"
-const val PREF_DICTATE_AUTO = "pref_dictate_auto"
+const val PREF_DICTATION_AUTO = "pref_dictation_auto"
+const val PREF_DICTATION_SPEED = "pref_dictation_speed"
 
 private const val TAG = "MainActivity"
 class MainActivity : AppCompatActivity() {
@@ -207,13 +208,16 @@ class MainActivity : AppCompatActivity() {
 		val firestore = Firestore().init()
 
 		var prefShowTerms = true
+		var prefDictationSpeed = 1.0f
 
-		private val _prefDictateAuto = MutableStateFlow(false)
-		fun setPrefDictateAuto(activ: Activity, b: Boolean) {
-			_prefDictateAuto.value = b
+		// preference dictation auto state flow stuff
+		private val _prefDictationAuto = MutableStateFlow(false)
+		fun setPrefDictationAuto(activ: Activity, b: Boolean) {
+			_prefDictationAuto.value = b
 			savePrefs(activ)
 		}
-		val prefDictateAuto: StateFlow<Boolean> = _prefDictateAuto
+		val prefDictationAuto: StateFlow<Boolean> = _prefDictationAuto
+
 
 		fun buildOpenAIKey(): String {
 			return FirebaseAnalytics.OPENAI_KEY_PART1 + OPENAI_KEY_PART2 +
@@ -231,18 +235,19 @@ class MainActivity : AppCompatActivity() {
 			// load shared preferences
 			val sharedPrefs = activ.getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
 			prefShowTerms = sharedPrefs.getBoolean(PREF_SHOW_TERMS, true)
-			_prefDictateAuto.value = sharedPrefs.getBoolean(PREF_DICTATE_AUTO, false)
+			prefDictationSpeed = sharedPrefs.getFloat(PREF_DICTATION_SPEED, 1.0f)
+			_prefDictationAuto.value = sharedPrefs.getBoolean(PREF_DICTATION_AUTO, false)
 			Log.d(TAG, "preferences loaded: ${sharedPrefs.all}")
 		}
 
 		fun savePrefs(activ: Activity) {
 			// save hide terms choice to shared preferences
-			val sharedPrefs = activ.getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
-			val editor = sharedPrefs.edit()
-			editor.putBoolean(PREF_SHOW_TERMS, prefShowTerms)
-			editor.putBoolean(PREF_DICTATE_AUTO, _prefDictateAuto.value)
-			editor.apply()
-			Log.d(TAG, "preferences saved: ${sharedPrefs.all}")
+			val editor = activ.getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE).edit()
+			editor.apply {
+				putBoolean(PREF_SHOW_TERMS, prefShowTerms)
+				putFloat(PREF_DICTATION_SPEED, prefDictationSpeed)
+				putBoolean(PREF_DICTATION_AUTO, _prefDictationAuto.value)
+			}.apply()
 		}
 	}
 

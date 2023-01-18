@@ -8,7 +8,8 @@
     <string name="enter_prompt">Ingrese su pregunta…</string>
     <string name="elipsis">…</string>
     <string name="response_thinking">Pensando…</string>
-    <string name="toast_dictation_subscription">Dictado de respuesta próximamente…</string>
+    <string name="toast_tts_not_supported">Desafortunadamente, Google Text to Speech no es
+        compatible con su idioma :(</string>
     <string name="toast_enter_prompt">Primero, ingrese una solicitud.</string>
     <string name="toast_no_internet">Sin conexión a Internet. Conectar y volver a intentar.</string>
     <string name="toast_prompt_truncated">Se alcanzó la longitud máxima del aviso:
@@ -55,6 +56,7 @@
     <string name="title_activity_settings">Ajustes</string>
     <string name="dictation">Dictado</string>
     <string name="automatically_dictate_responses">Dictar respuestas automáticamente</string>
+    <string name="dictation_speed">Velocidad del discurso</string>
 
     <!-- Terms Activity -->
     <string name="terms">Términos</string>

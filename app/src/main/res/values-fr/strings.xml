@@ -8,7 +8,8 @@
     <string name="enter_prompt">Entrez votre invite…</string>
     <string name="elipsis">…</string>
     <string name="response_thinking">En pensant…</string>
-    <string name="toast_dictation_subscription">Dictée de réponse à venir…</string>
+    <string name="toast_tts_not_supported">Malheureusement, Google Text to Speech ne prend pas en
+        charge votre langue :(</string>
     <string name="toast_enter_prompt">Tout d\'abord, entrez une invite.</string>
     <string name="toast_no_internet">Pas de connexion Internet. Connectez-vous et réessayez.</string>
     <string name="toast_prompt_truncated">Longueur maximale des invites atteinte :
@@ -55,6 +56,7 @@
     <string name="title_activity_settings">Paramètres</string>
     <string name="dictation">Dictation</string>
     <string name="automatically_dictate_responses">Dicter automatiquement les réponses</string>
+    <string name="dictation_speed">Vitesse de parole</string>
 
     <!-- Terms Activity -->
     <string name="terms">Termes</string>
