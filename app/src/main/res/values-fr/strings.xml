@@ -12,11 +12,10 @@
         charge votre langue :(</string>
     <string name="toast_enter_prompt">Tout d\'abord, entrez une invite.</string>
     <string name="toast_no_internet">Pas de connexion Internet. Connectez-vous et réessayez.</string>
-    <string name="toast_prompt_truncated">Longueur maximale des invites atteinte :
-        \nconnectez-vous ou abonnez-vous pour des invites plus longues.</string>
-    <string name="append_response_truncated">***La réponse d\'OpenAI est plus longue que celle
-        autorisée dans la version gratuite.\nConnectez-vous ou abonnez-vous pour supprimer toutes
-        les limites d\'invites et de réponses et pour supprimer toutes les publicités.</string>
+    <string name="toast_prompt_truncated">Longueur maximale d\'invite gratuite atteinte :
+         \nConnexion ou mise à niveau pour des invites et des réponses plus longues.</string>
+    <string name="append_response_truncated">***Longueur maximale de réponse libre dépassée :
+         \nConnexion ou mise à niveau pour des invites et des réponses plus longues.</string>
 
     <!-- Exception handling -->
     <string name="exception_socket_timeout">La connexion à api.openai.com a expiré.
@@ -33,14 +32,14 @@
     <string name="login">Connexion</string>
     <string name="logout">Se déconnecter</string>
     <string name="account_label_name">Nom :</string>
-    <string name="account_label_prompt_limit">Limite d\'invite :</string>
-    <string name="account_label_response_limit">Limite de réponse :</string>
-    <string name="words">mots</string>
+    <string name="account_label_prompt_limit">Mots d\'invite gratuits :</string>
+    <string name="account_label_response_limit">Mots de réponse gratuits :</string>
+    <string name="account_label_purchased_words">Mots achetés :</string>
     <string name="login_failed">Échec de la connexion:</string>
     <string name="logged_out">Déconnexion</string>
     <string name="upgrade">Mise à niveau</string>
     <string name="remove_limits">Supprimez les limites d\'invites et de réponses en achetant un mot
-        supplémentaire compte : bientôt disponible !</string>
+        supplémentaire compte.</string>
     <string name="toast_billing_error">Erreur de facturation. Veuillez activer la facturation
         Google Play et réessayer.</string>
     <string name="toast_device_no_in_app_products">Désolé, votre appareil ne prend pas en charge

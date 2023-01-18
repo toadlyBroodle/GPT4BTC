@@ -12,11 +12,10 @@
         compatible con su idioma :(</string>
     <string name="toast_enter_prompt">Primero, ingrese una solicitud.</string>
     <string name="toast_no_internet">Sin conexión a Internet. Conectar y volver a intentar.</string>
-    <string name="toast_prompt_truncated">Se alcanzó la longitud máxima del aviso:
-        \nAjustes->Suscríbete para habilitar avisos más largos.</string>
-    <string name="append_response_truncated">***La respuesta de OpenAI es más larga de lo permitido
-        en la versión gratuita.\nInicie sesión o suscríbase para eliminar todos los límites de
-        solicitud y respuesta, y para eliminar todos los anuncios.</string>
+    <string name="toast_prompt_truncated">Se ha alcanzado la longitud máxima de solicitud gratuita:
+         \nInicie sesión o actualice para obtener indicaciones y respuestas más largas.</string>
+    <string name="append_response_truncated">***Longitud máxima de respuesta libre excedida:
+         \nInicie sesión o actualice para obtener indicaciones y respuestas más largas.</string>
 
     <!-- Exception handling -->
     <string name="exception_socket_timeout">Se agotó el tiempo de conexión con api.openai.com.
@@ -33,14 +32,14 @@
     <string name="login">Acceso</string>
     <string name="logout">Cerrar sesión</string>
     <string name="account_label_name">Nombre:</string>
-    <string name="account_label_prompt_limit">Límite de solicitud:</string>
-    <string name="account_label_response_limit">Límite de respuesta:</string>
-    <string name="words">palabras</string>
+    <string name="account_label_prompt_limit">Palabras de solicitud gratuita:</string>
+    <string name="account_label_response_limit">Palabras de respuesta gratuito:</string>
+    <string name="account_label_purchased_words">Palabras compradas:</string>
     <string name="login_failed">Error de inicio de sesion:</string>
     <string name="logged_out">Cerrado sesión</string>
     <string name="upgrade">Ascender de Categoría</string>
     <string name="remove_limits">Elimine los límites de solicitud y respuesta comprando palabras
-        adicionales cuenta: próximamente!</string>
+        adicionales cuenta.</string>
     <string name="toast_billing_error">Error de facturación. Habilite la facturación de Google Play
         y vuelva a intentarlo..</string>
     <string name="toast_device_no_in_app_products">Lo sentimos, su dispositivo no es compatible con

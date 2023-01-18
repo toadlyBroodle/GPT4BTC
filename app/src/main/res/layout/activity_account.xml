@@ -33,63 +33,75 @@
             android:text= "@string/logout"
             android:visibility="gone"/>
 
-        <LinearLayout
+        <TableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/account_label_name"
-                style="@style/ChatText"/>
+            <TableRow>
 
-            <TextView
-                android:id="@+id/account_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/anon"
-                style="@style/ChatText"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/account_label_name"
+                    style="@style/AccountTableLabelText"/>
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/account_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/anon"
+                    style="@style/ChatText"/>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            </TableRow>
+            <TableRow>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/account_label_prompt_limit"
-                style="@style/ChatText"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/account_label_prompt_limit"
+                    style="@style/AccountTableLabelText"/>
 
-            <TextView
-                android:id="@+id/account_prompt_limit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/ChatText"/>
+                <TextView
+                    android:id="@+id/account_prompt_limit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/ChatText"/>
 
-        </LinearLayout>
+            </TableRow>
+            <TableRow>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/account_label_response_limit"
+                    style="@style/AccountTableLabelText"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/account_label_response_limit"
-                style="@style/ChatText"/>
+                <TextView
+                    android:id="@+id/account_response_limit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/ChatText"/>
 
-            <TextView
-                android:id="@+id/account_response_limit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/ChatText"/>
+            </TableRow>
 
-        </LinearLayout>
+            <TableRow>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/account_label_purchased_words"
+                    style="@style/AccountTableLabelText"/>
+
+                <TextView
+                    android:id="@+id/account_purchased_words"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/ChatText"/>
+
+            </TableRow>
+
+        </TableLayout>
 
         <View
             android:layout_width="match_parent"

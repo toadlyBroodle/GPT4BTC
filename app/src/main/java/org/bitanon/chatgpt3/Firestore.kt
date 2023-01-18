@@ -133,7 +133,7 @@ data class User(
 	val timeLastLogin: Long? = null,
 	val timeFirstCreated: Long? = null,
 	val promptCount: Int = 0,
-	val paidWordCount: Int = 0,
+	val purchasedWords: Int = 0,
 )
 
 /*

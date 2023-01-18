@@ -24,11 +24,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import org.bitanon.chatgpt3.databinding.ActivityMainBinding
 
 const val AD_ID_PART1 = "ca-app-pub-"
@@ -68,9 +66,9 @@ class MainActivity : AppCompatActivity() {
 			}
 		}
 
-		// initialize ads, billing, and analytics
+		// initialize ads
 		AdMob.init(this)
-		Billing.init(this, lifecycleScope)
+		//Billing.init(this, lifecycleScope)
 
 		// load prefs
 		loadPrefs(this)
@@ -152,18 +150,6 @@ class MainActivity : AppCompatActivity() {
 
 			d.show()
 		}
-	}
-
-	override fun onResume() {
-		super.onResume()
-
-		// check for updated subscriptions
-		lifecycleScope.launch {
-			withContext(Dispatchers.IO) {
-				Billing.fetchSubscription()
-			}
-		}
-
 	}
 
 	override fun onCreateOptionsMenu(menu: Menu): Boolean {

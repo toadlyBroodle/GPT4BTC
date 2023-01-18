@@ -23,10 +23,10 @@
         your language :(</string>
     <string name="toast_enter_prompt">First, enter a prompt.</string>
     <string name="toast_no_internet">No internet connection. Connect and retry.</string>
-    <string name="toast_prompt_truncated">Maximum prompt length reached:
-        \nLogin or Subscribe for longer prompts.</string>
-    <string name="append_response_truncated">***OpenAI\'s response is longer than allowed in the
-        free version.\nLogin or Subscribe to remove all prompt and response limits, and to remove all ads.</string>
+    <string name="toast_prompt_truncated">Maximum free prompt length reached:
+        \nLogin or Upgrade for longer prompts and responses.</string>
+    <string name="append_response_truncated">***Maximum free response length exceeded:
+        \nLogin or Upgrade for longer prompts and responses.</string>
 
     <!-- Exception handling -->
     <string name="exception_socket_timeout">Connection to api.openai.com timed out.
@@ -42,14 +42,14 @@
     <string name="login">Login</string>
     <string name="logout">Logout</string>
     <string name="account_label_name">Name:</string>
-    <string name="account_label_prompt_limit">Prompt Limit:</string>
-    <string name="account_label_response_limit">Response Limit:</string>
-    <string name="words">%1$s words</string>
+    <string name="account_label_prompt_limit">Free prompt words:</string>
+    <string name="account_label_response_limit">Free response words:</string>
+    <string name="account_label_purchased_words">Purchased words:</string>
     <string name="login_failed">Login failed:</string>
     <string name="logged_out">Logged out</string>
     <string name="upgrade">Upgrade</string>
     <string name="remove_limits">Remove prompt and response limits by purchasing additional word
-        counts: coming soon!</string>
+        counts.</string>
     <string name="toast_billing_error">Billing error. Please enable Google Play billing and retry.</string>
     <string name="toast_device_no_in_app_products">Sorry, your device does not support in app purchases.</string>
     <string name="toast_problem_loading_product_details">Problem loading in-app product details.</string>

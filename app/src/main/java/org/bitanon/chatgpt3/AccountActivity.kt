@@ -26,6 +26,7 @@ class AccountActivity: AppCompatActivity() {
 	private lateinit var tvName: TextView
 	private lateinit var tvPromptLimit: TextView
 	private lateinit var tvResponseLimit: TextView
+	private lateinit var tvPurchasedWords: TextView
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -44,6 +45,7 @@ class AccountActivity: AppCompatActivity() {
 		tvName = binding.accountName
 		tvPromptLimit = binding.accountPromptLimit
 		tvResponseLimit = binding.accountResponseLimit
+		tvPurchasedWords = binding.accountPurchasedWords
 
 		// get buttons, set click listeners, and log events
 		buttonLogin = binding.buttonLogin
@@ -102,17 +104,15 @@ class AccountActivity: AppCompatActivity() {
 					userName = user.displayName.toString()
 					maxPromptChars = 80
 					maxResponseTokens = 80
-
-					// enable subscribe button TODO if user not subscribed
-					//buttonSubscribe.isEnabled = !user.subs
+					purchasedWords = user.purchasedWords
 				}
 
 				// set textview properties
 				// update user details ui
 				tvName.text = userName
-				tvPromptLimit.text = getString(R.string.words).format(getPromptLimitWords())
-				tvResponseLimit.text = getString(R.string.words).format(getResponseLimitWords())
-
+				tvPromptLimit.text = getPromptLimitWords()
+				tvResponseLimit.text = getResponseLimitWords()
+				tvPurchasedWords.text = purchasedWords.toString()
 			}
 		}
 	}
@@ -147,6 +147,8 @@ class AccountActivity: AppCompatActivity() {
 		fun getMaxPromptChars(): Int { return maxPromptChars}
 		private var maxResponseTokens = LIMIT_USER
 		fun getMaxResponseTokens(): Int { return maxResponseTokens}
+
+		private var purchasedWords = 0
 
 		fun getPromptLimitWords(): String {
 			return (maxPromptChars / 5).toString()

@@ -107,7 +107,7 @@ class Billing {
 			}
 
 			if (productDetails == null) {
-				// notify user of billing failure
+				// notify user of failure to load product details
 				MainActivity.showToast(activ.baseContext, activ.baseContext.getString(
 					R.string.toast_problem_loading_product_details))
 				// retry connecting to billing client
@@ -156,19 +156,9 @@ class Billing {
 						FirebaseAnalytics.logCustomEvent(BILLING_SUBSCRIPTION_ACKNOWLEDGE)
 					else Log.d(TAG, "ackPurchaseResult>BillingResponseCode=${ackPurchaseResult?.responseCode}")
 				}
-				// TODO don't show ads
-				// TODO remove prompt/response limits
+				// TODO remove prompt/response limits, display paid word count remaining
 			}
-			// TODO handle all other purchase subscription states
-		}
-
-		suspend fun fetchSubscription() {
-			val params = QueryPurchasesParams.newBuilder()
-				.setProductType(BillingClient.ProductType.SUBS)
-
-			// uses queryPurchasesAsync Kotlin extension function
-			val purchasesResult = billingClient?.queryPurchasesAsync(params.build())
-			Log.d(TAG, "fetchSubscription>purchasesResult: $purchasesResult")
+			// TODO consume paid word count in excess of free prompt/response limits
 		}
 
 	}

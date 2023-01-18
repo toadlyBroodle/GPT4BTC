@@ -29,4 +29,8 @@
         <item name="android:scrollHorizontally">false</item>
     </style>
 
+    <style name="AccountTableLabelText" parent="ChatText">
+        <item name="android:textAlignment">viewEnd</item>
+    </style>
+
     </resources>
