@@ -12,6 +12,9 @@ import kotlinx.coroutines.launch
 import org.bitanon.chatgpt3.databinding.ActivityAccountBinding
 import kotlin.math.roundToInt
 
+const val LIMIT_ANON = 40
+const val LIMIT_USER = 80
+
 //private const val TAG = "AccountActivity"
 class AccountActivity: AppCompatActivity() {
 
@@ -98,8 +101,8 @@ class AccountActivity: AppCompatActivity() {
 				if (user == null) {
 					setLoginButtonVisibility(false)
 
-					maxPromptChars = FirebaseAnalytics.getPromptMaxChars()
-					maxResponseTokens = FirebaseAnalytics.getResponseMaxTokens()
+					maxPromptChars = LIMIT_ANON
+					maxResponseTokens = LIMIT_ANON
 				}
 				else { // user logged in
 					setLoginButtonVisibility(true)
@@ -149,9 +152,9 @@ class AccountActivity: AppCompatActivity() {
 
 	companion object {
 
-		private var maxPromptChars = FirebaseAnalytics.getPromptMaxChars()
+		private var maxPromptChars = LIMIT_USER
 		fun getMaxPromptChars(): Int { return maxPromptChars}
-		private var maxResponseTokens = FirebaseAnalytics.getResponseMaxTokens()
+		private var maxResponseTokens = LIMIT_USER
 		fun getMaxResponseTokens(): Int { return maxResponseTokens}
 
 		fun getPromptLimitWords(): String {

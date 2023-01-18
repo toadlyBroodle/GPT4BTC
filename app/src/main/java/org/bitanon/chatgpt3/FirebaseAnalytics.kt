@@ -56,14 +56,6 @@ class FirebaseAnalytics {
 			}
 		}
 
-		fun getResponseMaxTokens(): Int {
-			return 40 // tokens -> max allowed 4096
-		}
-
-		fun getPromptMaxChars(): Int {
-			return 40 // chars
-		}
-
 		fun getAdIdPart3(): String {
 			return "6286785755"
 		}
