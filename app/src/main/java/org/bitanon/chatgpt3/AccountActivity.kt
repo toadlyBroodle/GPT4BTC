@@ -73,7 +73,7 @@ class AccountActivity: AppCompatActivity() {
 				getString(R.string.require_gmail)
 			)
 		}
-		buttonSubscribe = binding.buttonSubscribe
+		buttonSubscribe = binding.buttonUpgrade
 		buttonSubscribe.setOnClickListener {
 			FirebaseAnalytics.logCustomEvent(BUTTON_SUBSCRIBE)
 

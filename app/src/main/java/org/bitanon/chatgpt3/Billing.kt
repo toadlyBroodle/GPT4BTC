@@ -6,12 +6,11 @@ import android.util.Log
 import androidx.lifecycle.LifecycleCoroutineScope
 import com.android.billingclient.api.*
 import com.android.billingclient.api.BillingClient.BillingResponseCode
-import com.android.billingclient.api.BillingClient.FeatureType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-const val SUBSCRIPTION_PRODUCT_ID = "chatgpt3_subscription"
+const val PAID_WORDS_10K = "chatgpt3_paid_words_10k"
 
 private const val TAG = "Billing"
 class Billing {
@@ -19,7 +18,7 @@ class Billing {
 	companion object {
 
 		private var billingClient: BillingClient? = null
-		private var subscriptionDetails: ProductDetails? = null
+		private var productDetails: ProductDetails? = null
 		var isBillingServiceConnected = false
 
 		fun init(ctx: Context, lifecycleScope: LifecycleCoroutineScope) {
@@ -75,10 +74,11 @@ class Billing {
 			})
 		}
 
-		// get subscription details using kotlin extensions
+		// get in-app product details using kotlin extensions
 		private suspend fun processPurchases() {
-			val product = QueryProductDetailsParams.Product.newBuilder().setProductId(SUBSCRIPTION_PRODUCT_ID)
-				.setProductType(BillingClient.ProductType.SUBS)
+
+			val product = QueryProductDetailsParams.Product.newBuilder().setProductId(PAID_WORDS_10K)
+				.setProductType(BillingClient.ProductType.INAPP)
 			val productList = ArrayList<QueryProductDetailsParams.Product>()
 			productList.add(product.build())
 
@@ -89,27 +89,27 @@ class Billing {
 			val productDetailsResult = withContext(Dispatchers.IO) {
 				billingClient!!.queryProductDetails(params.build())
 			}
-			// get subscription details
+			// get product details
 			if (productDetailsResult.productDetailsList?.isNotEmpty() == true) {
-				subscriptionDetails = productDetailsResult.productDetailsList!![0]
-				Log.d(TAG, "subscriptionDetails: ${subscriptionDetails.toString()}")
-			} else Log.d(TAG, "subscriptionDetails: ${productDetailsResult.billingResult}")
+				productDetails = productDetailsResult.productDetailsList!![0]
+				Log.d(TAG, "productDetails: ${productDetails.toString()}")
+			} else Log.d(TAG, "productDetails: ${productDetailsResult.billingResult}")
 		}
 
 		fun subscribe(activ: Activity, lifecycleScope: LifecycleCoroutineScope) {
 
 			// check if device supports subscriptions, toast if it doesn't
-			if (billingClient?.isFeatureSupported(FeatureType.SUBSCRIPTIONS)?.responseCode
+			if (billingClient?.isFeatureSupported(BillingClient.FeatureType.PRODUCT_DETAILS)?.responseCode
 				== BillingResponseCode.FEATURE_NOT_SUPPORTED) {
 				MainActivity.showToast(activ,
-					activ.getString(R.string.toast_device_no_subscriptions))
+					activ.getString(R.string.toast_device_no_in_app_products))
 				return
 			}
 
-			if (subscriptionDetails == null) {
+			if (productDetails == null) {
 				// notify user of billing failure
 				MainActivity.showToast(activ.baseContext, activ.baseContext.getString(
-					R.string.toast_problem_loading_subscription_details))
+					R.string.toast_problem_loading_product_details))
 				// retry connecting to billing client
 				init(activ, lifecycleScope)
 				return
@@ -124,10 +124,10 @@ class Billing {
 			val productDetailsParamsList = listOf(
 				BillingFlowParams.ProductDetailsParams.newBuilder()
 						// retrieve a value for "productDetails" by calling queryProductDetailsAsync()
-						.setProductDetails(subscriptionDetails!!)
+						.setProductDetails(productDetails!!)
 						// to get an offer token, call ProductDetails.subscriptionOfferDetails()
 						// for a list of offers that are available to the user
-						.setOfferToken(subscriptionDetails!!.subscriptionOfferDetails.toString())
+						.setOfferToken(productDetails!!.subscriptionOfferDetails.toString())
 						.build()
 			)
 

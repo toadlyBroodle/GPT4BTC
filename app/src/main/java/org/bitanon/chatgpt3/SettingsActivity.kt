@@ -2,8 +2,8 @@ package org.bitanon.chatgpt3
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SwitchCompat
 import com.google.android.material.slider.Slider
-import com.google.android.material.switchmaterial.SwitchMaterial
 import org.bitanon.chatgpt3.MainActivity.Companion.prefDictationAuto
 import org.bitanon.chatgpt3.MainActivity.Companion.prefDictationSpeed
 import org.bitanon.chatgpt3.MainActivity.Companion.setPrefDictationAuto
@@ -14,7 +14,7 @@ class SettingsActivity : AppCompatActivity() {
 
 	private lateinit var binding: ActivitySettingsBinding
 
-	private lateinit var switchDictateAuto: SwitchMaterial
+	private lateinit var switchDictateAuto: SwitchCompat
 	private lateinit var sliderSpeechSpeed: Slider
 
 

@@ -13,7 +13,7 @@
             android:text="@string/dictation"
             style="@style/ChatTextLabel"/>
 
-        <com.google.android.material.switchmaterial.SwitchMaterial
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/settings_switch_dictate_auto"
             android:layout_width="match_parent"
             android:text="@string/automatically_dictate_responses"

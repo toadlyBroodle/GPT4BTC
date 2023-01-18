@@ -119,8 +119,6 @@ class Firestore {
 			u.photoUrl.toString(),
 			Date().time,
 			Date().time,
-			0,
-			false,
 		)
 	}
 }
@@ -134,8 +132,8 @@ data class User(
 	val photoUrl: String? = null,
 	val timeLastLogin: Long? = null,
 	val timeFirstCreated: Long? = null,
-	val promptCount: Int? = null,
-	val subs: Boolean = false,
+	val promptCount: Int = 0,
+	val paidWordCount: Int = 0,
 )
 
 /*

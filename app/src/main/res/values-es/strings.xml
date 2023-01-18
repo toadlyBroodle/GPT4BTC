@@ -39,9 +39,14 @@
     <string name="login_failed">Error de inicio de sesion:</string>
     <string name="logged_out">Cerrado sesión</string>
     <string name="upgrade">Ascender de Categoría</string>
-    <string name="remove_limits_ads">¡Elimine todos los límites de solicitud y respuesta, y elimine
-        todos los anuncios! Muy pronto…</string>
-    <string name="subscribe">Suscribir</string>
+    <string name="remove_limits">Elimine los límites de solicitud y respuesta comprando palabras
+        adicionales cuenta: próximamente!</string>
+    <string name="toast_billing_error">Error de facturación. Habilite la facturación de Google Play
+        y vuelva a intentarlo..</string>
+    <string name="toast_device_no_in_app_products">Lo sentimos, su dispositivo no es compatible con
+        las compras de aplicaciones.</string>
+    <string name="toast_problem_loading_product_details">Problema al conectarse a la facturación
+        de Google.</string>
     <string name="testing_warning">***ADVERTENCIA: la suscripción está en desarrollo temprano. Al
         suscribirse, ha aceptado contribuir a probar la función, lo que puede no resultar en una
          implementación de características adicionales. Por favor notifíqueme de tal problema,
@@ -64,10 +69,6 @@
     <string name="openai_terms_header">Acuerdo de términos de OpenAI</string>
     <string name="agree_to_terms">Al usar esta aplicación, acepta los siguientes términos:</string>
     <string name="show_terms_agreement">Mostrar acuerdo de términos al inicio</string>
-    <string name="toast_billing_error">Error de facturación. Habilite la facturación de Google Play
-        y vuelva a intentarlo..</string>
-    <string name="toast_device_no_subscriptions">Lo sentimos, su dispositivo no admite suscripciones.</string>
-    <string name="toast_problem_loading_subscription_details">Problem connecting to Google billing.</string>
     <string name="html_app_terms_of_use"><a href="https://chatgpt3-android.app/terms-of-use.html">Términos de Uso</a></string>
     <string name="html_app_privacy_policy"><a href="https://chatgpt3-android.app/privacy-policy.html">Política de Privacidad</a></string>
     <string name="html_openai_terms_of_use"><a href="https://openai.com/terms/">Términos de Uso</a></string>
