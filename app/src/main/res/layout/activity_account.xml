@@ -118,22 +118,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/testing_warning"
-            android:visibility="gone"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/apply_early_access"
-            style="@style/ChatText"
-            android:visibility="gone"/>
-
-        <Button
-            android:id="@+id/button_join_testers"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/join_testers"
-            android:visibility="gone"/>
+            android:text="@string/testing_warning" />
 
         <View
             android:layout_width="match_parent"

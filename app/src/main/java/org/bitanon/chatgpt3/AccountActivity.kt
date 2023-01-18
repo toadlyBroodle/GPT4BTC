@@ -22,7 +22,7 @@ class AccountActivity: AppCompatActivity() {
 
 	private lateinit var buttonLogin: Button
 	private lateinit var buttonLogout: Button
-	private lateinit var buttonSubscribe: Button
+	private lateinit var buttonUpgrade: Button
 	private lateinit var tvName: TextView
 	private lateinit var tvPromptLimit: TextView
 	private lateinit var tvResponseLimit: TextView
@@ -64,18 +64,9 @@ class AccountActivity: AppCompatActivity() {
 			setLoginButtonVisibility(false)
 
 		}
-		binding.buttonJoinTesters.setOnClickListener {
-			FirebaseAnalytics.logCustomEvent(BUTTON_JOIN_TEST_GROUP)
-
-			composeEmail(
-				arrayOf("anon@bitanon.org"),
-				getString(R.string.join_testers),
-				getString(R.string.require_gmail)
-			)
-		}
-		buttonSubscribe = binding.buttonUpgrade
-		buttonSubscribe.setOnClickListener {
-			FirebaseAnalytics.logCustomEvent(BUTTON_SUBSCRIBE)
+		buttonUpgrade = binding.buttonUpgrade
+		buttonUpgrade.setOnClickListener {
+			FirebaseAnalytics.logCustomEvent(BUTTON_UPGRADE)
 
 			// check for internet connection
 			if (!RequestRepository.isOnline(baseContext)) {
@@ -85,9 +76,9 @@ class AccountActivity: AppCompatActivity() {
 				return@setOnClickListener
 			}
 
-			// launch subscription process
+			// launch upgrade process
 			lifecycleScope.launch {
-				Billing.subscribe(this@AccountActivity, lifecycleScope)
+				Billing.upgrade(this@AccountActivity, lifecycleScope)
 			}
 		}
 

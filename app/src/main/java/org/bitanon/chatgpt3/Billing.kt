@@ -96,7 +96,7 @@ class Billing {
 			} else Log.d(TAG, "productDetails: ${productDetailsResult.billingResult}")
 		}
 
-		fun subscribe(activ: Activity, lifecycleScope: LifecycleCoroutineScope) {
+		fun upgrade(activ: Activity, lifecycleScope: LifecycleCoroutineScope) {
 
 			// check if device supports subscriptions, toast if it doesn't
 			if (billingClient?.isFeatureSupported(BillingClient.FeatureType.PRODUCT_DETAILS)?.responseCode

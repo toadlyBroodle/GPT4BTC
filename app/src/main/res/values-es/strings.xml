@@ -45,17 +45,12 @@
         y vuelva a intentarlo..</string>
     <string name="toast_device_no_in_app_products">Lo sentimos, su dispositivo no es compatible con
         las compras de aplicaciones.</string>
-    <string name="toast_problem_loading_product_details">Problema al conectarse a la facturación
-        de Google.</string>
-    <string name="testing_warning">***ADVERTENCIA: la suscripción está en desarrollo temprano. Al
-        suscribirse, ha aceptado contribuir a probar la función, lo que puede no resultar en una
-         implementación de características adicionales. Por favor notifíqueme de tal problema,
-        para que pueda solucionarlo lo antes posible.</string>
-    <string name="apply_early_access">Para obtener acceso anticipado a la suscripción y probar
-        nuevas funciones y versiones, presente su solicitud como probador:</string>
-    <string name="join_testers">Unirse al grupo de prueba</string>
-    <string name="require_gmail">***Se requiere una dirección de Gmail para unirse al grupo de
-        prueba Android ChatGPT3.***</string>
+    <string name="toast_problem_loading_product_details">Problema al cargar los detalles del
+        producto en la aplicación.</string>
+    <string name="testing_warning">***ADVERTENCIA: las compras dentro de la aplicación son un
+        desarrollo temprano. Al comprar, usted ha aceptado ser uno de los primeros evaluadores, lo
+        que puede no resultar en un comportamiento previsto, como habilitando inmediatamente
+        características adicionales. Por favor, notifíquenos si tiene algún problema.</string>
 
     <!-- Settings Activity -->
     <string name="title_activity_settings">Ajustes</string>

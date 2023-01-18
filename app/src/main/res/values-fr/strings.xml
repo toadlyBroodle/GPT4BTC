@@ -45,17 +45,12 @@
         Google Play et réessayer.</string>
     <string name="toast_device_no_in_app_products">Désolé, votre appareil ne prend pas en charge
         les achats intégrés.</string>
-    <string name="toast_problem_loading_product_details">Problème de connexion à la facturation
-        Google.</string>
-    <string name="testing_warning">***AVERTISSEMENT : l\'abonnement est en cours de développement.
-        En vous abonnant, vous avez accepté de contribuer au test de la fonctionnalité, ce qui peut
-        ne pas entraîner de résultat immédiat implémentation de fonctionnalités supplémentaires.
-        Veuillez m\'informer d\'un tel problème, afin que je puisse le résoudre dès que possible.</string>
-    <string name="apply_early_access">Pour bénéficier d\'un accès anticipé à l\'abonnement et tester
-        de nouvelles fonctionnalités et versions, postulez en tant que testeur :</string>
-    <string name="join_testers">Rejoindre le groupe de test</string>
-    <string name="require_gmail">***Adresse Gmail requise pour rejoindre le groupe de test Android
-        ChatGPT3.***</string>
+    <string name="toast_problem_loading_product_details">Problème lors du chargement des détails du
+        produit dans l\'application.</string>
+    <string name="testing_warning">***AVERTISSEMENT : les achats intégrés sont un développement
+        précoce. En achetant, vous avez accepté d\'être un testeur précoce, ce qui peut ne pas
+        entraîner un comportement intentionnel tel que activant immédiatement des fonctionnalités
+        supplémentaires. Veuillez nous informer si vous rencontrez des problèmes.</string>
 
     <!-- Settings Activity -->
     <string name="title_activity_settings">Paramètres</string>
