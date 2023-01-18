@@ -37,8 +37,6 @@ class ChatFrag : Fragment(), TextToSpeech.OnInitListener {
 	private lateinit var tvResponse: TextView
 	private lateinit var etPrompt: EditText
 
-	private val firestore = Firestore()
-
 	private var tts: TextToSpeech? = null
 	private var ttsAvailable = false
 
@@ -159,7 +157,7 @@ class ChatFrag : Fragment(), TextToSpeech.OnInitListener {
 					tvResponse.text = output
 
 					// increment promptCount in firestore
-					firestore.incrementUserPrompts()
+					MainActivity.firestore.incrementUserPrompts()
 
 					// autoDictate if enabled
 					if (prefDictateAuto.value)

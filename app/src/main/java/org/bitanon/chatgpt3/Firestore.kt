@@ -3,7 +3,9 @@ package org.bitanon.chatgpt3
 import android.util.Log
 import androidx.annotation.Keep
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
@@ -14,6 +16,19 @@ import java.util.*
 
 private const val TAG = "Firestore"
 class Firestore {
+
+	private lateinit var db: FirebaseFirestore
+
+	fun init(): Firestore {
+		db = Firebase.firestore
+
+		// try reading currently signed in user from Cloud Firestore
+		if (userState.value == null) {
+			readUser(Firebase.auth.currentUser)
+		}
+
+		return this
+	}
 
 	companion object {
 		// Backing property to avoid state updates from other classes
@@ -30,8 +45,6 @@ class Firestore {
 		}
 
 	}
-
-	private val db = Firebase.firestore
 
 	private fun updateUserTimeLastLogin(u: FirebaseUser?) {
 		if (u != null) {

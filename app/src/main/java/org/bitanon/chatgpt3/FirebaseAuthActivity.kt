@@ -12,8 +12,6 @@ import com.google.firebase.auth.FirebaseAuth
 private const val TAG = "FirebaseUIActivity"
 class FirebaseAuthActivity: AppCompatActivity() {
 
-	val firestore = Firestore()
-
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
@@ -50,7 +48,7 @@ class FirebaseAuthActivity: AppCompatActivity() {
 			MainActivity.showToast(this, "Signed in as ${u?.displayName}")
 
 			// try reading user from firestore
-			firestore.readUser(u)
+			MainActivity.firestore.readUser(u)
 
 		} else {
 			// Sign in failed. If response is null the user canceled the

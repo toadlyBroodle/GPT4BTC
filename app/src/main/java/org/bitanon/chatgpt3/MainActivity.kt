@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity() {
 	private lateinit var binding: ActivityMainBinding
 	private val viewModel: ChatViewModel by viewModels()
 
+
 	@SuppressLint("ClickableViewAccessibility")
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -202,6 +203,8 @@ class MainActivity : AppCompatActivity() {
 	}
 
 	companion object {
+
+		val firestore = Firestore().init()
 
 		var prefShowTerms = true
 
