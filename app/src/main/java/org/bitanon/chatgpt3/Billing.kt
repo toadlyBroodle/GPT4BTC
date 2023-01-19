@@ -127,7 +127,7 @@ class Billing {
 						.setProductDetails(productDetails!!)
 						// to get an offer token, call ProductDetails.subscriptionOfferDetails()
 						// for a list of offers that are available to the user
-						.setOfferToken(productDetails!!.subscriptionOfferDetails.toString())
+						.setOfferToken(productDetails!!.oneTimePurchaseOfferDetails.toString())
 						.build()
 			)
 
