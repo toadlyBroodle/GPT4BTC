@@ -50,12 +50,7 @@
     <string name="upgrade">Upgrade</string>
     <string name="remove_limits">Remove prompt and response limits by purchasing additional word
         counts.</string>
-    <string name="toast_billing_error">Billing error. Please enable Google Play billing and retry.</string>
-    <string name="toast_device_no_in_app_products">Sorry, your device does not support in app purchases.</string>
-    <string name="toast_problem_loading_product_details">Problem loading in-app product details.</string>
-    <string name="testing_warning">***WARNING: in-app purchases are early development. By purchasing,
-        you have agreed to be an early tester, which may not result in intended behavior such as
-        immediately enabling additional features. Please notify us if you encounter any issues.</string>
+    <string name="upgrade_coming_soon">Upgrade coming soon…</string>
 
     <!-- Settings Activity -->
     <string name="title_activity_settings">Settings</string>

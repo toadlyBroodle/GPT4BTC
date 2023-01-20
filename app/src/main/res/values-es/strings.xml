@@ -40,16 +40,7 @@
     <string name="upgrade">Ascender de Categoría</string>
     <string name="remove_limits">Elimine los límites de solicitud y respuesta comprando palabras
         adicionales cuenta.</string>
-    <string name="toast_billing_error">Error de facturación. Habilite la facturación de Google Play
-        y vuelva a intentarlo..</string>
-    <string name="toast_device_no_in_app_products">Lo sentimos, su dispositivo no es compatible con
-        las compras de aplicaciones.</string>
-    <string name="toast_problem_loading_product_details">Problema al cargar los detalles del
-        producto en la aplicación.</string>
-    <string name="testing_warning">***ADVERTENCIA: las compras dentro de la aplicación son un
-        desarrollo temprano. Al comprar, usted ha aceptado ser uno de los primeros evaluadores, lo
-        que puede no resultar en un comportamiento previsto, como habilitando inmediatamente
-        características adicionales. Por favor, notifíquenos si tiene algún problema.</string>
+    <string name="upgrade_coming_soon">Ascender de categoría próximamente…</string>
 
     <!-- Settings Activity -->
     <string name="title_activity_settings">Ajustes</string>

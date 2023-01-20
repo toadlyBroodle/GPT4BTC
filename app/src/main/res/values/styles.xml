@@ -25,7 +25,6 @@
     <style name="ChatEditText" parent="ChatText">
         <item name="android:inputType">textMultiLine</item>
         <item name="android:maxLines">@integer/chat_edit_text_max_lines</item>
-        <item name="android:maxLength">@integer/chat_edit_text_max_length</item>
         <item name="android:scrollHorizontally">false</item>
     </style>
 

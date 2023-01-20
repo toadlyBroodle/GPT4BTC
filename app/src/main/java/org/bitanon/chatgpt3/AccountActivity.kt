@@ -12,8 +12,8 @@ import kotlinx.coroutines.launch
 import org.bitanon.chatgpt3.databinding.ActivityAccountBinding
 import kotlin.math.roundToInt
 
-const val LIMIT_ANON = 40
-const val LIMIT_USER = 80
+const val LIMIT_ANON = 80
+const val LIMIT_USER = 160
 
 //private const val TAG = "AccountActivity"
 class AccountActivity: AppCompatActivity() {
@@ -33,8 +33,7 @@ class AccountActivity: AppCompatActivity() {
 		binding = ActivityAccountBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 
-		// initialize billing
-		Billing.init(this, lifecycleScope)
+
 	}
 
 	@SuppressLint("ClickableViewAccessibility")
@@ -78,10 +77,10 @@ class AccountActivity: AppCompatActivity() {
 				return@setOnClickListener
 			}
 
-			// launch upgrade process
-			lifecycleScope.launch {
-				Billing.upgrade(this@AccountActivity, lifecycleScope)
-			}
+			// TODO launch upgrade process
+			MainActivity.showToast(this, getString(R.string.upgrade_coming_soon))
+			//lifecycleScope.launch {
+			//}
 		}
 
 
@@ -102,8 +101,8 @@ class AccountActivity: AppCompatActivity() {
 
 					// set user properties
 					userName = user.displayName.toString()
-					maxPromptChars = 80
-					maxResponseTokens = 80
+					maxPromptChars = LIMIT_USER
+					maxResponseTokens = LIMIT_USER
 					purchasedWords = user.purchasedWords
 				}
 

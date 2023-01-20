@@ -40,16 +40,7 @@
     <string name="upgrade">Mise à niveau</string>
     <string name="remove_limits">Supprimez les limites d\'invites et de réponses en achetant un mot
         supplémentaire compte.</string>
-    <string name="toast_billing_error">Erreur de facturation. Veuillez activer la facturation
-        Google Play et réessayer.</string>
-    <string name="toast_device_no_in_app_products">Désolé, votre appareil ne prend pas en charge
-        les achats intégrés.</string>
-    <string name="toast_problem_loading_product_details">Problème lors du chargement des détails du
-        produit dans l\'application.</string>
-    <string name="testing_warning">***AVERTISSEMENT : les achats intégrés sont un développement
-        précoce. En achetant, vous avez accepté d\'être un testeur précoce, ce qui peut ne pas
-        entraîner un comportement intentionnel tel que activant immédiatement des fonctionnalités
-        supplémentaires. Veuillez nous informer si vous rencontrez des problèmes.</string>
+    <string name="upgrade_coming_soon">Mise à niveau à venir…</string>
 
     <!-- Settings Activity -->
     <string name="title_activity_settings">Paramètres</string>
