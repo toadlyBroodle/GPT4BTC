@@ -9,14 +9,10 @@
         android:padding="5sp">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="@string/account"
             style="@style/ChatTextLabel"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="@string/login_to_enable_features"
             style="@style/ChatText"/>
 
@@ -35,8 +31,6 @@
 
         <TextView
             android:id="@+id/account_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="@string/anon"
             android:layout_gravity="center_horizontal"
             style="@style/ChatText"/>
@@ -49,30 +43,22 @@
             <TableRow>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:text="@string/account_label_prompt_limit"
                     style="@style/AccountTableLabelText"/>
 
                 <TextView
                     android:id="@+id/account_prompt_limit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     style="@style/ChatText"/>
 
             </TableRow>
             <TableRow>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:text="@string/account_label_response_limit"
                     style="@style/AccountTableLabelText"/>
 
                 <TextView
                     android:id="@+id/account_response_limit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     style="@style/ChatText"/>
 
             </TableRow>
@@ -80,20 +66,20 @@
             <TableRow>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:text="@string/account_label_purchased_words"
                     style="@style/AccountTableLabelText"/>
 
                 <TextView
                     android:id="@+id/account_purchased_words"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     style="@style/ChatText"/>
 
             </TableRow>
 
         </TableLayout>
+
+        <TextView
+            android:text="@string/purchased_words_consumption"
+            style="@style/ChatText"/>
 
         <View
             android:layout_width="match_parent"
@@ -102,14 +88,10 @@
             android:background="?android:attr/listDivider" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="@string/upgrade"
             style="@style/ChatTextLabel"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="@string/remove_limits"
             style="@style/ChatText"/>
 
