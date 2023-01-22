@@ -35,6 +35,8 @@
     <string name="account_label_prompt_limit">Mots d\'invite gratuits :</string>
     <string name="account_label_response_limit">Mots de réponse gratuits :</string>
     <string name="account_label_purchased_words">Mots achetés :</string>
+    <string name="purchased_words_consumption">Les mots achetés ne seront consommés qu\'après que
+        les longueurs d\'invite/réponse gratuites auront été dépassées.</string>
     <string name="login_failed">Échec de la connexion:</string>
     <string name="logged_out">Déconnexion</string>
     <string name="upgrade">Mise à niveau</string>
@@ -47,7 +49,7 @@
     <string name="purchase_required_info">Description requise : adresse e-mail du compte (%s)</string>
     <string name="purchase_notice_tips">Remarque : l\'e-mail ci-dessus est nécessaire pour associer votre
          paiement avec votre compte.\nTous les paiements n\'incluant pas d\'e-mail de compte valide dans le
-         la description de la transaction (commentaire) sera traitée comme des pourboires.\nJusqu'à
+         la description de la transaction (commentaire) sera traitée comme des pourboires.\nJusqu\'à
         ce que les paiements soient entièrement automatisé, cela peut prendre quelques heures pour
         que les mots achetés soient crédités sur votre compte.</string>
     <string name="lightning_wallets">Portefeuilles Lightning</string>

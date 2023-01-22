@@ -35,6 +35,8 @@
     <string name="account_label_prompt_limit">Palabras de solicitud gratuita:</string>
     <string name="account_label_response_limit">Palabras de respuesta gratuito:</string>
     <string name="account_label_purchased_words">Palabras compradas:</string>
+    <string name="purchased_words_consumption">Las palabras compradas solo se consumirán después de
+        que se superen las longitudes de solicitud/respuesta gratuitas.</string>
     <string name="login_failed">Error de inicio de sesion:</string>
     <string name="logged_out">Cerrado sesión</string>
     <string name="upgrade">Ascender de Categoría</string>
