@@ -33,27 +33,19 @@
             android:text= "@string/logout"
             android:visibility="gone"/>
 
+        <TextView
+            android:id="@+id/account_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/anon"
+            android:layout_gravity="center_horizontal"
+            style="@style/ChatText"/>
+
         <TableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center">
 
-            <TableRow>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/account_label_name"
-                    style="@style/AccountTableLabelText"/>
-
-                <TextView
-                    android:id="@+id/account_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/anon"
-                    style="@style/ChatText"/>
-
-            </TableRow>
             <TableRow>
 
                 <TextView

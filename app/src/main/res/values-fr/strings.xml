@@ -38,9 +38,24 @@
     <string name="login_failed">Échec de la connexion:</string>
     <string name="logged_out">Déconnexion</string>
     <string name="upgrade">Mise à niveau</string>
-    <string name="remove_limits">Supprimez les limites d\'invites et de réponses en achetant un mot
-        supplémentaire compte.</string>
-    <string name="upgrade_coming_soon">Mise à niveau à venir…</string>
+    <string name="remove_limits">Supprimez les limites d\'invites et de réponses en vous connectant
+        et en achetant nombre de mots supplémentaires, en utilisant le Lightning Network de Bitcoin.</string>
+    <string name="purchase_additional_words">Vous pouvez acheter des mots supplémentaires pour
+        augmenter l\'invite et les délais de réponse en envoyant un paiement Lightning à :</string>
+    <string name="transaction_details">Détails de la transaction</string>
+    <string name="purchase_price">Prix : 1sat/mot</string>
+    <string name="purchase_required_info">Description requise : adresse e-mail du compte (%s)</string>
+    <string name="purchase_notice_tips">Remarque : l\'e-mail ci-dessus est nécessaire pour associer votre
+         paiement avec votre compte.\nTous les paiements n\'incluant pas d\'e-mail de compte valide dans le
+         la description de la transaction (commentaire) sera traitée comme des pourboires.\nJusqu'à
+        ce que les paiements soient entièrement automatisé, cela peut prendre quelques heures pour
+        que les mots achetés soient crédités sur votre compte.</string>
+    <string name="lightning_wallets">Portefeuilles Lightning</string>
+    <string name="get_lightning_wallet">Si vous n\'avez pas encore de portefeuille Bitcoin Lightning,
+         vous devrez en obtenir un :</string>
+    <string name="html_lightning_wallet_phoenix"><a href="https://phoenix.acinq.co/">Phoenix (application non privative de liberté)</a></string>
+    <string name="html_getalby"><a href="https://getalby.com/">GetAlby (extension de navigateur dépositaire)</a></string>
+
 
     <!-- Settings Activity -->
     <string name="title_activity_settings">Paramètres</string>

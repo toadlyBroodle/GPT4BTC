@@ -62,7 +62,7 @@ class AccountActivity: AppCompatActivity() {
 			FirebaseAuthActivity.signOut(this)
 
 			// set button visibilities
-			setLoginButtonVisibility(false)
+			setButtonStates(false)
 
 		}
 		buttonUpgrade = binding.buttonUpgrade
@@ -77,10 +77,9 @@ class AccountActivity: AppCompatActivity() {
 				return@setOnClickListener
 			}
 
-			// TODO launch upgrade process
-			MainActivity.showToast(this, getString(R.string.upgrade_coming_soon))
-			//lifecycleScope.launch {
-			//}
+			// launch upgrade process
+			val startActivity = Intent(this, UpgradeActivity::class.java)
+			startActivity(startActivity)
 		}
 
 
@@ -91,13 +90,13 @@ class AccountActivity: AppCompatActivity() {
 				// user not logged in
 				var userName = getString(R.string.anon)
 				if (user == null) {
-					setLoginButtonVisibility(false)
+					setButtonStates(false)
 
 					maxPromptChars = LIMIT_ANON
 					maxResponseTokens = LIMIT_ANON
 				}
 				else { // user logged in
-					setLoginButtonVisibility(true)
+					setButtonStates(true)
 
 					// set user properties
 					userName = user.displayName.toString()
@@ -130,13 +129,17 @@ class AccountActivity: AppCompatActivity() {
 	}
 
 	// show/hide login/logout buttons depending on user login status
-	private fun setLoginButtonVisibility(loggedIn: Boolean) {
+	private fun setButtonStates(loggedIn: Boolean) {
 		if (loggedIn) {
 			buttonLogin.isVisible = false
 			buttonLogout.isVisible = true
+
+			buttonUpgrade.isEnabled = true
 		} else {
 			buttonLogin.isVisible = true
 			buttonLogout.isVisible = false
+
+			buttonUpgrade.isEnabled = false
 		}
 	}
 

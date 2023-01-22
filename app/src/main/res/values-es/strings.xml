@@ -38,9 +38,25 @@
     <string name="login_failed">Error de inicio de sesion:</string>
     <string name="logged_out">Cerrado sesión</string>
     <string name="upgrade">Ascender de Categoría</string>
-    <string name="remove_limits">Elimine los límites de solicitud y respuesta comprando palabras
-        adicionales cuenta.</string>
-    <string name="upgrade_coming_soon">Ascender de categoría próximamente…</string>
+    <string name="remove_limits">Elimine los límites de solicitud y respuesta iniciando sesión y
+        comprando recuentos de palabras adicionales, utilizando Lightning Network de Bitcoin.</string>
+    <string name="purchase_additional_words">Puede comprar palabras adicionales para aumentar el mensaje
+         y la duración de las respuestas enviando un pago Lightning a:</string>
+    <string name="transaction_details">Detalles de la transacción</string>
+    <string name="purchase_price">Precio: 1sat/palabra</string>
+    <string name="purchase_required_info">Descripción requerida: correo electrónico de la cuenta (%s)</string>
+    <string name="purchase_notice_tips">Aviso: el correo electrónico anterior es necesario para
+        asociar su pago con su cuenta.\nTodos los pagos que no incluyan un correo electrónico de
+        cuenta válido en el la descripción de la transacción (comentario) se tratará como propina.
+        \nHasta que los pagos estén completamente automatizado, es posible que las palabras
+        compradas tarden algunas horas en acreditarse en su cuenta.</string>
+    <string name="lightning_wallets">Carteras relámpago</string>
+    <string name="get_lightning_wallet">Si aún no tiene una billetera Bitcoin Lightning,
+         Necesitarás conseguir uno:</string>
+    <string name="html_lightning_wallet_phoenix"><a href="https://phoenix.acinq.co/">Phoenix (aplicación sin custodia)</a></string>
+    <string name="html_getalby"><a href="https://getalby.com/">GetAlby (extensión de navegador de custodia)</a></string>
+
+
 
     <!-- Settings Activity -->
     <string name="title_activity_settings">Ajustes</string>

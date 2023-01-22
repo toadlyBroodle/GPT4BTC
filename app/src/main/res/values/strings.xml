@@ -8,6 +8,8 @@
     <string name="audio_icon_left_auto" translatable="false">🔊</string>
     <string name="audio_icon_left_manual" translatable="false">🔈</string>
     <string name="audio_icon_left_random" translatable="false">🎲</string>
+    <string name="html_purchase_words" translatable="false"><a href="lightning:bitanon@getalby.com" description="account_email">bitanon@getalby.com</a></string>
+
 
     <!-- DO translate -->
     <!-- Chat Fragment -->
@@ -48,9 +50,22 @@
     <string name="login_failed">Login failed:</string>
     <string name="logged_out">Logged out</string>
     <string name="upgrade">Upgrade</string>
-    <string name="remove_limits">Remove prompt and response limits by purchasing additional word
-        counts.</string>
-    <string name="upgrade_coming_soon">Upgrade coming soon…</string>
+    <string name="remove_limits">Remove prompt and response limits by logging in and purchasing
+        additional word counts, using Bitcoin\'s Lightning Network.</string>
+    <string name="purchase_additional_words">You can purchase additional words to increase prompt
+        and response lengths by sending a Lightning payment to:</string>
+    <string name="transaction_details">Transaction details</string>
+    <string name="purchase_price">Price: 1sat/word</string>
+    <string name="purchase_required_info">Required description: account email (%s)</string>
+    <string name="purchase_notice_tips">Notice: the above email is required to associate your
+        payment with your account.\nAll payments not including a valid account email in the
+        transaction description (comment) will be treated as tips.\nUntil payments are fully
+        automated, it may take a few hours for purchased words to be credited to your account.</string>
+    <string name="lightning_wallets">Lightning Wallets</string>
+    <string name="get_lightning_wallet">If you don\'t already have a Bitcoin Lightning wallet,
+        you\'ll need to get one:</string>
+    <string name="html_lightning_wallet_phoenix"><a href="https://phoenix.acinq.co/">Phoenix (non-custodial app)</a></string>
+    <string name="html_getalby"><a href="https://getalby.com/">GetAlby (custodial browser extension)</a></string>
 
     <!-- Settings Activity -->
     <string name="title_activity_settings">Settings</string>

@@ -44,6 +44,10 @@ class Firestore {
 			return _userState.value != null
 		}
 
+		fun getUserEmail(): String? {
+			return userState.value?.email
+		}
+
 	}
 
 	private fun updateUserTimeLastLogin(u: FirebaseUser?) {

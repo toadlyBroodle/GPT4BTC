@@ -53,6 +53,26 @@
         </activity>
 
         <activity
+            android:name=".FirebaseAuthActivity"
+            android:exported="false"
+            android:label="@string/login"
+            android:parentActivityName=".AccountActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name=".UpgradeActivity"
+            android:exported="false"
+            android:label="@string/upgrade"
+            android:parentActivityName=".AccountActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
             android:name=".SettingsActivity"
             android:exported="false"
             android:label="@string/title_activity_settings"
@@ -67,16 +87,6 @@
             android:exported="false"
             android:label="@string/terms"
             android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-
-        <activity
-            android:name=".FirebaseAuthActivity"
-            android:exported="false"
-            android:label="@string/login"
-            android:parentActivityName=".AccountActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

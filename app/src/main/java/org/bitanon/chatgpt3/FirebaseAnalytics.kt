@@ -30,10 +30,13 @@ const val AD_INTERSTITIAL_SHOW_SUCCESS = "ad_interstitial_show_success"
 const val AD_INTERSTITIAL_SHOW_FAIL = "ad_interstitial_show_fail"
 const val AD_INTERSTITIAL_CLICK = "ad_interstitial_click"
 const val AD_INTERSTITIAL_DISMISS = "ad_interstitial_dismiss"
-const val BILLING_SUBSCRIPTION_ACKNOWLEDGE = "billing_subscription_acknowledge"
 const val EXCEPTION_SOCKET_TIMEOUT = "exception_socket_timeout"
 const val LOGIN_SUCCESS = "login_success"
 const val LOGIN_FAIL = "login_fail"
+const val UPGRADE_LN_PAYMENT_SEND_CLICK = "upgrade_ln_payment_send_click"
+const val UPGRADE_LN_WALLET_GETALBY_CLICK = "upgrade_ln_wallet_getalby_click"
+const val UPGRADE_LN_WALLET_NONCUSTODIAL_CLICK = "upgrade_ln_wallet_noncustodial_click"
+
 
 private const val TAG = "Firebase"
 class FirebaseAnalytics {
