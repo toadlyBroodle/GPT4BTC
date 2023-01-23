@@ -41,11 +41,15 @@ class Firestore {
 		}
 
 		fun isUserLoggedIn(): Boolean {
-			return _userState.value != null
+			return userState.value != null
 		}
 
 		fun getUserEmail(): String? {
 			return userState.value?.email
+		}
+
+		fun getUserPaidWords(): Int {
+			return userState.value?.purchasedWords ?: 0
 		}
 
 	}
@@ -68,6 +72,26 @@ class Firestore {
 					.addOnFailureListener { e -> Log.w(TAG, "incrementUserPromptCount: fail", e) }
 			}
 		}
+	}
+
+	fun consumePurchasedWords(toConsume: Int) {
+		if (toConsume <= 0 || _userState.value == null)
+			return
+
+		val consumeLong: Long = - toConsume.toLong()
+		Log.d(TAG, "consumingWords: $consumeLong")
+
+		// update local user purchased words
+		_userState.value?.purchasedWords?.minus(toConsume)
+
+		// update db user purchased words
+		_userState.value?.uid?.let {
+			db.collection("users").document(it)
+				.update("purchasedWords", FieldValue.increment(consumeLong))
+				.addOnSuccessListener { Log.d(TAG, "incrementUserPromptCount: success") }
+				.addOnFailureListener { e -> Log.w(TAG, "incrementUserPromptCount: fail", e) }
+		}
+
 	}
 
 	fun readUser(u: FirebaseUser?) {

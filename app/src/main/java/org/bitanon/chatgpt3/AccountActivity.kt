@@ -3,6 +3,7 @@ package org.bitanon.chatgpt3
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -12,10 +13,10 @@ import kotlinx.coroutines.launch
 import org.bitanon.chatgpt3.databinding.ActivityAccountBinding
 import kotlin.math.roundToInt
 
-const val LIMIT_ANON = 80
-const val LIMIT_USER = 160
+const val LIMIT_ANON = 60
+const val LIMIT_USER = 120
 
-//private const val TAG = "AccountActivity"
+private const val TAG = "AccountActivity"
 class AccountActivity: AppCompatActivity() {
 
 	private lateinit var binding: ActivityAccountBinding
@@ -92,17 +93,16 @@ class AccountActivity: AppCompatActivity() {
 				if (user == null) {
 					setButtonStates(false)
 
-					maxPromptChars = LIMIT_ANON
-					maxResponseTokens = LIMIT_ANON
+					freePromptChars = LIMIT_ANON
+					freeResponseTokens = LIMIT_ANON
 				}
 				else { // user logged in
 					setButtonStates(true)
 
 					// set user properties
 					userName = user.displayName.toString()
-					maxPromptChars = LIMIT_USER
-					maxResponseTokens = LIMIT_USER
-					purchasedWords = user.purchasedWords
+					freePromptChars = LIMIT_USER
+					freeResponseTokens = LIMIT_USER
 				}
 
 				// set textview properties
@@ -110,14 +110,14 @@ class AccountActivity: AppCompatActivity() {
 				tvName.text = userName
 				tvPromptLimit.text = getPromptLimitWords()
 				tvResponseLimit.text = getResponseLimitWords()
-				tvPurchasedWords.text = purchasedWords.toString()
+				tvPurchasedWords.text = Firestore.getUserPaidWords().toString()
 			}
 		}
 	}
 
 	private fun composeEmail(addresses: Array<String>, subject: String, text: String) {
 		val intent = Intent(Intent.ACTION_SEND).apply {
-			//data = Uri.parse("mailto:")  // only choose from email apps
+			//data = Uri.parse("mailto:")  // only choose from email apps, doesn't work?
 			type = "message/rfc822"
 			putExtra(Intent.EXTRA_EMAIL, addresses)
 			putExtra(Intent.EXTRA_SUBJECT, subject)
@@ -145,19 +145,41 @@ class AccountActivity: AppCompatActivity() {
 
 	companion object {
 
-		private var maxPromptChars = LIMIT_USER
-		fun getMaxPromptChars(): Int { return maxPromptChars}
-		private var maxResponseTokens = LIMIT_USER
-		fun getMaxResponseTokens(): Int { return maxResponseTokens}
+		private var freePromptChars = LIMIT_USER
+		private var freeResponseTokens = LIMIT_USER
 
-		private var purchasedWords = 0
+		fun getMaxPromptChars(): Int {
+			val maxChars = freePromptChars + (Firestore.getUserPaidWords() * 5)
+			return if (maxChars > 1000)
+				1000
+			else
+				maxChars
+		}
+		fun getMaxResponseTokens(): Int {
+			val maxTokens = freeResponseTokens + (Firestore.getUserPaidWords() * 1.33).roundToInt()
+			Log.d(TAG, "maxResponseTokens=$maxTokens")
+			return if (maxTokens > 1000)
+				1000 // 4000 maximum tokens allowed by GPT3 text-davinci-003 model
+			else maxTokens
+		}
+
+		fun getConsumedWords(usedTokens: Long): Int {
+
+			val consumed = (usedTokens - (freePromptChars / 5) - (freeResponseTokens * 0.75)).roundToInt()
+
+			return if (consumed <= 0 )
+				0
+			else consumed
+		}
 
 		fun getPromptLimitWords(): String {
-			return (maxPromptChars / 5).toString()
+			// char/word ~= 5
+			return (freePromptChars / 5).toString()
 		}
 
 		fun getResponseLimitWords(): String {
-			return (maxResponseTokens * 0.75).roundToInt().toString()
+			// tokens/words ~= 3/4
+			return (freeResponseTokens * 0.75).roundToInt().toString()
 		}
 	}
 

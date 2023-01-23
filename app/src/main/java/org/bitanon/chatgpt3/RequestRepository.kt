@@ -37,11 +37,15 @@ class RequestRepository {
 					val listChoices = mutableListOf<String>()
 					for (choice in result.choices) {
 						var text = choice.text.removePrefix("\n\n")
-						if (completionTokens >= AccountActivity.getMaxPromptChars()) {
+						if (completionTokens >= AccountActivity.getMaxResponseTokens()) {
 							// add elipsis and newlines to denote to ChatFrag a truncated response
 							text = "$text…\n\n"
 						}
 						listChoices.add(text)
+
+						// consume purchased words
+						val wordsToConsume = AccountActivity.getConsumedWords(result.usage.totalTokens)
+						MainActivity.firestore.consumePurchasedWords(wordsToConsume)
 					}
 
 				listChoices.ifEmpty { null }

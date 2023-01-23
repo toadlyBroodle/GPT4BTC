@@ -178,7 +178,8 @@ class ChatFrag : Fragment(), TextToSpeech.OnInitListener {
 				tvPromptLabelName.text = "${user?.displayName ?: getString(R.string.anon)}:"
 
 				// set max length of prompt edittext
-				etPrompt.filters = arrayOf(InputFilter.LengthFilter(AccountActivity.getMaxPromptChars()))
+				etPrompt.filters = arrayOf(InputFilter.LengthFilter(
+					AccountActivity.getMaxPromptChars()))
 			}
 		}
 
