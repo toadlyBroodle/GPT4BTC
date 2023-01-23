@@ -39,11 +39,14 @@
         les longueurs d\'invite/réponse gratuites auront été dépassées.</string>
     <string name="login_failed">Échec de la connexion:</string>
     <string name="logged_out">Déconnexion</string>
-    <string name="upgrade">Mise à niveau</string>
     <string name="remove_limits">Supprimez les limites d\'invites et de réponses en vous connectant
         et en achetant nombre de mots supplémentaires, en utilisant le Lightning Network de Bitcoin.</string>
-    <string name="purchase_additional_words">Vous pouvez acheter des mots supplémentaires pour
-        augmenter l\'invite et les délais de réponse en envoyant un paiement Lightning à :</string>
+
+    <!-- Upgrade Activity -->
+    <string name="upgrade">Mise à niveau</string>
+    <string name="purchase_additional_words">Vous pouvez augmenter la durée des invites et des
+        réponses en envoyant des paiements ₿ Lightning à :</string>
+    <string name="send_ln_payment">Envoyer le paiement LN</string>
     <string name="transaction_details">Détails de la transaction</string>
     <string name="purchase_price">Prix : 1sat/mot</string>
     <string name="purchase_required_info">Description requise : adresse e-mail du compte (%s)</string>

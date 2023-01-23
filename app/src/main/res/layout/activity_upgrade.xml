@@ -22,6 +22,13 @@
             android:text="@string/html_purchase_words"
             style="@style/ChatText"/>
 
+        <Button
+            android:id="@+id/upgrade_button_send_ln_payment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/send_ln_payment"
+            android:visibility="gone"/>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"

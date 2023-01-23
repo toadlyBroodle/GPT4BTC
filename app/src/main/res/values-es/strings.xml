@@ -39,11 +39,14 @@
         que se superen las longitudes de solicitud/respuesta gratuitas.</string>
     <string name="login_failed">Error de inicio de sesion:</string>
     <string name="logged_out">Cerrado sesión</string>
-    <string name="upgrade">Ascender de Categoría</string>
     <string name="remove_limits">Elimine los límites de solicitud y respuesta iniciando sesión y
         comprando recuentos de palabras adicionales, utilizando Lightning Network de Bitcoin.</string>
-    <string name="purchase_additional_words">Puede comprar palabras adicionales para aumentar el mensaje
-         y la duración de las respuestas enviando un pago Lightning a:</string>
+
+    <!-- Upgrade Activity -->
+    <string name="upgrade">Ascender de Categoría</string>
+    <string name="purchase_additional_words">Puede aumentar la duración de las solicitudes y las
+        respuestas enviando pagos Lightning de ₿ a:</string>
+    <string name="send_ln_payment">Enviar pago de LN</string>
     <string name="transaction_details">Detalles de la transacción</string>
     <string name="purchase_price">Precio: 1sat/palabra</string>
     <string name="purchase_required_info">Descripción requerida: correo electrónico de la cuenta (%s)</string>

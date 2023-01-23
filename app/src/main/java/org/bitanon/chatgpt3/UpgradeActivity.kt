@@ -1,6 +1,8 @@
 package org.bitanon.chatgpt3
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.view.MotionEvent
@@ -30,14 +32,20 @@ class UpgradeActivity : AppCompatActivity() {
 		val tvReqDescAccEmail = binding.requiredDescriptionAccountEmail
 		tvReqDescAccEmail.text = getString(R.string.purchase_required_info).format(Firestore.getUserEmail())
 
+		// button send ln payment on click listener
+		val buttonSendLNPayment = binding.upgradeButtonSendLnPayment
+		buttonSendLNPayment.setOnClickListener {
+			sendLNPayment()
+		}
+
 		// Make links clickable and log clicks
 		val linkSendLNPayment = binding.upgradeLinkSendLightningPayment
+		linkSendLNPayment.setTextIsSelectable(true)
 		linkSendLNPayment.movementMethod = LinkMovementMethod.getInstance()
 		linkSendLNPayment.setOnTouchListener { v, event ->
 			when (event?.action) {
 				MotionEvent.ACTION_DOWN -> {
 					FirebaseAnalytics.logCustomEvent(UPGRADE_LN_PAYMENT_SEND_CLICK)
-					//sendLNPayment()
 				}
 			}
 			v?.onTouchEvent(event) ?: true
@@ -63,15 +71,12 @@ class UpgradeActivity : AppCompatActivity() {
 
 	}
 
-/*	private fun sendLNPayment() {
-		val intent = Intent(Intent.ACTION_SEND).apply {
-			data = Uri.parse("lightning:")  // only choose from lightning wallets
-			//type = "message/rfc822"
-			//putExtra(Intent.EXTRA_EMAIL, addresses)
-			//putExtra(Intent.EXTRA_SUBJECT, subject)
+	private fun sendLNPayment() {
+		val intent = Intent(Intent.ACTION_VIEW).apply {
+			data = Uri.parse("lightning:bitanon@getalby.com")  // only choose from lightning wallets
 		}
 		if (intent.resolveActivity(packageManager) != null) {
 			startActivity(intent)
 		}
-	}*/
+	}
 }
