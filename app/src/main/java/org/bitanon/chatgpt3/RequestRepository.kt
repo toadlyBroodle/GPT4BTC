@@ -1,5 +1,6 @@
 package org.bitanon.chatgpt3
 
+import android.app.Activity
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
@@ -17,9 +18,7 @@ class RequestRepository {
 
 	companion object {
 
-		suspend fun queryOpenAI(
-			p: String
-		): List<String>? {
+		suspend fun queryOpenAI(activ: Activity, p: String): List<String>? {
 
 			// Move the execution of the coroutine to the I/O dispatcher
 			return withContext(Dispatchers.IO) {
@@ -46,7 +45,7 @@ class RequestRepository {
 
 						// consume purchased words
 						val wordsToConsume = AccountActivity.getConsumedWords(result.usage.totalTokens)
-						MainActivity.firestore.consumePurchasedWords(wordsToConsume)
+						MainActivity.firestore.consumePurchasedWords(activ, wordsToConsume)
 					}
 
 				listChoices.ifEmpty { null }

@@ -1,5 +1,6 @@
 package org.bitanon.chatgpt3
 
+import android.app.Activity
 import android.util.Log
 import androidx.annotation.Keep
 import com.google.firebase.auth.FirebaseAuth
@@ -75,7 +76,7 @@ class Firestore {
 		}
 	}
 
-	fun consumePurchasedWords(toConsume: Int) {
+	fun consumePurchasedWords(activ: Activity, toConsume: Int) {
 		// ignore negative or zero word consumption and anon prompts
 		if (toConsume <= 0 || _userState.value == null)
 			return
@@ -105,6 +106,11 @@ class Firestore {
 		// read updated user info from database
 		readUser(FirebaseAuth.getInstance().currentUser)
 
+		// notify user of number of purchased words consumed
+		activ.runOnUiThread {
+			MainActivity.showToast(activ,
+				activ.getString(R.string.toast_used_purchased_words).format(consumeLong))
+		}
 	}
 
 	fun readUser(u: FirebaseUser?) {

@@ -25,6 +25,7 @@
         your language :(</string>
     <string name="toast_enter_prompt">First, enter a prompt.</string>
     <string name="toast_no_internet">No internet connection. Connect and retry.</string>
+    <string name="toast_used_purchased_words">Response used %s purchased words.</string>
     <string name="toast_prompt_truncated">Maximum free prompt length reached:
         \nLogin or Upgrade for longer prompts and responses.</string>
     <string name="append_response_truncated">***Maximum free response length exceeded:

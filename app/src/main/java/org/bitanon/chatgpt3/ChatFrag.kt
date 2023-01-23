@@ -82,7 +82,7 @@ class ChatFrag : Fragment(), TextToSpeech.OnInitListener {
 				tvPrompt.text = q
 				tvResponse.text = getString(R.string.response_thinking)
 
-				viewModel.sendPrompt(requireContext(), q)
+				viewModel.sendPrompt(requireActivity(), q)
 
 				// try showing ad
 				AdMob.show(activity)

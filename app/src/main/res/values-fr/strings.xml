@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Chat Fragment -->
     <string name="alertdialog_terms_agreement_title">Termes et accord de confidentialité</string>
     <string name="exit">Sortie</string>
     <string name="accept">Accepter</string>
@@ -12,6 +14,7 @@
         charge votre langue :(</string>
     <string name="toast_enter_prompt">Tout d\'abord, entrez une invite.</string>
     <string name="toast_no_internet">Pas de connexion Internet. Connectez-vous et réessayez.</string>
+    <string name="toast_used_purchased_words">La réponse a utilisé %s mots achetés.</string>
     <string name="toast_prompt_truncated">Longueur maximale d\'invite gratuite atteinte :
          \nConnexion ou mise à niveau pour des invites et des réponses plus longues.</string>
     <string name="append_response_truncated">***Longueur maximale de réponse libre dépassée :
