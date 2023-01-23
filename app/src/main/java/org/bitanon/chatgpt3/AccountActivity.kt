@@ -15,7 +15,8 @@ import kotlin.math.roundToInt
 
 const val LIMIT_ANON = 60
 const val LIMIT_USER = 120
-const val LIMIT_PAID = 1000
+const val MAX_LIMIT_PROMPT_CHARS = 1000
+const val MAX_LIMIT_RESPONSE_TOKENS = 2000 // 4000 maximum tokens allowed by GPT3 text-davinci-003 model
 
 private const val TAG = "AccountActivity"
 class AccountActivity: AppCompatActivity() {
@@ -146,28 +147,28 @@ class AccountActivity: AppCompatActivity() {
 
 	companion object {
 
-		private var freePromptChars = LIMIT_USER
-		private var freeResponseTokens = LIMIT_USER
+		private var freePromptChars = LIMIT_ANON
+		private var freeResponseTokens = LIMIT_ANON
 
 		fun getMaxPromptChars(): Int {
 			val maxChars = freePromptChars + (Firestore.getUserPaidWords() * 5)
-			return if (maxChars > LIMIT_PAID)
-				LIMIT_PAID
+			return if (maxChars > MAX_LIMIT_PROMPT_CHARS)
+				MAX_LIMIT_PROMPT_CHARS // limit -> max edittext length (~400words)
+			else if (Firestore.isUserLoggedIn() && maxChars < LIMIT_USER)
+				LIMIT_USER // limit -> logged in user free length
 			else
-				maxChars
+				maxChars // limit -> within purchased word count
 		}
 		fun getMaxResponseTokens(): Int {
 			val maxTokens = freeResponseTokens + (Firestore.getUserPaidWords() * 1.33).roundToInt()
 			Log.d(TAG, "maxResponseTokens=$maxTokens")
-			return if (maxTokens > LIMIT_PAID)
-				LIMIT_PAID // 4000 maximum tokens allowed by GPT3 text-davinci-003 model
+			return if (maxTokens > MAX_LIMIT_RESPONSE_TOKENS)
+				MAX_LIMIT_RESPONSE_TOKENS
 			else maxTokens
 		}
 
 		fun getConsumedWords(usedTokens: Long): Int {
-
 			val consumed = (usedTokens - (freePromptChars / 5) - (freeResponseTokens * 0.75)).roundToInt()
-
 			return if (consumed <= 0 )
 				0
 			else consumed

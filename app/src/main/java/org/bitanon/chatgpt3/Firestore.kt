@@ -2,6 +2,7 @@ package org.bitanon.chatgpt3
 
 import android.util.Log
 import androidx.annotation.Keep
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FieldValue
@@ -75,22 +76,34 @@ class Firestore {
 	}
 
 	fun consumePurchasedWords(toConsume: Int) {
+		// ignore negative or zero word consumption and anon prompts
 		if (toConsume <= 0 || _userState.value == null)
 			return
 
-		val consumeLong: Long = - toConsume.toLong()
-		Log.d(TAG, "consumingWords: $consumeLong")
+		var consumeLong: Long = toConsume.toLong()
 
-		// update local user purchased words
-		_userState.value?.purchasedWords?.minus(toConsume)
+		// don't allow saving of negative paid words to db
+		val existingPaidWords = userState.value!!.purchasedWords
+		if (existingPaidWords - toConsume <= 0)
+			// consume exact remaining purchased words
+			consumeLong = existingPaidWords.toLong()
+
+		// ignore negative or zero consumed words
+		if (consumeLong <= 0L)
+			return
+
+		Log.d(TAG, "consumingWords: $consumeLong")
 
 		// update db user purchased words
 		_userState.value?.uid?.let {
 			db.collection("users").document(it)
-				.update("purchasedWords", FieldValue.increment(consumeLong))
+				.update("purchasedWords", FieldValue.increment(- consumeLong))
 				.addOnSuccessListener { Log.d(TAG, "incrementUserPromptCount: success") }
 				.addOnFailureListener { e -> Log.w(TAG, "incrementUserPromptCount: fail", e) }
 		}
+
+		// read updated user info from database
+		readUser(FirebaseAuth.getInstance().currentUser)
 
 	}
 

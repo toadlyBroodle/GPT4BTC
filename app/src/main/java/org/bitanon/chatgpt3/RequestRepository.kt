@@ -10,6 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 private const val MODEL = "text-davinci-003"
+private const val TIMEOUT = 30 //secs
 
 //private const val TAG = "RequestRepository"
 class RequestRepository {
@@ -22,7 +23,7 @@ class RequestRepository {
 
 			// Move the execution of the coroutine to the I/O dispatcher
 			return withContext(Dispatchers.IO) {
-				val service = OpenAiService(MainActivity.buildOpenAIKey())
+				val service = OpenAiService(MainActivity.buildOpenAIKey(), TIMEOUT)
 				val completionRequest = CompletionRequest.builder()
 					.prompt(p)
 					.model(MODEL)
