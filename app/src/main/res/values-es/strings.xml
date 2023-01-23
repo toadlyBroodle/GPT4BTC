@@ -18,10 +18,11 @@
          \nInicie sesión o actualice para obtener indicaciones y respuestas más largas.</string>
 
     <!-- Exception handling -->
-    <string name="exception_socket_timeout">Se agotó el tiempo de conexión con api.openai.com.
-         Puedes intentar restablecer tu conexión; sin embargo, la causa es probable que OpenAI\'s
-         los servidores están actualmente sobrecargados. Deberían solucionar el problema pronto.
-        Gracias por tu paciencia y vuelve a intentarlo en breve.</string>
+    <string name="exception_socket_timeout">Se agotó el tiempo de conexión con api.openai.com. La
+        causa es probable que los servidores de OpenAI estén actualmente sobrecargados. Cuando esto
+        sucede, a menudo acelerarán las respuestas largas; tal vez intente con un mensaje más corto
+        y simple, mientras trabajan para solucionar el problema. Gracias por su paciencia y vuelva
+        a intentarlo en breve.</string>
     <string name="exception_unauthorized_access">HTTP 401: acceso no autorizado api.openai.com!
          Descargar aplicación autorizada:</string>
 

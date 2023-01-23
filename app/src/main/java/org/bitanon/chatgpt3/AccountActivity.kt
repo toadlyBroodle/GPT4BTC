@@ -15,6 +15,7 @@ import kotlin.math.roundToInt
 
 const val LIMIT_ANON = 60
 const val LIMIT_USER = 120
+const val LIMIT_PAID = 1000
 
 private const val TAG = "AccountActivity"
 class AccountActivity: AppCompatActivity() {
@@ -150,16 +151,16 @@ class AccountActivity: AppCompatActivity() {
 
 		fun getMaxPromptChars(): Int {
 			val maxChars = freePromptChars + (Firestore.getUserPaidWords() * 5)
-			return if (maxChars > 1000)
-				1000
+			return if (maxChars > LIMIT_PAID)
+				LIMIT_PAID
 			else
 				maxChars
 		}
 		fun getMaxResponseTokens(): Int {
 			val maxTokens = freeResponseTokens + (Firestore.getUserPaidWords() * 1.33).roundToInt()
 			Log.d(TAG, "maxResponseTokens=$maxTokens")
-			return if (maxTokens > 1000)
-				1000 // 4000 maximum tokens allowed by GPT3 text-davinci-003 model
+			return if (maxTokens > LIMIT_PAID)
+				LIMIT_PAID // 4000 maximum tokens allowed by GPT3 text-davinci-003 model
 			else maxTokens
 		}
 

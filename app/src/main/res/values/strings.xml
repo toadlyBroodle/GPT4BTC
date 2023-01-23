@@ -8,7 +8,7 @@
     <string name="audio_icon_left_auto" translatable="false">🔊</string>
     <string name="audio_icon_left_manual" translatable="false">🔈</string>
     <string name="audio_icon_left_random" translatable="false">🎲</string>
-    <string name="html_purchase_words" translatable="false"><a href="lightning:bitanon@getalby.com" comment="account_email">bitanon@getalby.com</a></string>
+    <string name="html_purchase_words" translatable="false"><a href="lightning:bitanon@getalby.com">bitanon@getalby.com</a></string>
 
 
     <!-- DO translate -->
@@ -31,10 +31,10 @@
         \nLogin or Upgrade for longer prompts and responses.</string>
 
     <!-- Exception handling -->
-    <string name="exception_socket_timeout">Connection to api.openai.com timed out.
-        You can try resetting your connection; however, the cause it likely that OpenAI\'s
-        servers are currently overloaded. They should fix the problem soon. Thanks for your
-        patience and please try again shortly.</string>
+    <string name="exception_socket_timeout">Connection to api.openai.com timed out. The cause is
+        likely that OpenAI\'s servers are currently overloaded. When this happens, often they will
+        throttle long responses; maybe try a shorter, simpler prompt, while they work on fixing the
+        problem. Thanks for your patience and please try again shortly.</string>
     <string name="exception_unauthorized_access">HTTP 401: api.openai.com unauthorized access! Download authorized app:</string>
 
     <!-- Account Activity -->

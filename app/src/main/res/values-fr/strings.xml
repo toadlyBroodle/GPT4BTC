@@ -18,10 +18,11 @@
          \nConnexion ou mise à niveau pour des invites et des réponses plus longues.</string>
 
     <!-- Exception handling -->
-    <string name="exception_socket_timeout">La connexion à api.openai.com a expiré.
-         Vous pouvez essayer de réinitialiser votre connexion ; cependant, la cause est probablement
-        que OpenAI\'s les serveurs sont actuellement surchargés. Ils devraient régler le problème
-        rapidement. Merci pour votre patience et veuillez réessayer sous peu.</string>
+    <string name="exception_socket_timeout">La connexion à api.openai.com a expiré. La cause est
+        probablement que les serveurs d\'OpenAI sont actuellement surchargés. Lorsque cela se
+        produit, ils limitent souvent les réponses longues ; essayez peut-être une invite plus
+        courte et plus simple pendant qu\'ils travaillent à résoudre le problème. Merci de votre
+        patience et veuillez réessayer dans quelques instants.</string>
     <string name="exception_unauthorized_access">HTTP 401 : accès non autorisé à api.openai.com !
         Télécharger l\'application autorisée</string>
 
