@@ -17,17 +17,11 @@
             android:text="@string/purchase_additional_words"
             style="@style/ChatText"/>
 
-        <TextView
-            android:id="@+id/upgrade_link_send_lightning_payment"
-            android:text="@string/html_purchase_words"
-            style="@style/ChatText"/>
-
         <Button
             android:id="@+id/upgrade_button_send_ln_payment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/send_ln_payment"
-            android:visibility="gone"/>
+            android:text="@string/send_ln_payment"/>
 
         <View
             android:layout_width="match_parent"
@@ -44,12 +38,7 @@
             style="@style/ChatText"/>
 
         <TextView
-            android:id="@+id/required_description_account_email"
-            android:text="@string/purchase_required_info"
-            style="@style/ChatText"/>
-
-        <TextView
-            android:text="@string/purchase_notice_tips"
+            android:text="@string/purchase_notice"
             style="@style/ChatText"/>
 
         <View
@@ -58,17 +47,16 @@
             android:layout_marginTop="15sp"
             android:background="?android:attr/listDivider" />
 
-
         <TextView
             android:text="@string/lightning_wallets"
             style="@style/ChatTextLabel"/>
 
         <TextView
-            android:text="@string/get_lightning_wallet"
-            style="@style/ChatText"/>
+            style="@style/ChatText"
+            android:text="@string/get_lightning_wallet" />
 
         <TextView
-            android:id="@+id/upgrade_link_noncustodial_lightning_wallets"
+            android:id="@+id/upgrade_link_phoenix"
             android:text="@string/html_lightning_wallet_phoenix"
             style="@style/ChatText"/>
 
@@ -77,6 +65,38 @@
             android:text="@string/html_getalby"
             style="@style/ChatText"/>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="15sp"
+            android:background="?android:attr/listDivider" />
+
+        <TextView
+            android:text="@string/manual_transaction_alternative_label"
+            style="@style/ChatTextLabel"/>
+
+        <TextView
+            android:text="@string/manual_transaction_alternative"
+            style="@style/ChatText"/>
+
+        <TextView
+            android:text="@string/lnurl_address"
+            style="@style/ChatText"/>
+
+        <TextView
+            android:id="@+id/manual_transaction_lnurl_address"
+            android:text="@string/html_purchase_words"
+            android:textIsSelectable="true"
+            style="@style/ChatText"/>
+
+        <TextView
+            android:text="@string/lnurl_required_comment"
+            style="@style/ChatText"/>
+
+        <TextView
+            android:id="@+id/manual_transaction_lnurl_comment"
+            android:textIsSelectable="true"
+            style="@style/ChatText"/>
 
     </LinearLayout>
 

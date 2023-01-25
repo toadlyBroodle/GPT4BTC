@@ -58,20 +58,23 @@
     <!-- Upgrade Activity -->
     <string name="upgrade">Upgrade</string>
     <string name="purchase_additional_words">You can increase prompt and response lengths by
-        sending ₿ Lightning payments to:</string>
+        sending ₿ payments over the Lightning Network (LN):</string>
     <string name="send_ln_payment">Send LN Payment</string>
     <string name="transaction_details">Transaction details</string>
     <string name="purchase_price">Price: 1sat/word</string>
-    <string name="purchase_required_info">Required description: account email (%s)</string>
-    <string name="purchase_notice_tips">Notice: the above email is required to associate your
-        payment with your account.\nAll payments not including a valid account email in the
-        transaction description (comment) will be treated as tips.\nUntil payments are fully
-        automated, it may take a few hours for purchased words to be credited to your account.</string>
+    <string name="purchase_notice">Notice: depending on your wallet, transactions may not yet be
+        fully automated and may take a few hours for purchased words to be credited to your account.</string>
     <string name="lightning_wallets">Lightning Wallets</string>
-    <string name="get_lightning_wallet">If you don\'t already have a Bitcoin Lightning wallet,
-        you\'ll need to get one:</string>
+    <string name="get_lightning_wallet">If the \'Send LN Payment\' button doesn\'t work, you\'ll
+        probably need to install and fund a Lightning wallet on your device:</string>
     <string name="html_lightning_wallet_phoenix"><a href="https://phoenix.acinq.co/">Phoenix (non-custodial app)</a></string>
     <string name="html_getalby"><a href="https://getalby.com/">GetAlby (custodial browser extension)</a></string>
+    <string name="manual_transaction_alternative_label">Manual LN Transaction</string>
+    <string name="manual_transaction_alternative">Alternatively, you can also purchase words by
+        manually sending transactions from another wallet (such as Alby) to the following Lightning address
+        and including the comment below.</string>
+    <string name="lnurl_address">Lnurl address:</string>
+    <string name="lnurl_required_comment">Required comment:</string>
 
     <!-- Settings Activity -->
     <string name="title_activity_settings">Settings</string>

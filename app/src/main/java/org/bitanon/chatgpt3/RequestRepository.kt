@@ -5,15 +5,22 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.util.Log
+import androidx.annotation.Keep
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.theokanning.openai.OpenAiService
 import com.theokanning.openai.completion.CompletionRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import okhttp3.*
+import org.json.JSONObject
+import ru.gildor.coroutines.okhttp.await
 
 private const val MODEL = "text-davinci-003"
 private const val TIMEOUT = 30 //secs
+private const val REQUEST_LNURL = "https://getalby.com/lnurlp/bitanon/callback?amount=1000000&comment=hello" // amount is in millisats
 
-//private const val TAG = "RequestRepository"
+private const val TAG = "RequestRepository"
 class RequestRepository {
 
 	companion object {
@@ -72,12 +79,36 @@ class RequestRepository {
 			return false
 		}
 
+		suspend fun getLNInvoice(email: String?): AlbyLnurlCallback {
+			// Move the execution of the coroutine to the I/O dispatcher
+			return withContext(Dispatchers.IO) {
+
+				val url = REQUEST_LNURL.replace("comment=hello", "comment=GPT4BTC:$email")
+
+				val client = OkHttpClient()
+				val request = Request.Builder().url(url).build()
+				val response = client.newCall(request).await()
+
+				val albyCallback = parseAlbyLnurlCallback(response.body()?.string())
+				Log.d(TAG, "Successful Response: $url\nAlbyCallback=$albyCallback")
+
+				albyCallback
+			}
+
+		}
+
 	}
 }
 
-// Represents different states for the latest OpenAI result
-/*
-sealed class LatestResultUiState {
-	data class Success(val result: List<String>): LatestResultUiState()
-	data class Error(val exception: Throwable): LatestResultUiState()
-}*/
+@Keep // Do not obfuscate! Variable names are needed for parsers
+data class AlbyLnurlCallback(
+	val status: String,
+	val successAction: JSONObject,
+	val verify: String,
+	val routes: List<String>,
+	val pr: String
+	)
+fun parseAlbyLnurlCallback(json: String?): AlbyLnurlCallback {
+	val typeToken = object : TypeToken<AlbyLnurlCallback>() {}.type
+	return Gson().fromJson(json, typeToken)
+}

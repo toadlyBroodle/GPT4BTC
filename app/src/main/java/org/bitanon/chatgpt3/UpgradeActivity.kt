@@ -7,10 +7,12 @@ import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.view.MotionEvent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import org.bitanon.chatgpt3.databinding.ActivityUpgradeBinding
 
 
-//private const val TAG = "UpgradeActivity"
+private const val TAG = "UpgradeActivity"
 class UpgradeActivity : AppCompatActivity() {
 
 	private lateinit var binding: ActivityUpgradeBinding
@@ -24,29 +26,28 @@ class UpgradeActivity : AppCompatActivity() {
 
 	}
 
-	@SuppressLint("ClickableViewAccessibility")
+	@SuppressLint("ClickableViewAccessibility", "SetTextI18n")
 	override fun onStart() {
 		super.onStart()
-
-		// add account email to required info description
-		val tvReqDescAccEmail = binding.requiredDescriptionAccountEmail
-		tvReqDescAccEmail.text = getString(R.string.purchase_required_info).format(Firestore.getUserEmail())
 
 		// button send ln payment on click listener
 		val buttonSendLNPayment = binding.upgradeButtonSendLnPayment
 		buttonSendLNPayment.setOnClickListener {
-			sendLNPayment()
+			FirebaseAnalytics.logCustomEvent(UPGRADE_LN_PAYMENT_SEND_CLICK)
+
+			lifecycleScope.launch {
+				val albyCallback = RequestRepository.getLNInvoice(Firestore.getUserEmail())
+				sendLNPayment(albyCallback.pr)
+			}
 		}
 
 		// Make links clickable and log clicks
-		val linkSendLNPayment = binding.upgradeLinkSendLightningPayment
-		linkSendLNPayment.setTextIsSelectable(true)
-		linkSendLNPayment.movementMethod = LinkMovementMethod.getInstance()
-		linkSendLNPayment.setOnTouchListener { v, event ->
+		val linkPhoenix = binding.upgradeLinkPhoenix
+		linkPhoenix.movementMethod = LinkMovementMethod.getInstance()
+		linkPhoenix.setOnTouchListener { v, event ->
 			when (event?.action) {
-				MotionEvent.ACTION_DOWN -> {
-					FirebaseAnalytics.logCustomEvent(UPGRADE_LN_PAYMENT_SEND_CLICK)
-				}
+				MotionEvent.ACTION_DOWN ->
+					FirebaseAnalytics.logCustomEvent(UPGRADE_LN_WALLET_NONCUSTODIAL_CLICK)
 			}
 			v?.onTouchEvent(event) ?: true
 		}
@@ -59,21 +60,28 @@ class UpgradeActivity : AppCompatActivity() {
 			}
 			v?.onTouchEvent(event) ?: true
 		}
-		val linkNonCustodialWallets = binding.upgradeLinkNoncustodialLightningWallets
-		linkNonCustodialWallets.movementMethod = LinkMovementMethod.getInstance()
-		linkNonCustodialWallets.setOnTouchListener { v, event ->
+		val linkSendManualLNPayment = binding.manualTransactionLnurlAddress
+		linkSendManualLNPayment.setTextIsSelectable(true)
+		linkSendManualLNPayment.movementMethod = LinkMovementMethod.getInstance()
+		linkSendManualLNPayment.setOnTouchListener { v, event ->
 			when (event?.action) {
-				MotionEvent.ACTION_DOWN ->
-					FirebaseAnalytics.logCustomEvent(UPGRADE_LN_WALLET_NONCUSTODIAL_CLICK)
+				MotionEvent.ACTION_DOWN -> {
+					FirebaseAnalytics.logCustomEvent(UPGRADE_LN_MANUAL_PAYMENT_SEND_CLICK)
+				}
 			}
 			v?.onTouchEvent(event) ?: true
 		}
 
+		// add account email to required info description
+		val tvReqDescComment = binding.manualTransactionLnurlComment
+		tvReqDescComment.text = "GPT4BTC:${Firestore.getUserEmail()}"
+
 	}
 
-	private fun sendLNPayment() {
+	private fun sendLNPayment(uri: String?) {
+
 		val intent = Intent(Intent.ACTION_VIEW).apply {
-			data = Uri.parse("lightning:bitanon@getalby.com")  // only choose from lightning wallets
+			data = Uri.parse("lightning:$uri")
 		}
 		if (intent.resolveActivity(packageManager) != null) {
 			startActivity(intent)

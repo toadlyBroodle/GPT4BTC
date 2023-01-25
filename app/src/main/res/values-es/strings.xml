@@ -48,23 +48,25 @@
 
     <!-- Upgrade Activity -->
     <string name="upgrade">Ascender de Categoría</string>
-    <string name="purchase_additional_words">Puede aumentar la duración de las solicitudes y las
-        respuestas enviando pagos Lightning de ₿ a:</string>
+    <string name="purchase_additional_words">Puede aumentar la duración de las indicaciones y las
+        respuestas enviando pagos en ₿ a través de Lightning Network (LN):</string>
     <string name="send_ln_payment">Enviar pago de LN</string>
     <string name="transaction_details">Detalles de la transacción</string>
     <string name="purchase_price">Precio: 1sat/palabra</string>
-    <string name="purchase_required_info">Descripción requerida: correo electrónico de la cuenta (%s)</string>
-    <string name="purchase_notice_tips">Aviso: el correo electrónico anterior es necesario para
-        asociar su pago con su cuenta.\nTodos los pagos que no incluyan un correo electrónico de
-        cuenta válido en el la descripción de la transacción (comentario) se tratará como propina.
-        \nHasta que los pagos estén completamente automatizado, es posible que las palabras
-        compradas tarden algunas horas en acreditarse en su cuenta.</string>
+    <string name="purchase_notice">Aviso: dependiendo de su billetera, es posible que las
+        transacciones aún no estén completamente automatizadas y que las palabras compradas tarden
+        algunas horas en acreditarse en su cuenta.</string>
     <string name="lightning_wallets">Carteras relámpago</string>
     <string name="get_lightning_wallet">Si aún no tiene una billetera Bitcoin Lightning,
          Necesitarás conseguir uno:</string>
     <string name="html_lightning_wallet_phoenix"><a href="https://phoenix.acinq.co/">Phoenix (aplicación sin custodia)</a></string>
     <string name="html_getalby"><a href="https://getalby.com/">GetAlby (extensión de navegador de custodia)</a></string>
-
+    <string name="manual_transaction_alternative_label">Transacción manual de LN</string>
+    <string name="manual_transaction_alternative">Alternativamente, también puede comprar palabras
+        enviando transacciones manualmente desde otra billetera (como Alby) a la siguiente dirección
+        Lightning e incluyendo el comentario a continuación.</string>
+    <string name="lnurl_address">Dirección lnurl:</string>
+    <string name="lnurl_required_comment">Comentario requerido:</string>
 
 
     <!-- Settings Activity -->

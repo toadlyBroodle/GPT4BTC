@@ -9,10 +9,10 @@
             <!-- TTS for Android 11 -->
             <action android:name="android.intent.action.TTS_SERVICE" />
         </intent>
-<!--        <intent>
+        <intent>
             <action android:name="android.intent.action.VIEW" />
             <data android:scheme="lightning" />
-        </intent>-->
+        </intent>
     </queries>
 
     <application

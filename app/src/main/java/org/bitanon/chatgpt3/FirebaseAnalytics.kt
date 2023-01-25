@@ -34,6 +34,7 @@ const val EXCEPTION_SOCKET_TIMEOUT = "exception_socket_timeout"
 const val LOGIN_SUCCESS = "login_success"
 const val LOGIN_FAIL = "login_fail"
 const val UPGRADE_LN_PAYMENT_SEND_CLICK = "upgrade_ln_payment_send_click"
+const val UPGRADE_LN_MANUAL_PAYMENT_SEND_CLICK = "upgrade_ln_manual_payment_send_click"
 const val UPGRADE_LN_WALLET_GETALBY_CLICK = "upgrade_ln_wallet_getalby_click"
 const val UPGRADE_LN_WALLET_NONCUSTODIAL_CLICK = "upgrade_ln_wallet_noncustodial_click"
 
