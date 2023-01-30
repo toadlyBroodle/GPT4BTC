@@ -56,12 +56,14 @@ class Firestore {
 
 	}
 
-	private fun updateUserTimeLastLogin(u: FirebaseUser?) {
-		if (u != null) {
-			db.collection("users").document(u.uid)
-				.update("timeLastLogin", Date().time)
-				.addOnSuccessListener { Log.d(TAG, "updateUserTimeLastLogin: success") }
-				.addOnFailureListener { e -> Log.w(TAG, "updateUserTimeLastLogin: fail", e) }
+	private fun updateUserTimeLastLogin() {
+		if (_userState.value != null) {
+			_userState.value!!.uid?.let {
+				db.collection("users").document(it)
+					.update("timeLastLogin", Date().time)
+					.addOnSuccessListener { Log.d(TAG, "updateUserTimeLastLogin: success") }
+					.addOnFailureListener { e -> Log.w(TAG, "updateUserTimeLastLogin: fail", e) }
+			}
 		}
 	}
 
@@ -72,6 +74,21 @@ class Firestore {
 					.update("promptCount", FieldValue.increment(1))
 					.addOnSuccessListener { Log.d(TAG, "incrementUserPromptCount: success") }
 					.addOnFailureListener { e -> Log.w(TAG, "incrementUserPromptCount: fail", e) }
+			}
+		}
+	}
+
+	fun updateUserBlockAds(blockAds: Boolean) {
+		if (_userState.value != null) {
+			_userState.value!!.uid?.let {
+				// only update if it's been changed
+				if (_userState.value?.blockAds == blockAds)
+					return
+
+				db.collection("users").document(it)
+					.update("blockAds", blockAds)
+					.addOnSuccessListener { Log.d(TAG, "updateUserBlockAds: success") }
+					.addOnFailureListener { e -> Log.w(TAG, "updateUserBlockAds: fail", e) }
 			}
 		}
 	}
@@ -131,7 +148,7 @@ class Firestore {
 				if (_userState.value == null)
 					writeNewUser(u)
 				else // if exists, then update last login time
-					updateUserTimeLastLogin(u)
+					updateUserTimeLastLogin()
 
 			}
 			.addOnFailureListener { exception ->
@@ -181,6 +198,7 @@ data class User(
 	val timeFirstCreated: Long? = null,
 	val promptCount: Int = 0,
 	val purchasedWords: Int = 0,
+	val blockAds: Boolean = false,
 )
 
 /*

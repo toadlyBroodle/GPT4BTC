@@ -8,6 +8,7 @@ import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 
 private const val AD_ID_TEST = "ca-app-pub-3940256099942544/1033173712"
+private const val AD_BLOCK_WORDS_TO_CONSUME = 50
 
 private const val TAG = "AdMob"
 class AdMob {
@@ -17,6 +18,10 @@ class AdMob {
 		var mInterstitialAd: InterstitialAd? = null
 
 		fun init(ctx: Context) {
+			// don't load/show ads if ad blocking on
+			if (Firestore.userState.value?.blockAds == true)
+				return
+
 			Log.d(TAG, "initializing AdMob")
 
 			var adId = MainActivity.buildAdMobKey()
@@ -89,6 +94,13 @@ class AdMob {
 			if (showReqCount % 2 == 0) {
 				// load new ad and return
 				activ?.baseContext?.let { init(it) }
+				return
+			}
+
+			// don't show if ad blocking on - instead, consume purchased words
+			if (Firestore.userState.value?.blockAds == true) {
+				activ?.let { MainActivity.firestore.consumePurchasedWords(it,
+					AD_BLOCK_WORDS_TO_CONSUME) }
 				return
 			}
 

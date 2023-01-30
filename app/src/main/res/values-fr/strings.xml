@@ -39,8 +39,9 @@
     <string name="account_label_prompt_limit">Mots d\'invite gratuits :</string>
     <string name="account_label_response_limit">Mots de réponse gratuits :</string>
     <string name="account_label_purchased_words">Mots achetés :</string>
-    <string name="purchased_words_consumption">Les mots achetés ne seront consommés qu\'après que
-        les longueurs d\'invite/réponse gratuites auront été dépassées.</string>
+    <string name="purchased_words_consumption">Les mots achetés ne seront consommés qu\'après le
+        dépassement des longueurs d\'invite/réponse gratuites ou pour bloquer les publicités.</string>
+    <string name="block_ads">Bloquer les annonces (50 mots/annonce)</string>
     <string name="login_failed">Échec de la connexion:</string>
     <string name="logged_out">Déconnexion</string>
     <string name="remove_limits">Supprimez les limites d\'invites et de réponses en vous connectant

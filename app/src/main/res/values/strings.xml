@@ -49,7 +49,8 @@
     <string name="account_label_response_limit">Free response words:</string>
     <string name="account_label_purchased_words">Purchased words:</string>
     <string name="purchased_words_consumption">Purchased words will only be consumed after free
-        prompt/response lengths are exceeded.</string>
+        prompt/response lengths are exceeded or to block ads.</string>
+    <string name="block_ads">Block ads (50 words/ad)</string>
     <string name="login_failed">Login failed:</string>
     <string name="logged_out">Logged out</string>
     <string name="remove_limits">Remove prompt and response limits by logging in and purchasing
