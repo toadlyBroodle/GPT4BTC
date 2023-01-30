@@ -87,7 +87,11 @@ class Firestore {
 
 				db.collection("users").document(it)
 					.update("blockAds", blockAds)
-					.addOnSuccessListener { Log.d(TAG, "updateUserBlockAds: success") }
+					.addOnSuccessListener {
+						Log.d(TAG, "updateUserBlockAds: success")
+						// read updated user info from database
+						readUser(FirebaseAuth.getInstance().currentUser)
+					}
 					.addOnFailureListener { e -> Log.w(TAG, "updateUserBlockAds: fail", e) }
 			}
 		}
@@ -110,23 +114,23 @@ class Firestore {
 		if (consumeLong <= 0L)
 			return
 
-		Log.d(TAG, "consumingWords: $consumeLong")
-
 		// update db user purchased words
 		_userState.value?.uid?.let {
 			db.collection("users").document(it)
 				.update("purchasedWords", FieldValue.increment(- consumeLong))
-				.addOnSuccessListener { Log.d(TAG, "incrementUserPromptCount: success") }
+				.addOnSuccessListener {
+					Log.d(TAG, "incrementUserPromptCount: success")
+
+					// read updated user info from database
+					readUser(FirebaseAuth.getInstance().currentUser)
+
+					// notify user of number of purchased words consumed
+					activ.runOnUiThread {
+						MainActivity.showToast(activ,
+							activ.getString(R.string.toast_used_purchased_words).format(consumeLong))
+					}
+				}
 				.addOnFailureListener { e -> Log.w(TAG, "incrementUserPromptCount: fail", e) }
-		}
-
-		// read updated user info from database
-		readUser(FirebaseAuth.getInstance().currentUser)
-
-		// notify user of number of purchased words consumed
-		activ.runOnUiThread {
-			MainActivity.showToast(activ,
-				activ.getString(R.string.toast_used_purchased_words).format(consumeLong))
 		}
 	}
 

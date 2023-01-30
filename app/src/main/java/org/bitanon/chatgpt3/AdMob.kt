@@ -97,8 +97,10 @@ class AdMob {
 				return
 			}
 
-			// don't show if ad blocking on - instead, consume purchased words
-			if (Firestore.userState.value?.blockAds == true) {
+			// don't show if ad blocking on and purchased words available
+			if (Firestore.userState.value?.blockAds == true &&
+				Firestore.userState.value!!.purchasedWords != 0) {
+				// consume purchased words
 				activ?.let { MainActivity.firestore.consumePurchasedWords(it,
 					AD_BLOCK_WORDS_TO_CONSUME) }
 				return
