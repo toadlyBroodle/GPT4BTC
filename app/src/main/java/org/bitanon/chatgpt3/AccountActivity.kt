@@ -48,6 +48,8 @@ class AccountActivity: AppCompatActivity() {
 		tvPromptLimit = binding.accountPromptLimit
 		tvResponseLimit = binding.accountResponseLimit
 		tvPurchasedWords = binding.accountPurchasedWords
+		// get block ads switch
+		switchBlockAds = binding.switchBlockAds
 
 		// get buttons, set click listeners, and log events
 		buttonLogin = binding.buttonLogin
@@ -65,7 +67,7 @@ class AccountActivity: AppCompatActivity() {
 			FirebaseAuthActivity.signOut(this)
 
 			// set button visibilities
-			setWidgetStates(false)
+			setButtonStates(false)
 
 		}
 		buttonUpgrade = binding.buttonUpgrade
@@ -85,12 +87,6 @@ class AccountActivity: AppCompatActivity() {
 			startActivity(startActivity)
 		}
 
-		// set block ads switch state
-		switchBlockAds = binding.switchBlockAds
-		/*switchBlockAds.setOnCheckedChangeListener { _, isChecked ->
-			MainActivity.prefBlockAds = isChecked
-		}*/
-
 		// collect changes to logged in user
 		lifecycleScope.launch {
 			Firestore.userState.collect { user ->
@@ -98,13 +94,28 @@ class AccountActivity: AppCompatActivity() {
 				// user not logged in
 				var userName = getString(R.string.anon)
 				if (user == null) {
-					setWidgetStates(false)
+					setButtonStates(false)
+
+					// disable and uncheck block ads switch
+					switchBlockAds.isEnabled = false
+					switchBlockAds.isChecked = false
 
 					freePromptChars = LIMIT_ANON
 					freeResponseTokens = LIMIT_ANON
 				}
 				else { // user logged in
-					setWidgetStates(true)
+					setButtonStates(true)
+
+					// enable ad block switch, if has remaining purchased words
+					if (user.purchasedWords > 0) {
+						switchBlockAds.isEnabled = true
+						// set ad block switch to user setting
+						switchBlockAds.isChecked = Firestore.userState.value?.blockAds ?: false
+					}
+					else { // disable and turn off ad blocking
+						switchBlockAds.isEnabled = false
+						switchBlockAds.isChecked = false
+					}
 
 					// set user properties
 					userName = user.displayName.toString()
@@ -129,37 +140,17 @@ class AccountActivity: AppCompatActivity() {
 		MainActivity.firestore.updateUserBlockAds(switchBlockAds.isChecked)
 	}
 
-/*	private fun composeEmail(addresses: Array<String>, subject: String, text: String) {
-		val intent = Intent(Intent.ACTION_SEND).apply {
-			//data = Uri.parse("mailto:")  // only choose from email apps, doesn't work?
-			type = "message/rfc822"
-			putExtra(Intent.EXTRA_EMAIL, addresses)
-			putExtra(Intent.EXTRA_SUBJECT, subject)
-			putExtra(Intent.EXTRA_TEXT, text)
-		}
-		if (intent.resolveActivity(packageManager) != null) {
-			startActivity(intent)
-		}
-	}*/
-
 	// show/hide login/logout buttons depending on user login status
-	private fun setWidgetStates(loggedIn: Boolean) {
+	private fun setButtonStates(loggedIn: Boolean) {
 		if (loggedIn) { // user logged in
 			buttonLogin.isVisible = false
 			buttonLogout.isVisible = true
 			buttonUpgrade.isEnabled = true
 
-			// enable ad block switch and set to user's attribute
-			switchBlockAds.isEnabled = true
-			switchBlockAds.isChecked = Firestore.userState.value?.blockAds ?: false
 		} else { // logged out
 			buttonLogin.isVisible = true
 			buttonLogout.isVisible = false
 			buttonUpgrade.isEnabled = false
-
-			// disable and uncheck block ads switch
-			switchBlockAds.isEnabled = false
-			switchBlockAds.isChecked = false
 		}
 	}
 
@@ -203,4 +194,16 @@ class AccountActivity: AppCompatActivity() {
 		}
 	}
 
+	/*	private fun composeEmail(addresses: Array<String>, subject: String, text: String) {
+		val intent = Intent(Intent.ACTION_SEND).apply {
+			//data = Uri.parse("mailto:")  // only choose from email apps, doesn't work?
+			type = "message/rfc822"
+			putExtra(Intent.EXTRA_EMAIL, addresses)
+			putExtra(Intent.EXTRA_SUBJECT, subject)
+			putExtra(Intent.EXTRA_TEXT, text)
+		}
+		if (intent.resolveActivity(packageManager) != null) {
+			startActivity(intent)
+		}
+	}*/
 }

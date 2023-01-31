@@ -106,9 +106,12 @@ class Firestore {
 
 		// don't allow saving of negative paid words to db
 		val existingPaidWords = userState.value!!.purchasedWords
-		if (existingPaidWords - toConsume <= 0)
+		if (existingPaidWords - toConsume <= 0) {
 			// consume exact remaining purchased words
 			consumeLong = existingPaidWords.toLong()
+			// and turn off ad blocking
+			MainActivity.firestore.updateUserBlockAds(false)
+		}
 
 		// ignore negative or zero consumed words
 		if (consumeLong <= 0L)
