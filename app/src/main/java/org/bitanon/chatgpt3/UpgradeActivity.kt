@@ -6,6 +6,9 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.view.MotionEvent
+import android.view.View
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
@@ -33,12 +36,46 @@ class UpgradeActivity : AppCompatActivity() {
 		// button send ln payment on click listener
 		val buttonSendLNPayment = binding.upgradeButtonSendLnPayment
 		buttonSendLNPayment.setOnClickListener {
-			FirebaseAnalytics.logCustomEvent(UPGRADE_LN_PAYMENT_SEND_CLICK)
+			// inflate dialog layout
+			val dialogPurchaseAmount = View.inflate(this,
+				R.layout.dialog_purchase_amount, null)
+			// get edittext amount
+			val etAmount = dialogPurchaseAmount.findViewById<EditText>(
+				R.id.dialog_purchase_words_amount_edittext)
 
-			lifecycleScope.launch {
-				val albyCallback = RequestRepository.getLNInvoice(Firestore.getUserEmail())
-				sendLNPayment(albyCallback.pr)
-			}
+			// show dialog to get payment amount
+			val d: AlertDialog = AlertDialog.Builder(this)
+				.setTitle(getString(R.string.purchase_words))
+				.setPositiveButton(
+					getString(R.string.send_ln_payment)
+				) { _, _ ->
+					// user clicks send ln payment: log event
+					FirebaseAnalytics.logCustomEvent(UPGRADE_LN_PAYMENT_SEND_CLICK)
+
+					lifecycleScope.launch {
+						// get ln invoice from Alby
+						val albyLnurlCallback = RequestRepository.getLNInvoice(Firestore.getUserEmail())
+						// get verify response from Alby
+						val albyLNVerifyResponse = RequestRepository.getLNPaymentVerify(
+							albyLnurlCallback?.verify)
+						// get payment amount
+						val amount = etAmount.text.toString().toInt()
+						// get new payment verify object
+						if (albyLNVerifyResponse != null) {
+							// add payment to database
+							MainActivity.firestore.addLNPayment(amount, albyLNVerifyResponse)
+							// launch intent to device ln wallet
+							sendLNPayment(albyLNVerifyResponse.pr)
+							// TODO attempt to verify payment
+
+						} else {}// TODO notify user of failure to make payment
+					}
+				}
+				.setNegativeButton(getString(R.string.cancel)) { _, _ ->}
+				.setView(dialogPurchaseAmount)
+				.create()
+
+			d.show()
 		}
 
 		// Make links clickable and log clicks

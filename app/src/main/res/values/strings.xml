@@ -9,7 +9,8 @@
     <string name="audio_icon_left_manual" translatable="false">🔈</string>
     <string name="audio_icon_left_random" translatable="false">🎲</string>
     <string name="html_purchase_words" translatable="false"><a href="lightning:bitanon@getalby.com">bitanon@getalby.com</a></string>
-
+    <string name="purchase_words_default_amount" translatable="false">1000</string>
+    <string name="sats" translatable="false">sats</string>
 
     <!-- DO translate -->
     <!-- Chat Fragment -->
@@ -65,6 +66,10 @@
     <string name="purchase_price">Price: 1sat/word</string>
     <string name="purchase_notice">Notice: depending on your wallet, transactions may not yet be
         fully automated and may take a few hours for purchased words to be credited to your account.</string>
+    <string name="purchase_words">Purchase words</string>
+    <string name="dialog_purchase_words_amount">Amount (sats):</string>
+    <string name="cancel">Cancel</string>
+    <string name="toast_credit_purchased_words">LN payment received! %s purchased words added</string>
     <string name="lightning_wallets">Lightning Wallets</string>
     <string name="get_lightning_wallet">If the \'Send LN Payment\' button doesn\'t work, you\'ll
         probably need to install and fund a Lightning wallet on your device:</string>

@@ -97,6 +97,46 @@ class Firestore {
 		}
 	}
 
+	fun creditPurchasedWords(activ: Activity, toCredit: Int) {
+		val creditLong: Long = toCredit.toLong()
+
+		// update db user purchased words
+		_userState.value?.uid?.let {
+			db.collection("users").document(it)
+				.update("purchasedWords", FieldValue.increment(creditLong))
+				.addOnSuccessListener {
+					Log.d(TAG, "creditPurchasedWords: success")
+
+					// read updated user info from database
+					readUser(FirebaseAuth.getInstance().currentUser)
+
+					// notify user of number of purchased words credited
+					activ.runOnUiThread {
+						MainActivity.showToast(activ,
+							activ.getString(R.string.toast_credit_purchased_words).format(creditLong))
+					}
+				}
+				.addOnFailureListener { e -> Log.w(TAG, "creditPurchasedWords: fail", e) }
+
+		}
+	}
+
+	// add newly created ln payment to user payments subcollection
+	fun addLNPayment(amount: Int, resp: AlbyLNVerifyResponse) {
+		_userState.value?.uid?.let {
+			db.collection("users").document(it)
+					// add new payment document named as current timestamp
+				.collection("payments").document(System.currentTimeMillis().toString())
+				.set(buildNewPayment(amount, resp))
+				.addOnSuccessListener {
+					Log.d(TAG, "append settled ln payment to database: SUCCESS")
+				}
+				.addOnFailureListener { e ->
+					Log.w(TAG, "append settled ln payment to database: FAIL", e)
+				}
+		}
+	}
+
 	fun consumePurchasedWords(activ: Activity, toConsume: Int) {
 		// ignore negative or zero word consumption and anon prompts
 		if (toConsume <= 0 || _userState.value == null)
@@ -122,7 +162,7 @@ class Firestore {
 			db.collection("users").document(it)
 				.update("purchasedWords", FieldValue.increment(- consumeLong))
 				.addOnSuccessListener {
-					Log.d(TAG, "incrementUserPromptCount: success")
+					Log.d(TAG, "consumePurchasedWords: SUCCESS")
 
 					// read updated user info from database
 					readUser(FirebaseAuth.getInstance().currentUser)
@@ -133,7 +173,7 @@ class Firestore {
 							activ.getString(R.string.toast_used_purchased_words).format(consumeLong))
 					}
 				}
-				.addOnFailureListener { e -> Log.w(TAG, "incrementUserPromptCount: fail", e) }
+				.addOnFailureListener { e -> Log.w(TAG, "consumePurchasedWords: FAIL", e) }
 		}
 	}
 
@@ -172,7 +212,7 @@ class Firestore {
 		// set user data as document named as user uid
 		db.collection("users")
 			.document(fbU.uid)
-			.set(makeNewUser(fbU), SetOptions.merge())
+			.set(buildNewUser(fbU), SetOptions.merge())
 			.addOnSuccessListener {
 				Log.d(TAG, "createNewUser Result: documentSnapshot set with ID: ${fbU.uid}")
 			}
@@ -181,7 +221,7 @@ class Firestore {
 			}
 	}
 
-	private fun makeNewUser(u: FirebaseUser): User {
+	private fun buildNewUser(u: FirebaseUser): User {
 		return User(
 			u.uid,
 			u.displayName,
@@ -190,6 +230,17 @@ class Firestore {
 			u.photoUrl.toString(),
 			Date().time,
 			Date().time,
+		)
+	}
+
+	private fun buildNewPayment(amount: Int, resp: AlbyLNVerifyResponse): Payment {
+		return Payment(
+			_userState.value?.uid,
+			amount,
+			resp.status,
+			resp.settled,
+			resp.preimage,
+			resp.pr
 		)
 	}
 }
@@ -206,6 +257,16 @@ data class User(
 	val promptCount: Int = 0,
 	val purchasedWords: Int = 0,
 	val blockAds: Boolean = false,
+)
+
+@Keep
+data class Payment(
+	val uid: String?,
+	val amount: Int,
+	val status: String,
+	val settled: Boolean,
+	val preimage: String?,
+	val pr: String,
 )
 
 /*

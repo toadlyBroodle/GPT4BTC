@@ -24,10 +24,16 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import org.bitanon.chatgpt3.databinding.ActivityMainBinding
+import ru.gildor.coroutines.okhttp.await
 
 const val AD_ID_PART1 = "ca-app-pub-"
 const val SHARED_PREFS = "CHATGPT3_SHARED_PREFS"
@@ -234,6 +240,32 @@ class MainActivity : AppCompatActivity() {
 				putFloat(PREF_DICTATION_SPEED, prefDictationSpeed)
 				putBoolean(PREF_DICTATION_AUTO, _prefDictationAuto.value)
 			}.apply()
+		}
+
+		// TODO
+		suspend fun verifyLNPayment(activ: Activity, verifyUrl: String?) {
+			if (verifyUrl.isNullOrEmpty())
+				return
+
+			val client = OkHttpClient()
+			val request = Request.Builder().url(verifyUrl).build()
+
+			// try every 30s for 5m to verify if payment received
+			withContext(Dispatchers.IO) { // TODO move to handler service?
+				for (i in 0..10) {
+					val response = client.newCall(request).await()
+					val albyLNVerifyResponse = parseAlbyLNVerifyResponse(response.body()?.string())
+
+					// once settled credit user account
+					if (albyLNVerifyResponse?.settled == true) {
+						Log.d(TAG, "LN Payment settled!")
+						firestore.creditPurchasedWords(activ, 10) // TODO get desired amount from user
+						break
+					}
+					Log.d(TAG, "LN Payment not yet settled")
+					delay(30000)
+				}
+			}
 		}
 	}
 

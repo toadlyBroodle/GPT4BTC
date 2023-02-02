@@ -18,7 +18,7 @@ import ru.gildor.coroutines.okhttp.await
 
 private const val MODEL = "text-davinci-003"
 private const val TIMEOUT = 30 //secs
-private const val REQUEST_LNURL = "https://getalby.com/lnurlp/bitanon/callback?amount=1000000&comment=hello" // amount is in millisats
+private const val REQUEST_LNURL = "https://getalby.com/lnurlp/bitanon/callback?amount=10000&comment=hello" // amount is in millisats
 
 private const val TAG = "RequestRepository"
 class RequestRepository {
@@ -79,7 +79,7 @@ class RequestRepository {
 			return false
 		}
 
-		suspend fun getLNInvoice(email: String?): AlbyLnurlCallback {
+		suspend fun getLNInvoice(email: String?): AlbyLnurlCallback? {
 			// Move the execution of the coroutine to the I/O dispatcher
 			return withContext(Dispatchers.IO) {
 
@@ -94,9 +94,21 @@ class RequestRepository {
 
 				albyCallback
 			}
-
 		}
 
+		suspend fun getLNPaymentVerify(verifyUrl: String?): AlbyLNVerifyResponse? {
+			if (verifyUrl.isNullOrEmpty())
+				return null
+
+			val client = OkHttpClient()
+			val request = Request.Builder().url(verifyUrl).build()
+
+			return withContext(Dispatchers.IO) {
+				val response = client.newCall(request).await()
+
+				parseAlbyLNVerifyResponse(response.body()?.string())
+			}
+		}
 	}
 }
 
@@ -108,7 +120,19 @@ data class AlbyLnurlCallback(
 	val routes: List<String>,
 	val pr: String
 	)
-fun parseAlbyLnurlCallback(json: String?): AlbyLnurlCallback {
+fun parseAlbyLnurlCallback(json: String?): AlbyLnurlCallback? {
 	val typeToken = object : TypeToken<AlbyLnurlCallback>() {}.type
+	return Gson().fromJson(json, typeToken)
+}
+
+@Keep // Do not obfuscate! Variable names are needed for parsers
+data class AlbyLNVerifyResponse(
+	val status: String,
+	val settled: Boolean,
+	val preimage: String?,
+	val pr: String,
+)
+fun parseAlbyLNVerifyResponse(json: String?): AlbyLNVerifyResponse? {
+	val typeToken = object : TypeToken<AlbyLNVerifyResponse>() {}.type
 	return Gson().fromJson(json, typeToken)
 }

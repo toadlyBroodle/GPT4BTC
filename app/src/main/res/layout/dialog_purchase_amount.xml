@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:text="@string/purchase_price"
+        style="@style/ChatText"/>
+
+<!--    <View
+        android:layout_width="@dimen/dialog_purchase_words_amount_edittext_width"
+        android:layout_height="1dp"
+        android:layout_marginTop="15sp"
+        android:background="?android:attr/listDivider" />-->
+
+    <TextView
+        android:text="@string/dialog_purchase_words_amount"
+        android:layout_marginTop="@dimen/dialog_purchase_words_amount_label_margin_top"
+        style="@style/ChatText"/>
+
+    <EditText
+        android:id="@+id/dialog_purchase_words_amount_edittext"
+        android:layout_width="@dimen/dialog_purchase_words_amount_edittext_width"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:inputType="number"
+        android:text="@string/purchase_words_default_amount"
+        android:hint="@string/sats"
+        android:autofillHints="@string/sats"
+        style="@style/ChatEditText" />
+
+</LinearLayout>

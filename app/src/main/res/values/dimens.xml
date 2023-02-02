@@ -5,4 +5,6 @@
     <dimen name="chat_label_margin">2sp</dimen>
     <dimen name="chat_label_layout_width">30sp</dimen>
     <dimen name="settings_speech_speed_slider_width">150sp</dimen>
+    <dimen name="dialog_purchase_words_amount_edittext_width">100sp</dimen>
+    <dimen name="dialog_purchase_words_amount_label_margin_top">10sp</dimen>
 </resources>
