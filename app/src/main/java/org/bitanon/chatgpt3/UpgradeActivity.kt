@@ -47,7 +47,7 @@ class UpgradeActivity : AppCompatActivity() {
 			val d: AlertDialog = AlertDialog.Builder(this)
 				.setTitle(getString(R.string.purchase_words))
 				.setPositiveButton(
-					getString(R.string.send_ln_payment)
+					getString(R.string.send)
 				) { _, _ ->
 					// user clicks send ln payment: log event
 					FirebaseAnalytics.logCustomEvent(UPGRADE_LN_PAYMENT_SEND_CLICK)

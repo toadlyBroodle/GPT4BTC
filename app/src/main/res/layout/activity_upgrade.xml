@@ -10,7 +10,7 @@
         android:padding="5sp">
 
         <TextView
-            android:text="@string/upgrade"
+            android:text="@string/instant_payment"
             style="@style/ChatTextLabel"/>
 
         <TextView
@@ -21,25 +21,7 @@
             android:id="@+id/upgrade_button_send_ln_payment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/send_ln_payment"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="15sp"
-            android:background="?android:attr/listDivider" />
-
-        <TextView
-            android:text="@string/transaction_details"
-            style="@style/ChatTextLabel"/>
-
-        <TextView
-            android:text="@string/purchase_price"
-            style="@style/ChatText"/>
-
-        <TextView
-            android:text="@string/purchase_notice"
-            style="@style/ChatText"/>
+            android:text="@string/purchase_words"/>
 
         <View
             android:layout_width="match_parent"
@@ -97,6 +79,10 @@
             android:id="@+id/manual_transaction_lnurl_comment"
             android:textIsSelectable="true"
             style="@style/ChatText"/>
+
+        <TextView
+            android:text="@string/manual_payments_slow"
+            style="@style/ChatText" />
 
     </LinearLayout>
 

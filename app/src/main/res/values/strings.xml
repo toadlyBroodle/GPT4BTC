@@ -59,13 +59,13 @@
 
     <!-- Upgrade Activity -->
     <string name="upgrade">Upgrade</string>
-    <string name="purchase_additional_words">You can increase prompt and response lengths by
-        sending ₿ payments over the Lightning Network (LN):</string>
-    <string name="send_ln_payment">Send LN Payment</string>
+    <string name="instant_payment">Instant LN Payment</string>
+    <string name="purchase_additional_words">You can increase prompt/response lengths and remove ads
+        by sending ₿ payments over the Lightning Network (LN):</string>
+    <string name="send">Send</string>
+    <string name="transaction_send">Send payment from your device\'s LN wallet.</string>
     <string name="transaction_details">Transaction details</string>
     <string name="purchase_price">Price: 1sat/word</string>
-    <string name="purchase_notice">Notice: depending on your wallet, transactions may not yet be
-        fully automated and may take a few hours for purchased words to be credited to your account.</string>
     <string name="purchase_words">Purchase words</string>
     <string name="dialog_purchase_words_amount">Amount (sats):</string>
     <string name="cancel">Cancel</string>
@@ -73,16 +73,16 @@
     <string name="toast_purchase_words_verification_error">Error with automated verification of LN payment.
         It may take a few hours for your purchased words to be added to your account.</string>
     <string name="lightning_wallets">Lightning Wallets</string>
-    <string name="get_lightning_wallet">If the \'Send LN Payment\' button doesn\'t work, you\'ll
-        probably need to install and fund a Lightning wallet on your device:</string>
+    <string name="get_lightning_wallet">To send LN payments you\'ll first need to install and fund a Lightning wallet on your device:</string>
     <string name="html_lightning_wallet_phoenix"><a href="https://phoenix.acinq.co/">Phoenix (non-custodial app)</a></string>
     <string name="html_getalby"><a href="https://getalby.com/">GetAlby (custodial browser extension)</a></string>
-    <string name="manual_transaction_alternative_label">Manual LN Transaction</string>
-    <string name="manual_transaction_alternative">Alternatively, you can also purchase words by
-        manually sending transactions from another wallet (such as Alby) to the following Lightning address
-        and including the comment below.</string>
+    <string name="manual_transaction_alternative_label">Manual LN Payment</string>
+    <string name="manual_transaction_alternative">Alternatively, you can also send payments to the
+        following Lightning address and include the comment below:</string>
     <string name="lnurl_address">Lnurl address:</string>
     <string name="lnurl_required_comment">Required comment:</string>
+    <string name="manual_payments_slow">Using this method, it may take a few hours for
+        your account to be credited with purchased words.</string>
 
     <!-- Settings Activity -->
     <string name="title_activity_settings">Settings</string>

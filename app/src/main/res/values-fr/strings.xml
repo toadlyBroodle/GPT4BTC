@@ -49,14 +49,13 @@
 
     <!-- Upgrade Activity -->
     <string name="upgrade">Mise à niveau</string>
-    <string name="purchase_additional_words">Vous pouvez augmenter la durée des invites et des
-        réponses en envoyant des paiements en ₿ sur le Lightning Network (LN) :</string>
-    <string name="send_ln_payment">Envoyer le paiement LN</string>
+    <string name="instant_payment">Paiement LN Instantané</string>
+    <string name="purchase_additional_words">Vous pouvez augmenter la durée des invites/réponses et
+        supprimer les publicités en envoyant des paiements en ₿ via le Lightning Network (LN) :</string>
+    <string name="send">Envoyer</string>
+    <string name="transaction_send">Envoyez le paiement depuis le portefeuille LN de votre appareil.</string>
     <string name="transaction_details">Détails de la transaction</string>
     <string name="purchase_price">Prix : 1sat/mot</string>
-    <string name="purchase_notice">Remarque : en fonction de votre porte-monnaie, les transactions
-        peuvent ne pas encore être entièrement automatisées et peuvent prendre quelques heures pour
-        que les mots achetés soient crédités sur votre compte.</string>
     <string name="purchase_words">Acheter des mots</string>
     <string name="dialog_purchase_words_amount">Montant (sats) :</string>
     <string name="cancel">Cancel</string>
@@ -64,16 +63,18 @@
     <string name="toast_purchase_words_verification_error">Erreur avec la vérification automatisée du paiement LN.
         Cela peut prendre quelques heures pour que vos mots achetés soient ajoutés à votre compte.</string>
     <string name="lightning_wallets">Portefeuilles Lightning</string>
-    <string name="get_lightning_wallet">Si vous n\'avez pas encore de portefeuille Bitcoin Lightning,
-         vous devrez en obtenir un :</string>
+    <string name="get_lightning_wallet">Pour envoyer des paiements LN, vous devez d\'abord installer
+        et financer un portefeuille Lightning sur votre appareil :</string>
     <string name="html_lightning_wallet_phoenix"><a href="https://phoenix.acinq.co/">Phoenix (application non privative de liberté)</a></string>
     <string name="html_getalby"><a href="https://getalby.com/">GetAlby (extension de navigateur dépositaire)</a></string>
-    <string name="manual_transaction_alternative_label">Transaction LN manuelle</string>
+    <string name="manual_transaction_alternative_label">Transaction LN Manuelle</string>
     <string name="manual_transaction_alternative">Alternativement, vous pouvez également acheter des
         mots en envoyant manuellement des transactions depuis un autre portefeuille (tel qu\'Alby)
         à l\'adresse Lightning suivante et en incluant le commentaire ci-dessous.</string>
     <string name="lnurl_address">Adresse lnurl :</string>
     <string name="lnurl_required_comment">Commentaire obligatoire :</string>
+    <string name="manual_payments_slow">Avec cette méthode, il peut s\'écouler
+        quelques heures avant que votre compte ne soit crédité des mots achetés.</string>
 
     <!-- Settings Activity -->
     <string name="title_activity_settings">Paramètres</string>

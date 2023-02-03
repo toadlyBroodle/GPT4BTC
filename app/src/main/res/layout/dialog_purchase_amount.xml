@@ -6,6 +6,10 @@
     android:gravity="center">
 
     <TextView
+        android:text="@string/transaction_send"
+        style="@style/ChatText"/>
+
+    <TextView
         android:text="@string/purchase_price"
         style="@style/ChatText"/>
 
