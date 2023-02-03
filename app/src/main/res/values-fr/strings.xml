@@ -57,6 +57,12 @@
     <string name="purchase_notice">Remarque : en fonction de votre porte-monnaie, les transactions
         peuvent ne pas encore être entièrement automatisées et peuvent prendre quelques heures pour
         que les mots achetés soient crédités sur votre compte.</string>
+    <string name="purchase_words">Acheter des mots</string>
+    <string name="dialog_purchase_words_amount">Montant (sats) :</string>
+    <string name="cancel">Cancel</string>
+    <string name="toast_credit_purchased_words">Paiement LN reçu ! %s mots achetés ajoutés</string>
+    <string name="toast_purchase_words_verification_error">Erreur avec la vérification automatisée du paiement LN.
+        Cela peut prendre quelques heures pour que vos mots achetés soient ajoutés à votre compte.</string>
     <string name="lightning_wallets">Portefeuilles Lightning</string>
     <string name="get_lightning_wallet">Si vous n\'avez pas encore de portefeuille Bitcoin Lightning,
          vous devrez en obtenir un :</string>

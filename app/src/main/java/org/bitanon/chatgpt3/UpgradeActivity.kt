@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 import org.bitanon.chatgpt3.databinding.ActivityUpgradeBinding
 
 
-private const val TAG = "UpgradeActivity"
+//private const val TAG = "UpgradeActivity"
 class UpgradeActivity : AppCompatActivity() {
 
 	private lateinit var binding: ActivityUpgradeBinding
@@ -53,28 +53,29 @@ class UpgradeActivity : AppCompatActivity() {
 					FirebaseAnalytics.logCustomEvent(UPGRADE_LN_PAYMENT_SEND_CLICK)
 
 					lifecycleScope.launch {
-						// get ln invoice from Alby
-						val albyLnurlCallback = RequestRepository.getLNInvoice(Firestore.getUserEmail())
-						// get verify response from Alby
-						val albyLNVerifyResponse = RequestRepository.getLNPaymentVerify(
-							albyLnurlCallback?.verify)
 						// get payment amount
-						val amount = etAmount.text.toString().toInt()
+						val amount = etAmount.text.toString().toLong()
+						// get ln invoice from Alby
+						val albyLnurlCallback = RequestRepository.getLNInvoice(Firestore.getUserEmail(), amount)
+						val verifyUrl = albyLnurlCallback?.verify
+						// get verify response from Alby
+						val albyLNVerifyResponse = RequestRepository.getLNPaymentVerify(verifyUrl)
 						// get new payment verify object
 						if (albyLNVerifyResponse != null) {
 							// add payment to database
-							MainActivity.firestore.addLNPayment(amount, albyLNVerifyResponse)
-							// launch intent to device ln wallet
+							MainActivity.firestore.addLNPayment(verifyUrl, amount, albyLNVerifyResponse)
+							// launch intent to device's ln wallet
 							sendLNPayment(albyLNVerifyResponse.pr)
-							// TODO attempt to verify payment
 
-						} else {}// TODO notify user of failure to make payment
+						} else {
+							MainActivity.showToastLong(this@UpgradeActivity,
+								getString(R.string.toast_purchase_words_verification_error))
+						}
 					}
 				}
 				.setNegativeButton(getString(R.string.cancel)) { _, _ ->}
 				.setView(dialogPurchaseAmount)
 				.create()
-
 			d.show()
 		}
 

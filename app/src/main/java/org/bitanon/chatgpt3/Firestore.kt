@@ -3,6 +3,7 @@ package org.bitanon.chatgpt3
 import android.app.Activity
 import android.util.Log
 import androidx.annotation.Keep
+import androidx.lifecycle.LifecycleCoroutineScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
@@ -12,8 +13,11 @@ import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.*
 
 private const val TAG = "Firestore"
@@ -28,7 +32,6 @@ class Firestore {
 		if (userState.value == null) {
 			readUser(Firebase.auth.currentUser)
 		}
-
 		return this
 	}
 
@@ -61,8 +64,8 @@ class Firestore {
 			_userState.value!!.uid?.let {
 				db.collection("users").document(it)
 					.update("timeLastLogin", Date().time)
-					.addOnSuccessListener { Log.d(TAG, "updateUserTimeLastLogin: success") }
-					.addOnFailureListener { e -> Log.w(TAG, "updateUserTimeLastLogin: fail", e) }
+					.addOnSuccessListener { Log.d(TAG, "updateUserTimeLastLogin: SUCCESS") }
+					.addOnFailureListener { e -> Log.w(TAG, "updateUserTimeLastLogin: FAIL", e) }
 			}
 		}
 	}
@@ -72,8 +75,8 @@ class Firestore {
 			_userState.value!!.uid?.let {
 				db.collection("users").document(it)
 					.update("promptCount", FieldValue.increment(1))
-					.addOnSuccessListener { Log.d(TAG, "incrementUserPromptCount: success") }
-					.addOnFailureListener { e -> Log.w(TAG, "incrementUserPromptCount: fail", e) }
+					.addOnSuccessListener { Log.d(TAG, "incrementUserPromptCount: SUCCESS") }
+					.addOnFailureListener { e -> Log.w(TAG, "incrementUserPromptCount: FAIL", e) }
 			}
 		}
 	}
@@ -88,24 +91,86 @@ class Firestore {
 				db.collection("users").document(it)
 					.update("blockAds", blockAds)
 					.addOnSuccessListener {
-						Log.d(TAG, "updateUserBlockAds: success")
+						Log.d(TAG, "updateUserBlockAds: SUCCESS")
 						// read updated user info from database
 						readUser(FirebaseAuth.getInstance().currentUser)
 					}
-					.addOnFailureListener { e -> Log.w(TAG, "updateUserBlockAds: fail", e) }
+					.addOnFailureListener { e -> Log.w(TAG, "updateUserBlockAds: FAIL", e) }
 			}
 		}
 	}
 
-	fun creditPurchasedWords(activ: Activity, toCredit: Int) {
-		val creditLong: Long = toCredit.toLong()
+	// add newly created ln payment to user payments subcollection
+	fun addLNPayment(verifyUrl: String?, amount: Long, resp: AlbyLNVerifyResponse) {
+		if (verifyUrl == null) {
+			Log.e(TAG, "addLNPayment FAIL: verifyUrl=null")
+			return
+		}
 
+		val payment = buildNewPayment(verifyUrl, System.currentTimeMillis(), amount, resp)
+
+		_userState.value?.uid?.let {
+			db.collection("users").document(it)
+					// add new payment document named as current timestamp
+				.collection("payments").document(payment.timestamp.toString())
+				.set(payment)
+				.addOnSuccessListener {
+					Log.d(TAG, "addLNPayment: SUCCESS")
+				}
+				.addOnFailureListener { e ->
+					Log.w(TAG, "addLNPayment: FAIL", e)
+				}
+		}
+	}
+
+	fun verifyPaymentsUnsettled(activ: Activity, lifecycleCoroutineScope: LifecycleCoroutineScope) {
+		_userState.value?.uid?.let {
+			db.collection("users").document(it)
+				.collection("payments")
+				.whereEqualTo("settled", false)
+				.get()
+				.addOnSuccessListener { documents ->
+					Log.d(TAG, "verifyPaymentsUnsettled: SUCCESS")
+
+					lifecycleCoroutineScope.launch {
+						withContext(Dispatchers.IO) {
+							for (doc in documents) {
+								RequestRepository.verifyLNPayment(activ, doc.toObject<Payment>())
+							}
+						}
+					}
+				}
+				.addOnFailureListener { e ->
+					Log.w(TAG, "verifyPaymentsUnsettled: FAIL", e)
+				}
+		}
+	}
+
+	fun updatePaymentSettled(payment: Payment) {
+		_userState.value?.uid?.let {
+			db.collection("users").document(it)
+				// add new payment document named as current timestamp
+				.collection("payments").document(payment.timestamp.toString())
+				.update("settled", true)
+				.addOnSuccessListener {
+					Log.d(TAG, "updatePaymentSettled: SUCCESS")
+				}
+				.addOnFailureListener { e ->
+					Log.w(TAG, "updatePaymentSettled: FAIL", e)
+				}
+		}
+	}
+
+	fun creditPurchasedWords(activ: Activity, payment: Payment) {
 		// update db user purchased words
 		_userState.value?.uid?.let {
 			db.collection("users").document(it)
-				.update("purchasedWords", FieldValue.increment(creditLong))
+				.update("purchasedWords", FieldValue.increment(payment.amount))
 				.addOnSuccessListener {
-					Log.d(TAG, "creditPurchasedWords: success")
+					Log.d(TAG, "creditPurchasedWords: SUCCESS")
+
+					// also update payment settled tag in payments subcollection
+					updatePaymentSettled(payment)
 
 					// read updated user info from database
 					readUser(FirebaseAuth.getInstance().currentUser)
@@ -113,27 +178,10 @@ class Firestore {
 					// notify user of number of purchased words credited
 					activ.runOnUiThread {
 						MainActivity.showToast(activ,
-							activ.getString(R.string.toast_credit_purchased_words).format(creditLong))
+							activ.getString(R.string.toast_credit_purchased_words).format(payment.amount))
 					}
 				}
-				.addOnFailureListener { e -> Log.w(TAG, "creditPurchasedWords: fail", e) }
-
-		}
-	}
-
-	// add newly created ln payment to user payments subcollection
-	fun addLNPayment(amount: Int, resp: AlbyLNVerifyResponse) {
-		_userState.value?.uid?.let {
-			db.collection("users").document(it)
-					// add new payment document named as current timestamp
-				.collection("payments").document(System.currentTimeMillis().toString())
-				.set(buildNewPayment(amount, resp))
-				.addOnSuccessListener {
-					Log.d(TAG, "append settled ln payment to database: SUCCESS")
-				}
-				.addOnFailureListener { e ->
-					Log.w(TAG, "append settled ln payment to database: FAIL", e)
-				}
+				.addOnFailureListener { e -> Log.w(TAG, "creditPurchasedWords: FAIL", e) }
 		}
 	}
 
@@ -199,13 +247,13 @@ class Firestore {
 
 			}
 			.addOnFailureListener { exception ->
-				Log.d(TAG, "readUser: failed with ", exception)
+				Log.d(TAG, "readUser: FAILed with ", exception)
 			}
 	}
 
 	private fun writeNewUser(fbU: FirebaseUser?) {
 		if (fbU == null) {
-			Log.w(TAG, "createNewUser Fail: fbU null")
+			Log.w(TAG, "createNewUser FAIL: fbU null")
 			return
 		}
 
@@ -217,7 +265,7 @@ class Firestore {
 				Log.d(TAG, "createNewUser Result: documentSnapshot set with ID: ${fbU.uid}")
 			}
 			.addOnFailureListener { e ->
-				Log.w(TAG, "createNewUser Result: Error adding document", e)
+				Log.w(TAG, "createNewUser Result: ERROR adding document", e)
 			}
 	}
 
@@ -233,14 +281,17 @@ class Firestore {
 		)
 	}
 
-	private fun buildNewPayment(amount: Int, resp: AlbyLNVerifyResponse): Payment {
+	private fun buildNewPayment(verifyUrl: String, timestamp: Long,
+								amount: Long, resp: AlbyLNVerifyResponse): Payment {
 		return Payment(
+			timestamp,
 			_userState.value?.uid,
 			amount,
 			resp.status,
 			resp.settled,
 			resp.preimage,
-			resp.pr
+			resp.pr,
+			verifyUrl
 		)
 	}
 }
@@ -261,12 +312,14 @@ data class User(
 
 @Keep
 data class Payment(
-	val uid: String?,
-	val amount: Int,
-	val status: String,
-	val settled: Boolean,
-	val preimage: String?,
-	val pr: String,
+	val timestamp: Long? = null,
+	val uid: String? = null,
+	val amount: Long = 0,
+	val status: String? = null,
+	val settled: Boolean = false,
+	val preimage: String? = null,
+	val pr: String?  = null,
+	val verifyUrl: String? = null,
 )
 
 /*

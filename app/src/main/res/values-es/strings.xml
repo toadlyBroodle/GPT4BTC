@@ -57,6 +57,12 @@
     <string name="purchase_notice">Aviso: dependiendo de su billetera, es posible que las
         transacciones aún no estén completamente automatizadas y que las palabras compradas tarden
         algunas horas en acreditarse en su cuenta.</string>
+    <string name="purchase_words">Comprar palabras</string>
+    <string name="dialog_purchase_words_amount">Cantidad (sats):</string>
+    <string name="cancel">Cancelar</string>
+    <string name="toast_credit_purchased_words">LN pago recibido! %s palabras compradas añadidas</string>
+    <string name="toast_purchase_words_verification_error">Error con la verificación automática del pago de LN.
+        Es posible que las palabras compradas tarden algunas horas en agregarse a su cuenta.</string>
     <string name="lightning_wallets">Carteras relámpago</string>
     <string name="get_lightning_wallet">Si aún no tiene una billetera Bitcoin Lightning,
          Necesitarás conseguir uno:</string>

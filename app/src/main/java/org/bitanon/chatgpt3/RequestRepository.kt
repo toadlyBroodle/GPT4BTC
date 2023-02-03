@@ -18,7 +18,7 @@ import ru.gildor.coroutines.okhttp.await
 
 private const val MODEL = "text-davinci-003"
 private const val TIMEOUT = 30 //secs
-private const val REQUEST_LNURL = "https://getalby.com/lnurlp/bitanon/callback?amount=10000&comment=hello" // amount is in millisats
+private const val REQUEST_LNURL = "https://getalby.com/lnurlp/bitanon/callback?amount=1000&comment=hello" // amount is in millisats
 
 private const val TAG = "RequestRepository"
 class RequestRepository {
@@ -79,11 +79,16 @@ class RequestRepository {
 			return false
 		}
 
-		suspend fun getLNInvoice(email: String?): AlbyLnurlCallback? {
+		suspend fun getLNInvoice(email: String?, amount: Long): AlbyLnurlCallback? {
 			// Move the execution of the coroutine to the I/O dispatcher
 			return withContext(Dispatchers.IO) {
 
-				val url = REQUEST_LNURL.replace("comment=hello", "comment=GPT4BTC:$email")
+				val url = REQUEST_LNURL.replace(
+					"comment=hello",
+					"comment=GPT4BTC:$email").replace(
+					"amount=1000",
+					"amount=${amount * 1000}" // convert to millisats for alby
+					)
 
 				val client = OkHttpClient()
 				val request = Request.Builder().url(url).build()
@@ -97,8 +102,10 @@ class RequestRepository {
 		}
 
 		suspend fun getLNPaymentVerify(verifyUrl: String?): AlbyLNVerifyResponse? {
-			if (verifyUrl.isNullOrEmpty())
+			if (verifyUrl.isNullOrEmpty()) {
+				Log.e(TAG, "getLNPaymentVerify FAIL: verifyUrl=null")
 				return null
+			}
 
 			val client = OkHttpClient()
 			val request = Request.Builder().url(verifyUrl).build()
@@ -107,6 +114,26 @@ class RequestRepository {
 				val response = client.newCall(request).await()
 
 				parseAlbyLNVerifyResponse(response.body()?.string())
+			}
+		}
+
+		suspend fun verifyLNPayment(activ: Activity, payment: Payment) {
+			if (payment.verifyUrl == null) {
+				Log.d(TAG, "verifyLNPayment FAIL: payment.verifyUrl=null")
+				return
+			}
+
+			val client = OkHttpClient()
+			val request = Request.Builder().url(payment.verifyUrl).build()
+			withContext(Dispatchers.IO) {
+				val response = client.newCall(request).await()
+				val albyLNVerifyResponse = parseAlbyLNVerifyResponse(response.body()?.string())
+
+				// once settled credit user account
+				if (albyLNVerifyResponse?.settled == true) {
+					Log.d(TAG, "LN Payment settled!")
+					MainActivity.firestore.creditPurchasedWords(activ, payment)
+				} else Log.d(TAG, "verifyLNPayment: ${payment.timestamp} unsettled")
 			}
 		}
 	}

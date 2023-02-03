@@ -133,6 +133,13 @@ class AccountActivity: AppCompatActivity() {
 		}
 	}
 
+	override fun onResume() {
+		super.onResume()
+
+		// try verifying any unsettled payments
+		MainActivity.firestore.verifyPaymentsUnsettled(this, lifecycleScope)
+	}
+
 	override fun onStop() {
 		super.onStop()
 

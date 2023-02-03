@@ -70,6 +70,8 @@
     <string name="dialog_purchase_words_amount">Amount (sats):</string>
     <string name="cancel">Cancel</string>
     <string name="toast_credit_purchased_words">LN payment received! %s purchased words added</string>
+    <string name="toast_purchase_words_verification_error">Error with automated verification of LN payment.
+        It may take a few hours for your purchased words to be added to your account.</string>
     <string name="lightning_wallets">Lightning Wallets</string>
     <string name="get_lightning_wallet">If the \'Send LN Payment\' button doesn\'t work, you\'ll
         probably need to install and fund a Lightning wallet on your device:</string>
