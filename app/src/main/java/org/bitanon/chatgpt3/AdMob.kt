@@ -15,6 +15,7 @@ class AdMob {
 	companion object {
 		private var showReqCount = 0
 
+		var adId = MainActivity.buildAdMobKey()
 		var mInterstitialAd: InterstitialAd? = null
 
 		fun init(ctx: Context) {
@@ -24,13 +25,17 @@ class AdMob {
 
 			Log.d(TAG, "initializing AdMob")
 
-			var adId = MainActivity.buildAdMobKey()
 			// when developing, use test ad id
 			if (BuildConfig.DEBUG)
 				adId = AD_ID_TEST
 
 			// init AdMob
 			MobileAds.initialize(ctx) {}
+		}
+
+		fun loadNewAd(ctx: Context?) {
+			if (ctx == null)
+				return
 
 			val adRequest = AdRequest.Builder().build()
 
@@ -90,10 +95,12 @@ class AdMob {
 		fun show(activ: Activity?) {
 			showReqCount++
 
-			// only show interstitial ad every second prompt
-			if (showReqCount % 2 == 0) {
-				// load new ad and return
-				activ?.baseContext?.let { init(it) }
+			// only show interstitial ad every third prompt
+			val promptNum = showReqCount % 3
+			if (promptNum != 0) {
+				// load new ad before every third prompt
+				if (promptNum == 2)
+					loadNewAd(activ?.baseContext)
 				return
 			}
 
