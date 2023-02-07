@@ -8,7 +8,7 @@
     <string name="audio_icon_left_auto" translatable="false">🔊</string>
     <string name="audio_icon_left_manual" translatable="false">🔈</string>
     <string name="audio_icon_left_random" translatable="false">🎲</string>
-    <string name="html_purchase_words" translatable="false"><a href="lightning:bitanon@getalby.com">bitanon@getalby.com</a></string>
+    <string name="html_purchase_words" translatable="false"><a href="lightning:gpt4btc@getalby.com">gpt4btc@getalby.com</a></string>
     <string name="purchase_words_default_amount" translatable="false">1000</string>
     <string name="sats" translatable="false">sats</string>
 

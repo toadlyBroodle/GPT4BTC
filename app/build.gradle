@@ -30,8 +30,8 @@ android {
         applicationId "org.bitanon.chatgpt3"
         minSdk 24
         targetSdk 33
-        versionCode 51
-        versionName "1.50"
+        versionCode 52
+        versionName "1.51"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -75,7 +75,7 @@ dependencies {
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
     implementation 'com.theokanning.openai-gpt3-java:client:0.8.1'
-    implementation 'com.google.android.gms:play-services-ads:21.4.0'
+    implementation 'com.google.android.gms:play-services-ads:21.5.0'
 
     implementation 'com.firebaseui:firebase-ui-auth:7.2.0'
     // Import the BoM for the Firebase platform
