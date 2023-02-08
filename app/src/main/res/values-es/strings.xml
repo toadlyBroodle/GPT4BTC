@@ -8,7 +8,6 @@
     <string name="label_ai">IA:</string>
     <string name="button_prompt">Solicitud</string>
     <string name="enter_prompt">Ingrese su pregunta…</string>
-    <string name="elipsis">…</string>
     <string name="response_thinking">Pensando…</string>
     <string name="toast_tts_not_supported">Desafortunadamente, Google Text to Speech no es
         compatible con su idioma :(</string>
@@ -35,7 +34,6 @@
         respuesta y habilitar funciones adicionales.</string>
     <string name="login">Acceso</string>
     <string name="logout">Cerrar sesión</string>
-    <string name="account_label_name">Nombre:</string>
     <string name="account_label_prompt_limit">Palabras de solicitud gratuita:</string>
     <string name="account_label_response_limit">Palabras de respuesta gratuito:</string>
     <string name="account_label_purchased_words">Palabras compradas:</string>

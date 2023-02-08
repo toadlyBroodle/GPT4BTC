@@ -8,7 +8,6 @@
     <string name="label_ai">IA :</string>
     <string name="button_prompt">Prompt</string>
     <string name="enter_prompt">Entrez votre invite…</string>
-    <string name="elipsis">…</string>
     <string name="response_thinking">En pensant…</string>
     <string name="toast_tts_not_supported">Malheureusement, Google Text to Speech ne prend pas en
         charge votre langue :(</string>
@@ -35,7 +34,6 @@
         de réponses et activer des fonctionnalités supplémentaires.</string>
     <string name="login">Connexion</string>
     <string name="logout">Se déconnecter</string>
-    <string name="account_label_name">Nom :</string>
     <string name="account_label_prompt_limit">Mots d\'invite gratuits :</string>
     <string name="account_label_response_limit">Mots de réponse gratuits :</string>
     <string name="account_label_purchased_words">Mots achetés :</string>

@@ -11,6 +11,7 @@
     <string name="html_purchase_words" translatable="false"><a href="lightning:gpt4btc@getalby.com">gpt4btc@getalby.com</a></string>
     <string name="purchase_words_default_amount" translatable="false">1000</string>
     <string name="sats" translatable="false">sats</string>
+    <string name="elipsis" translatable="false">…</string>
 
     <!-- DO translate -->
     <!-- Chat Fragment -->
@@ -20,7 +21,6 @@
     <string name="label_ai">AI:</string>
     <string name="button_prompt">Prompt</string>
     <string name="enter_prompt">Enter your prompt…</string>
-    <string name="elipsis">…</string>
     <string name="response_thinking">Thinking…</string>
     <string name="toast_tts_not_supported">Unfortunately Google Text to Speech doesn\'t support
         your language :(</string>
@@ -45,7 +45,6 @@
         additional features.</string>
     <string name="login">Login</string>
     <string name="logout">Logout</string>
-    <string name="account_label_name">Name:</string>
     <string name="account_label_prompt_limit">Free prompt words:</string>
     <string name="account_label_response_limit">Free response words:</string>
     <string name="account_label_purchased_words">Purchased words:</string>

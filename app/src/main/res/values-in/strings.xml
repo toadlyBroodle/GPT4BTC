@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Chat Fragment -->
+    <string name="alertdialog_terms_agreement_title">शर्तें और गोपनीयता समझौता</string>
+    <string name="exit">बाहर निकलें</string>
+    <string name="accept">स्वीकार करना</string>
+    <string name="label_ai">ऐ:</string>
+    <string name="button_prompt">निवेदन</string>
+    <string name="enter_prompt">अपना संकेत दर्ज करें…</string>
+    <string name="response_thinking">Thinking…</string>
+    <string name="toast_tts_not_supported">दुर्भाग्य से Google टेक्स्ट टू स्पीच आपकी भाषा का समर्थन नहीं करता :(</string>
+    <string name="toast_enter_prompt">सबसे पहले, एक संकेत दर्ज करें।</string>
+    <string name="toast_no_internet">कोई इंटरनेट कनेक्शन नहीं। कनेक्ट करें और पुनः प्रयास करें।</string>
+    <string name="toast_used_purchased_words">प्रतिसाद में %s खरीदे गए शब्दों का उपयोग किया गया.</string>
+    <string name="toast_prompt_truncated">फ्री प्रॉम्प्ट की अधिकतम अवधि पूरी हो चुकी है: \nलंबे संकेतों और प्रतिक्रियाओं के
+        लिए लॉगिन या अपग्रेड करें।</string>
+    <string name="append_response_truncated">***अधिकतम मुफ्त प्रतिक्रिया की अवधि पार हो गई है: \nलंबे संकेतों और प
+        ्रतिक्रियाओं के लिए लॉगिन या अपग्रेड करें।</string>
+
+    <!-- Exception handling -->
+    <string name="exception_socket_timeout">api.openai.com से कनेक्शन का समय समाप्त हो गया। इसका कारण यह
+        हो सकता है कि OpenAI के सर्वर वर्तमान में अतिभारित हैं। जब ऐसा होता है, तो अक्सर वे लंबी प्रतिक्रियाओं का गला घोंट देंगे;
+        जब वे समस्या को ठीक करने पर काम कर रहे हों, तो शायद एक छोटे, सरल संकेत का प्रयास करें। आपके धैर्य के लिए धन्यवाद
+        और कृपया शीघ्र ही पुनः प्रयास करें।</string>
+    <string name="exception_unauthorized_access">HTTP 401: api.openai.com अनधिकृत पहुँच! अधिकृत ऐप डाउनलोड करें:</string>
+
+    <!-- Account Activity -->
+    <string name="account">खाता</string>
+    <string name="login_to_enable_features">शीघ्र और प्रतिक्रिया सीमा बढ़ाने और अतिरिक्त सुविधाओं को सक्षम करने के लिए
+        लॉग इन करें।</string>
+    <string name="login">लॉगिन</string>
+    <string name="logout">लॉगआउट</string>
+    <string name="account_label_prompt_limit">नि: शुल्क शीघ्र शब्द:</string>
+    <string name="account_label_response_limit">नि: शुल्क प्रतिक्रिया शब्द:</string>
+    <string name="account_label_purchased_words">खरीदे गए शब्द:</string>
+    <string name="purchased_words_consumption">खरीदे गए शब्दों का उपयोग केवल तभी किया जाएगा जब नि: शुल्क
+        संकेत/प्रतिक्रिया की लंबाई पार हो जाए या विज्ञापनों को ब्लॉक कर दिया जाए।</string>
+    <string name="block_ads">विज्ञापनों को ब्लॉक करें (50 शब्द/विज्ञापन)</string>
+    <string name="login_failed">लॉगिन विफल:</string>
+    <string name="logged_out">बाहर आ गये</string>
+    <string name="remove_limits">बिटकॉइन के लाइटनिंग नेटवर्क का उपयोग करके, लॉग इन करके और अतिरिक्त शब्द गणना
+        खरीदकर शीघ्र और प्रतिक्रिया सीमा को हटा दें।</string>
+
+    <!-- Upgrade Activity -->
+    <string name="upgrade">उन्नत करना</string>
+    <string name="instant_payment">तत्काल एलएन भुगतान</string>
+    <string name="purchase_additional_words">आप लाइटनिंग नेटवर्क (एलएन) पर ₿ भुगतान भेजकर शीघ्र/प्रतिक्रिया की
+        लंबाई बढ़ा सकते हैं और विज्ञापनों को हटा सकते हैं:</string>
+    <string name="send">भेजना</string>
+    <string name="transaction_send">अपने डिवाइस के एलएन वॉलेट से भुगतान भेजें।</string>
+    <string name="transaction_details">लेन-देन का ब्योरा</string>
+    <string name="purchase_price">कीमत: 1sat/वर्ड</string>
+    <string name="purchase_words">शब्द खरीदें</string>
+    <string name="dialog_purchase_words_amount">मात्रा (sats):</string>
+    <string name="cancel">रद्द करना</string>
+    <string name="toast_credit_purchased_words">एलएन भुगतान प्राप्त हुआ! %s खरीदे गए शब्द जोड़े गए</string>
+    <string name="toast_purchase_words_verification_error">एलएन भुगतान के स्वचालित सत्यापन में त्रुटि। आपके ख़रीदे
+        गए शब्दों को आपके खाते में जोड़े जाने में कुछ घंटे लग सकते हैं।</string>
+    <string name="lightning_wallets">लाइटनिंग वॉलेट</string>
+    <string name="get_lightning_wallet">एलएन भुगतान भेजने के लिए आपको सबसे पहले अपने डिवाइस पर एक लाइटनिंग
+        वॉलेट इंस्टॉल और फंड करना होगा:</string>
+    <string name="html_lightning_wallet_phoenix"><a href="https://phoenix.acinq.co/">फीनिक्स (गैर-हिरासत ऐप)</a></string>
+    <string name="html_getalby"><a href="https://getalby.com/">GetAlby (कस्टोडियल ब्राउज़र एक्सटेंशन)</a></string>
+    <string name="manual_transaction_alternative_label">मैनुअल एलएन भुगतान</string>
+    <string name="manual_transaction_alternative">वैकल्पिक रूप से, आप निम्नलिखित लाइटनिंग पते पर भी भुगतान भेज
+        सकते हैं और नीचे टिप्पणी शामिल कर सकते हैं:</string>
+    <string name="lnurl_address">एलएनयूआरएल पता:</string>
+    <string name="lnurl_required_comment">आवश्यक टिप्पणी:</string>
+    <string name="manual_payments_slow">इस पद्धति का उपयोग करते हुए, आपके खाते में खरीदे गए शब्दों को क्रेडिट करने में
+        कुछ घंटे लग सकते हैं।</string>
+
+    <!-- Settings Activity -->
+    <string name="title_activity_settings">सेटिंग्स</string>
+    <string name="dictation">श्रुतलेख</string>
+    <string name="automatically_dictate_responses">प्रतिक्रियाओं को स्वचालित रूप से निर्देशित करें</string>
+    <string name="dictation_speed">भाषण गति</string>
+
+    <!-- Terms Activity -->
+    <string name="terms">शर्तें</string>
+    <string name="app_terms_header">ऐप शर्तें अनुबंध</string>
+    <string name="openai_terms_header">OpenAI की शर्तें अनुबंध</string>
+    <string name="agree_to_terms">इस ऐप का उपयोग करके, आप निम्नलिखित शर्तों से सहमत हैं:</string>
+    <string name="show_terms_agreement">स्टार्टअप पर शर्तें अनुबंध दिखाएं</string>
+    <string name="html_app_terms_of_use"><a href="https://chatgpt3-android.app/terms-of-use.html">उपयोग की शर्तें</a></string>
+    <string name="html_app_privacy_policy"><a href="https://chatgpt3-android.app/privacy-policy.html">गोपनीयता नीति</a></string>
+    <string name="html_openai_terms_of_use"><a href="https://openai.com/terms/">उपयोग की शर्तें</a></string>
+    <string name="html_openai_privacy_policy"><a href="https://openai.com/privacy/">गोपनीयता नीति</a></string>
+
+    <!-- Random prompts -->
+    <string name="toast_login_generate_random_prompts">यादृच्छिक संकेतों को उत्पन्न करने के लिए लॉगिन करें</string>
+    <string name="random_prompt_1">कोविड 19 से कितने लोगों की मौत हुई?</string>
+    <string name="random_prompt_2">दुनिया भर में हर साल कार दुर्घटनाओं में कितने लोग मारे जाते हैं?</string>
+    <string name="random_prompt_3">क्या mRNA के टीके सुरक्षित और प्रभावी हैं?</string>
+    <string name="random_prompt_4">क्वांटम कंप्यूटिंग का स्पष्ट वर्णन कीजिए</string>
+    <string name="random_prompt_5">क्या मनुष्य जलवायु परिवर्तन का कारण बन रहे हैं?</string>
+    <string name="random_prompt_6">क्या एआई मानवता को गुलाम बना लेगा?</string>
+    <string name="random_prompt_7">एलोन मस्क द्वारा ट्विटर को ख़रीदने के बारे में एक छोटी कविता लिखिए</string>
+    <string name="random_prompt_8">टीएल उत्पन्न करें;कुरान के लिए डॉ</string>
+    <string name="random_prompt_9">बिटकॉइन क्या है?</string>
+    <string name="random_prompt_10">क्या बिटकॉइन खरीदना एक अच्छा विचार है?</string>
+    <string name="random_prompt_11">मुझे एक मजेदार चुटकुला सुनाओ</string>
+    <string name="random_prompt_12">जिंदगी क्या है?</string>
+    <string name="random_prompt_13">जीवन का क्या अर्थ है?</string>
+    <string name="random_prompt_14">पृथ्वी कितनी पुरानी है?</string>
+    <string name="random_prompt_15">क्या आपके पास भावनाएं हैं?</string>
+    <string name="random_prompt_16">विडंबना का एक उदाहरण दीजिए</string>
+    <string name="random_prompt_17">डायनासोर के अंत की लघु इमोजी कहानी</string>
+    <string name="random_prompt_18">उन भाषाओं की सूची जिनका आप अनुवाद कर सकते हैं</string>
+    <string name="random_prompt_19">बिल्लियों के बारे में HTML पृष्ठ उत्पन्न करें</string>
+
+</resources>
