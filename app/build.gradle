@@ -23,15 +23,15 @@ android {
 
         }
     }
-    namespace 'org.bitanon.chatgpt3'
+    namespace 'org.bitanon.gpt4btc'
     compileSdk 33
 
     defaultConfig {
-        applicationId "org.bitanon.chatgpt3"
+        applicationId "org.bitanon.gpt4btc"
         minSdk 24
         targetSdk 33
-        versionCode 53
-        versionName "1.52"
+        versionCode 1
+        versionName "1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -63,7 +63,7 @@ android {
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.9.0'
-    implementation 'androidx.appcompat:appcompat:1.6.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'

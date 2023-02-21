@@ -1,13 +1,13 @@
-package org.bitanon.chatgpt3
+package org.bitanon.gpt4btc
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
 import com.google.android.material.slider.Slider
-import org.bitanon.chatgpt3.MainActivity.Companion.prefDictationAuto
-import org.bitanon.chatgpt3.MainActivity.Companion.prefDictationSpeed
-import org.bitanon.chatgpt3.MainActivity.Companion.setPrefDictationAuto
-import org.bitanon.chatgpt3.databinding.ActivitySettingsBinding
+import org.bitanon.gpt4btc.MainActivity.Companion.prefDictationAuto
+import org.bitanon.gpt4btc.MainActivity.Companion.prefDictationSpeed
+import org.bitanon.gpt4btc.MainActivity.Companion.setPrefDictationAuto
+import org.bitanon.gpt4btc.databinding.ActivitySettingsBinding
 
 private const val TAG = "SettingsActivity"
 class SettingsActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package org.bitanon.chatgpt3
+package org.bitanon.gpt4btc
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -11,7 +11,7 @@ import androidx.appcompat.widget.SwitchCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
-import org.bitanon.chatgpt3.databinding.ActivityAccountBinding
+import org.bitanon.gpt4btc.databinding.ActivityAccountBinding
 import kotlin.math.roundToInt
 
 const val LIMIT_ANON = 60

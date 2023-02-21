@@ -1,4 +1,4 @@
-package org.bitanon.chatgpt3
+package org.bitanon.gpt4btc
 
 import android.content.Context
 import android.os.Bundle

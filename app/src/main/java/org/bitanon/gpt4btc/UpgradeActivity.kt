@@ -1,4 +1,4 @@
-package org.bitanon.chatgpt3
+package org.bitanon.gpt4btc
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -12,7 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
-import org.bitanon.chatgpt3.databinding.ActivityUpgradeBinding
+import org.bitanon.gpt4btc.databinding.ActivityUpgradeBinding
 
 
 //private const val TAG = "UpgradeActivity"

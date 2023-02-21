@@ -1,4 +1,4 @@
-package org.bitanon.chatgpt3
+package org.bitanon.gpt4btc
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -27,7 +27,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import org.bitanon.chatgpt3.databinding.ActivityMainBinding
+import org.bitanon.gpt4btc.databinding.ActivityMainBinding
 
 const val AD_ID_PART1 = "ca-app-pub-"
 const val SHARED_PREFS = "CHATGPT3_SHARED_PREFS"

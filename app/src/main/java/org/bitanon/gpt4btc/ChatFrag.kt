@@ -1,4 +1,4 @@
-package org.bitanon.chatgpt3
+package org.bitanon.gpt4btc
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -16,9 +16,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
-import org.bitanon.chatgpt3.MainActivity.Companion.prefDictationAuto
-import org.bitanon.chatgpt3.MainActivity.Companion.prefDictationSpeed
-import org.bitanon.chatgpt3.databinding.FragmentChatBinding
+import org.bitanon.gpt4btc.MainActivity.Companion.prefDictationAuto
+import org.bitanon.gpt4btc.MainActivity.Companion.prefDictationSpeed
+import org.bitanon.gpt4btc.databinding.FragmentChatBinding
 import java.util.*
 
 const val OPENAI_KEY_PART2 = "EjCe9iICSpXhT3Blbk"

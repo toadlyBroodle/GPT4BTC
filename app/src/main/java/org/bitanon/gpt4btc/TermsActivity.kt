@@ -1,4 +1,4 @@
-package org.bitanon.chatgpt3
+package org.bitanon.gpt4btc
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -8,8 +8,8 @@ import android.util.Log
 import android.view.MotionEvent
 import android.widget.CheckBox
 import androidx.appcompat.app.AppCompatActivity
-import org.bitanon.chatgpt3.MainActivity.Companion.prefShowTerms
-import org.bitanon.chatgpt3.databinding.ActivityTermsBinding
+import org.bitanon.gpt4btc.MainActivity.Companion.prefShowTerms
+import org.bitanon.gpt4btc.databinding.ActivityTermsBinding
 
 const val OPENAI_KEY_PART3 = "FJ8ipVot1Oj"
 
