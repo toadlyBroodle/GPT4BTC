@@ -8,6 +8,7 @@ import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 
 private const val AD_ID_TEST = "ca-app-pub-3940256099942544/1033173712"
+private const val AD_ID_BANNER = "ca-app-pub-9043912704472803/1187839419"
 private const val AD_BLOCK_WORDS_TO_CONSUME = 50
 
 private const val TAG = "AdMob"
@@ -15,7 +16,7 @@ class AdMob {
 	companion object {
 		private var showReqCount = 0
 
-		var adId = MainActivity.buildAdMobKey()
+		var adIdInterstitial = "ca-app-pub-9043912704472803/9248779375"
 		var mInterstitialAd: InterstitialAd? = null
 
 		fun init(ctx: Context) {
@@ -27,19 +28,19 @@ class AdMob {
 
 			// when developing, use test ad id
 			if (BuildConfig.DEBUG)
-				adId = AD_ID_TEST
+				adIdInterstitial = AD_ID_TEST
 
 			// init AdMob
 			MobileAds.initialize(ctx) {}
 		}
 
-		fun loadNewAd(ctx: Context?) {
+		fun loadNewInterstitial(ctx: Context?) {
 			if (ctx == null)
 				return
 
 			val adRequest = AdRequest.Builder().build()
 
-			InterstitialAd.load(ctx, adId,
+			InterstitialAd.load(ctx, adIdInterstitial,
 				adRequest, object : InterstitialAdLoadCallback() {
 					override fun onAdFailedToLoad(adError: LoadAdError) {
 						Log.d(TAG, "Ad load fail: $adError")
@@ -100,7 +101,7 @@ class AdMob {
 			if (promptNum != 0) {
 				// load new ad before every third prompt
 				if (promptNum == 2)
-					loadNewAd(activ?.baseContext)
+					loadNewInterstitial(activ?.baseContext)
 				return
 			}
 

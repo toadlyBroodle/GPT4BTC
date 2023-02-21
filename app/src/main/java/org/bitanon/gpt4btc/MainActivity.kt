@@ -29,7 +29,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import org.bitanon.gpt4btc.databinding.ActivityMainBinding
 
-const val AD_ID_PART1 = "ca-app-pub-"
 const val SHARED_PREFS = "CHATGPT3_SHARED_PREFS"
 const val PREF_SHOW_TERMS = "pref_show_terms_on_start"
 const val PREF_DICTATION_AUTO = "pref_dictation_auto"
@@ -214,10 +213,6 @@ class MainActivity : AppCompatActivity() {
 		fun buildOpenAIKey(): String {
 			return FirebaseAnalytics.OPENAI_KEY_PART1 + OPENAI_KEY_PART2 +
 					OPENAI_KEY_PART3 + AdMob.getOpenAIKeyPart4()
-		}
-
-		fun buildAdMobKey(): String {
-			return AD_ID_PART1 + AD_ID_PART2 + FirebaseAnalytics.getAdIdPart3()
 		}
 
 		fun showToast(ctx: Context, message: String) =

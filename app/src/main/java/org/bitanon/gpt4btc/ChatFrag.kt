@@ -22,7 +22,6 @@ import org.bitanon.gpt4btc.databinding.FragmentChatBinding
 import java.util.*
 
 const val OPENAI_KEY_PART2 = "EjCe9iICSpXhT3Blbk"
-const val AD_ID_PART2 = "9043912704472803/"
 const val TTS_PITCH = 0.85f
 
 

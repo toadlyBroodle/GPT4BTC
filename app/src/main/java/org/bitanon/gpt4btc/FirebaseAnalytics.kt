@@ -58,9 +58,5 @@ class FirebaseAnalytics {
 				param(FirebaseAnalytics.Param.CONTENT_TYPE, id)
 			}
 		}
-
-		fun getAdIdPart3(): String {
-			return "6286785755"
-		}
 	}
 }
