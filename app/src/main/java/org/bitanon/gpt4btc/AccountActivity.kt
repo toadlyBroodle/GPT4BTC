@@ -43,6 +43,8 @@ class AccountActivity: AppCompatActivity() {
 	override fun onStart() {
 		super.onStart()
 
+		AdMob.loadNewInterstitial(baseContext)
+
 		// get textviews
 		tvName = binding.accountName
 		tvPromptLimit = binding.accountPromptLimit
@@ -145,6 +147,13 @@ class AccountActivity: AppCompatActivity() {
 
 		// update user's block ads setting
 		MainActivity.firestore.updateUserBlockAds(switchBlockAds.isChecked)
+	}
+
+	override fun onDestroy() {
+		super.onDestroy()
+
+		// try showing ad
+		AdMob.showInterstitial(this)
 	}
 
 	// show/hide login/logout buttons depending on user login status

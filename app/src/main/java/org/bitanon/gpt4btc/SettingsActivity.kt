@@ -30,6 +30,8 @@ class SettingsActivity : AppCompatActivity() {
 	override fun onStart() {
 		super.onStart()
 
+		AdMob.loadNewInterstitial(baseContext)
+
 		switchDictateAuto = binding.settingsSwitchDictateAuto
 		sliderSpeechSpeed = binding.settingsSliderSpeechSpeed
 
@@ -48,5 +50,8 @@ class SettingsActivity : AppCompatActivity() {
 	override fun onPause() {
 		super.onPause()
 		MainActivity.savePrefs(this)
+
+		// try showing ad
+		AdMob.showInterstitial(this)
 	}
 }

@@ -14,7 +14,6 @@ private const val AD_BLOCK_WORDS_TO_CONSUME = 50
 private const val TAG = "AdMob"
 class AdMob {
 	companion object {
-		private var showReqCount = 0
 
 		var adIdInterstitial = "ca-app-pub-9043912704472803/9248779375"
 		var mInterstitialAd: InterstitialAd? = null
@@ -93,17 +92,7 @@ class AdMob {
 			return "4snRKPYJTyM"
 		}
 
-		fun show(activ: Activity?) {
-			showReqCount++
-
-			// only show interstitial ad every third prompt
-			val promptNum = showReqCount % 3
-			if (promptNum != 0) {
-				// load new ad before every third prompt
-				if (promptNum == 2)
-					loadNewInterstitial(activ?.baseContext)
-				return
-			}
+		fun showInterstitial(activ: Activity?) {
 
 			// don't show if ad blocking on and purchased words available
 			if (Firestore.userState.value?.blockAds == true &&

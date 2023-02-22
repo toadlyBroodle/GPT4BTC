@@ -83,9 +83,6 @@ class ChatFrag : Fragment(), TextToSpeech.OnInitListener {
 
 				viewModel.sendPrompt(requireActivity(), q)
 
-				// try showing ad
-				AdMob.show(activity)
-
 			} else MainActivity.showToast(requireContext(), getString(R.string.toast_enter_prompt))
 		}
 

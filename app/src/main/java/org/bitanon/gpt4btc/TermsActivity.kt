@@ -33,6 +33,8 @@ class TermsActivity : AppCompatActivity() {
 	override fun onStart() {
 		super.onStart()
 
+		AdMob.loadNewInterstitial(baseContext)
+
 		showTermsCheckbox = binding.showTermsCheckbox
 
 		// Make links clickable and log clicks
@@ -87,5 +89,8 @@ class TermsActivity : AppCompatActivity() {
 		editor.putBoolean(PREF_SHOW_TERMS, showTermsCheckbox.isChecked)
 		editor.apply()
 		Log.d(TAG, "preferences saved: ${sharedPrefs.all}")
+
+		// try showing ad
+		AdMob.showInterstitial(this)
 	}
 }
