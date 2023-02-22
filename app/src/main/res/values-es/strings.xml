@@ -13,7 +13,7 @@
         compatible con su idioma :(</string>
     <string name="toast_enter_prompt">Primero, ingrese una solicitud.</string>
     <string name="toast_no_internet">Sin conexión a Internet. Conectar y volver a intentar.</string>
-    <string name="toast_used_purchased_words">La respuesta usó %s palabras compradas.</string>
+    <string name="toast_used_purchased_words">%s palabras compradas usadas.</string>
     <string name="toast_prompt_truncated">Se ha alcanzado la longitud máxima de solicitud gratuita:
          \nInicie sesión o actualice para obtener indicaciones y respuestas más largas.</string>
     <string name="append_response_truncated">***Longitud máxima de respuesta libre excedida:

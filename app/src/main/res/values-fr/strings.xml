@@ -13,7 +13,7 @@
         charge votre langue :(</string>
     <string name="toast_enter_prompt">Tout d\'abord, entrez une invite.</string>
     <string name="toast_no_internet">Pas de connexion Internet. Connectez-vous et réessayez.</string>
-    <string name="toast_used_purchased_words">La réponse a utilisé %s mots achetés.</string>
+    <string name="toast_used_purchased_words">%s mots achetés utilisés.</string>
     <string name="toast_prompt_truncated">Longueur maximale d\'invite gratuite atteinte :
          \nConnexion ou mise à niveau pour des invites et des réponses plus longues.</string>
     <string name="append_response_truncated">***Longueur maximale de réponse libre dépassée :

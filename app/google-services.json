@@ -1,33 +1,50 @@
 {
   "project_info": {
-    "project_number": "112246693078",
-    "project_id": "gpt4btc",
-    "storage_bucket": "gpt4btc.appspot.com"
+    "project_number": "820938684771",
+    "firebase_url": "https://bitanon-chatgpt3-default-rtdb.firebaseio.com",
+    "project_id": "bitanon-chatgpt3",
+    "storage_bucket": "bitanon-chatgpt3.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:112246693078:android:596ff698021119844f7d77",
+        "mobilesdk_app_id": "1:820938684771:android:2c9948218f37e859a2fb56",
         "android_client_info": {
           "package_name": "org.bitanon.gpt4btc"
         }
       },
       "oauth_client": [
         {
-          "client_id": "112246693078-knqsjhmc39vc1ki9as51us6mstgqd74g.apps.googleusercontent.com",
+          "client_id": "820938684771-3i6c6bt95jgfv1ljtpubdbs0qq9h2on8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.bitanon.gpt4btc",
+            "certificate_hash": "7d51b3d6470a2e5346e13fe8a70cec64bc2994a4"
+          }
+        },
+        {
+          "client_id": "820938684771-dvbn1nl6dqb392c8rl8977up3m0uefun.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.bitanon.gpt4btc",
+            "certificate_hash": "7fe97dcb6bbbb3f0daffeb5b41086b190d2bf2d8"
+          }
+        },
+        {
+          "client_id": "820938684771-g91vh862hfm1k3tf61c623pcvlv03fkp.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB8PB1iorUkx3QsEkXpyOVKS6Iv3d3Z8rQ"
+          "current_key": "AIzaSyCLk9FU9mwgR40iU-Klb8YILGTO16xiiyo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "112246693078-knqsjhmc39vc1ki9as51us6mstgqd74g.apps.googleusercontent.com",
+              "client_id": "820938684771-g91vh862hfm1k3tf61c623pcvlv03fkp.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -12,7 +12,7 @@
     <string name="toast_tts_not_supported">दुर्भाग्य से Google टेक्स्ट टू स्पीच आपकी भाषा का समर्थन नहीं करता :(</string>
     <string name="toast_enter_prompt">सबसे पहले, एक संकेत दर्ज करें।</string>
     <string name="toast_no_internet">कोई इंटरनेट कनेक्शन नहीं। कनेक्ट करें और पुनः प्रयास करें।</string>
-    <string name="toast_used_purchased_words">प्रतिसाद में %s खरीदे गए शब्दों का उपयोग किया गया.</string>
+    <string name="toast_used_purchased_words">%s खरीदे गए शब्दों का उपयोग किया गया।</string>
     <string name="toast_prompt_truncated">फ्री प्रॉम्प्ट की अधिकतम अवधि पूरी हो चुकी है: \nलंबे संकेतों और प्रतिक्रियाओं के
         लिए लॉगिन या अपग्रेड करें।</string>
     <string name="append_response_truncated">***अधिकतम मुफ्त प्रतिक्रिया की अवधि पार हो गई है: \nलंबे संकेतों और प
