@@ -31,6 +31,14 @@
           }
         },
         {
+          "client_id": "820938684771-qvjngvpd3t7b4jqappfjl89m1vp6qhs6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.bitanon.gpt4btc",
+            "certificate_hash": "2aab5a3e541caee5be001b2b7f063d609a8a7c6b"
+          }
+        },
+        {
           "client_id": "820938684771-g91vh862hfm1k3tf61c623pcvlv03fkp.apps.googleusercontent.com",
           "client_type": 3
         }
